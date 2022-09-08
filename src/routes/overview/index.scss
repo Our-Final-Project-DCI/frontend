@@ -1,0 +1,31 @@
+.Main {
+  padding-top: 54px;
+  height: 100%;
+  width: 100%;
+}
+
+.text {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 50px;
+}
+
+p {
+  opacity: 0.7;
+}
+
+.search {
+  text-align: center;
+  width: 100%;
+  padding-top: 200px;
+}
+
+.span {
+  color: #d84a89;
+}
+.input {
+  border-radius: 20px;
+  width: 600px;
+  height: 35px;
+  border-color: rgb(183, 180, 180);
+}

@@ -1,8 +1,11 @@
-import React from 'react'
-import './index.scss'
+import React from "react";
+import "./index.scss";
+import Layout from "../../Layout";
 
 export default function Category() {
   return (
-    <div>Category Routes</div>
-  )
+    <Layout>
+      <div>Category Routes</div>
+    </Layout>
+  );
 }

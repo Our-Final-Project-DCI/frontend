@@ -1,8 +1,11 @@
-import React from 'react'
-import './index.scss'
+import React from "react";
+import "./index.scss";
+import Layout from "../../Layout";
 
 export default function Account() {
   return (
-    <div>Account Routes</div>
-  )
+    <Layout>
+      <div>Account Routes</div>
+    </Layout>
+  );
 }

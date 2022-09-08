@@ -1,8 +1,11 @@
-import React from 'react'
-import './index.scss'
+import React from "react";
+import "./index.scss";
+import Layout from "../../Layout";
 
 export default function About() {
   return (
-    <div>About Routes</div>
-  )
+    <Layout>
+      <div>About</div>
+    </Layout>
+  );
 }
