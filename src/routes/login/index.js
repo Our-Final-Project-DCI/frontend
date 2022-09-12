@@ -1,6 +1,7 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import './index.scss'
-import Layout from '../../Layout'
+
 
 
 export default function Login() {
@@ -9,8 +10,11 @@ export default function Login() {
   const [showRegister, setShowRegister] = React.useState(false)
   const [fullName, setFullName] = React.useState('')
   const [userName, setUserName] = React.useState('')
+  const navigate = useNavigate()
   
-  
+  const handleNavigate = () => {
+       navigate('/')
+  }
   
 
 
@@ -20,7 +24,7 @@ export default function Login() {
     return (
       <div className='Login'>
         <div className='content-left'>
-          <div className='logo'><img src='/img/logo.png' alt='logo'/></div>
+          <div className='logo' onClick={handleNavigate}> <img src='/img/logo.png' alt='logo'/> </div>
           <div className='login-image'><img src='/img/signup.svg' alt='login-img' /></div>
         </div>
         <div className='content-right'>
@@ -76,7 +80,7 @@ export default function Login() {
     
       <div className='Login'>
         <div className='content-left'>
-          <div className='logo'><img src='/img/logo.png' alt='logo'/></div>
+          <div className='logo' onClick={handleNavigate}><img src='/img/logo.png' alt='logo'/></div>
           <div className='login-image'><img src='/img/login.svg' alt='login-img' /></div>
         </div>
         <div className='content-right'>
