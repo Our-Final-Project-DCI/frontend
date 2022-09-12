@@ -89,7 +89,7 @@ export default function Login() {
           <div className='box-login'>
           <h1>Login</h1>
           <div className='toggle-register' onClick={() => setShowRegister(true)}>
-            i don't have an Account !
+            I don't have an Account !
           </div>
           <div className='line'><span></span>Or<span></span></div>
           </div>
