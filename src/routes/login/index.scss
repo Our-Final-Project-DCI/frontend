@@ -77,6 +77,30 @@
                 justify-content: space-around;
                 align-items: flex-start;
 
+                > .input-signup{
+                     display: flex;
+                     gap: 40px;
+                     justify-content: space-around;
+                     
+                    > .input-group{
+                        width: 100%;
+                       .label{
+                         margin-bottom: 30px;
+                         font-weight: bold;
+                           
+                       }
+        
+                       > input{
+                           border: none;
+                           border-bottom: 1px solid #d7d7d7;
+                           outline: none;
+                           width: 100%;
+                           margin-bottom: 60px;
+                           
+                       }
+                    }
+                }
+
                 > .input-group{
                     width: 100%;
                    .label{
