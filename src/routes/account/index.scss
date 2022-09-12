@@ -1,0 +1,12 @@
+.skill-slider {
+    width: 80%;
+    margin: 0 auto;
+    /* position: relative; */
+
+    > .item{
+        > img{
+            width: 50%;
+            margin: 0 auto 15px auto;
+        }
+    }
+  }
