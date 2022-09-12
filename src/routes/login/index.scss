@@ -1,0 +1,139 @@
+.Login {
+    display: flex;
+    height: 100vh;
+
+    > .content-left{
+        width: 30%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #e1f8f0;
+        
+
+        > .logo{
+            cursor: pointer;
+            > img{
+                max-width: 250px;
+            } 
+        }
+
+        > .login-image{
+           > img{
+            max-width: 500px;
+           }
+        }
+    }
+    > .content-right{
+        width: 70%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        > .box{
+            border: 1px solid #d7d7d7;
+            width: 25%;
+            height: 60%;
+            padding:0 30px 30px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: flex-start;
+
+            > .box-login{
+                  width: 100%;
+                > .toggle-register{
+                    color: #ea4c89;
+                    font-style: italic;
+                    margin-bottom: 40px;
+                    cursor: pointer;
+                }
+
+                > h1{
+                    font-size: 30px;
+                }
+
+                > .line{
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    > span{
+                        display: inline-block;
+                        height: 1px;
+                        background-color: #d7d7d7;
+                        width: 100%;
+                    }
+                }
+            }
+
+            > .box-input{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: flex-start;
+
+                > .input-signup{
+                     display: flex;
+                     gap: 40px;
+                     justify-content: space-around;
+                     
+                    > .input-group{
+                        width: 100%;
+                       .label{
+                         margin-bottom: 30px;
+                         font-weight: bold;
+                           
+                       }
+        
+                       > input{
+                           border: none;
+                           border-bottom: 1px solid #d7d7d7;
+                           outline: none;
+                           width: 100%;
+                           margin-bottom: 60px;
+                           
+                       }
+                    }
+                }
+
+                > .input-group{
+                    width: 100%;
+                   .label{
+                     margin-bottom: 30px;
+                     font-weight: bold;
+                       
+                   }
+    
+                   > input{
+                       border: none;
+                       border-bottom: 1px solid #d7d7d7;
+                       outline: none;
+                       width: 100%;
+                       margin-bottom: 60px;
+                       
+                   }
+                }
+    
+                > button{
+                    background-color: #ea4c89;
+                    color: white;
+                    border: none;
+                    padding: 10px 50px;
+                    font-size: 15px;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+            }
+
+            
+
+            
+        }
+    }
+
+}
