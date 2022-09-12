@@ -33,6 +33,7 @@
         align-items: center;
 
         > .box{
+            background-color: #e1f8f0;
             border: 1px solid #d7d7d7;
             width: 25%;
             height: 60%;
@@ -61,6 +62,8 @@
                     align-items: center;
                     justify-content: center;
                     gap: 10px;
+
+                    
                     > span{
                         display: inline-block;
                         height: 1px;
@@ -71,6 +74,7 @@
             }
 
             > .box-input{
+
                 width: 100%;
                 display: flex;
                 flex-direction: column;
@@ -79,6 +83,7 @@
 
                 > .input-signup{
                      display: flex;
+                     padding-top: 30px;
                      gap: 40px;
                      justify-content: space-around;
                      
@@ -92,10 +97,13 @@
         
                        > input{
                            border: none;
-                           border-bottom: 1px solid #d7d7d7;
+                           border-bottom: 3px solid #d7d7d7;
                            outline: none;
                            width: 100%;
                            margin-bottom: 60px;
+
+                       background-color: #e1f8f0;
+                           
                            
                        }
                     }
@@ -111,10 +119,11 @@
     
                    > input{
                        border: none;
-                       border-bottom: 1px solid #d7d7d7;
+                       border-bottom: 3px solid #d7d7d7;
                        outline: none;
                        width: 100%;
                        margin-bottom: 60px;
+                       background-color: #e1f8f0;
                        
                    }
                 }
@@ -123,6 +132,7 @@
                     background-color: #ea4c89;
                     color: white;
                     border: none;
+                    border-radius: 5px;
                     padding: 10px 50px;
                     font-size: 15px;
                     font-weight: bold;
