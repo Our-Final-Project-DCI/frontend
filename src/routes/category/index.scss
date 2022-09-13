@@ -1,0 +1,115 @@
+.Categorie{
+    padding-top: 70px;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+
+    > .categorie-content-left{
+        border: 3px solid blue;
+        width: 40%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+        > .description{
+          width: 50%;
+          text-align: center;
+            > p{
+                font-size: 50px;
+                font-weight: bold;
+                color: #606060;
+            }
+        }
+        > .img-content{
+
+            > img{
+                max-width: 250px;
+                height: 300px;
+            }
+        }
+    }
+
+    > .categorie-content-right{
+        border: 3px solid red;
+        width: 60%;
+        height: 100%;
+        display: flex;
+        gap: 10px;
+
+        > .item{
+            width: 20%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            
+            > p{
+                transform: rotate(-90deg);
+                font-size: 22px;
+                font-weight: bold;
+                letter-spacing: 5px;
+            }
+        }
+
+        > .item-natur{
+            background-color: #629c44;
+        }
+
+        > .item-foods{
+            background-color:#c3bb38 ;
+        }
+
+        > .item-cars{
+            background-color:#fec63d ;
+        }
+
+        > .item-fashions{
+            background-color: #c64516;
+        }
+
+        > .item-animals{
+            background-color: #7b4812;
+        }
+
+        > .item-arts{
+            background-color: #231f20;
+        }
+
+        > .item-others{
+            background-color: #e7b5b5;
+        }
+    }
+}
+
+@media screen and (max-width: 768px){
+    .Categorie{
+        padding-top: 70px;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+    
+        > .categorie-content-left{
+            display: none;
+        }
+    
+        > .categorie-content-right{
+            width: 100%;
+            flex-direction: column;
+            gap: 10px;
+    
+            > .item{
+                width: 100%;
+            
+                > p{
+                    transform: rotate(0deg);
+                    font-size: 22px;
+                    font-weight: bold;
+                    letter-spacing: 5px;
+                }
+            }
+        }
+    }
+}
