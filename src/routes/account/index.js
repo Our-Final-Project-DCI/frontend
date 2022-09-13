@@ -73,7 +73,7 @@ export default function Account() {
               <div className="socialMedia">
                 <ul>
                   <li>
-                    <a href="/">Instgram</a>
+                    <a href="/">Instagram</a>
                   </li>
                   <li>
                     <a href="/">Facebook</a>
@@ -96,23 +96,25 @@ export default function Account() {
               </li>
             </ul>
           </div>
-
-          <div className="user-photos">
-            <Carousel responsive={responsive} className="slider">
-              <div className="item">
-                <img src={f1} alt="" width="370" />
-              </div>
-              <div className="item">
-                <img src={f1} alt="" width="370" />
-              </div>
-              <div className="item">
-                <img src={f1} alt="" width="370" />
-              </div>
-              <div className="item">
-                <img src={f1} alt="" width="370" />
-              </div>
-            </Carousel>
-          </div>
+        </div>
+        <div className="user-photos">
+          <Carousel responsive={responsive} className="slider">
+            <div className="item">
+              <img src={f1} alt="" width="90%" />
+            </div>
+            <div className="item">
+              <img src={f1} alt="" width="90%" />
+            </div>
+            <div className="item">
+              <img src={f1} alt="" width="90%" />
+            </div>
+            <div className="item">
+              <img src={f1} alt="" width="90%" />
+            </div>
+            <div className="item">
+              <img src={f1} alt="" width="90%" />
+            </div>
+          </Carousel>
         </div>
       </div>
     </Layout>

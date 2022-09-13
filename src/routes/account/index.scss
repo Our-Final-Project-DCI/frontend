@@ -18,11 +18,11 @@
   width: 100%;
   margin: 0 auto;
   > .wrapper {
-    border: 1px solid red;
+    //border: 1px solid red;
 
     > .user-profile {
-      padding-bottom: 72px;
-      padding-top: 60px;
+      padding-bottom: 42px;
+      padding-top: 70px;
       padding-left: 10px;
       padding-right: 10px;
       width: 100%;
@@ -30,7 +30,7 @@
 
       flex-wrap: wrap;
       gap: 48px;
-      margin-bottom: 80px;
+      margin-bottom: 120px;
 
       display: flex;
       justify-content: center;
@@ -114,10 +114,12 @@
     }
 
     > .user-collections {
+      margin-bottom: 60px;
       > ul {
         display: flex;
         list-style: none;
-        border-bottom: 2px solid lightgray;
+        border-bottom: 2px solid rgb(54, 50, 115);
+
         gap: 20px;
         padding-left: 0;
         margin: 0;
@@ -139,16 +141,23 @@
           }
         }
       }
-      margin-bottom: 48px;
     }
+  }
+  > .user-photos {
+    max-width: 1200px;
+    margin: 0 auto;
 
-    > .user-photos {
-      max-width: 1200px;
-      background-color: #eee;
-      margin: 0 auto;
-      min-height: 350px;
-      display: flex;
-      align-items: center;
+    padding: 10px;
+
+    > .slider {
+      padding: 20px;
+      // background-color: lightgray;
+      > .item {
+        margin-right: 20px;
+        > img {
+          width: 33%;
+        }
+      }
     }
   }
 }
