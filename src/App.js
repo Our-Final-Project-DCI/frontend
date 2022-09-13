@@ -8,6 +8,7 @@ import Contact from "./routes/contact";
 import Category from "./routes/category";
 import Account from "./routes/account";
 import About from "./routes/about";
+import Update from "./routes/update";
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +20,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/update" element={<Update />} />
         <Route path="/category" element={<Category />} />
       </Routes>
     </BrowserRouter>

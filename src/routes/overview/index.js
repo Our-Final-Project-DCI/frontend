@@ -1,5 +1,5 @@
 import React from "react";
-import "./index.scss";
+import "./overview.scss";
 import Layout from "../../Layout";
 import { FaSearch } from "react-icons/fa";
 
