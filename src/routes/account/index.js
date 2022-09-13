@@ -18,6 +18,8 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 export default function Account() {
+  const [photos, setPhotos] = React.useState([]);
+
   // Carousel- responsive:
 
   const responsive = {
