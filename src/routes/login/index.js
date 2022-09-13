@@ -28,7 +28,7 @@ export default function Login() {
           <div className='login-image'><img src='/img/signup.svg' alt='login-img' /></div>
         </div>
         <div className='content-right'>
-        
+        <div className='logo-responsive' onClick={handleNavigate}><img src='/img/logo.png' alt='logo'/></div>
         <form className='box'>
           <div className='box-login'>
           <h1>Join Us</h1>
@@ -84,7 +84,8 @@ export default function Login() {
           <div className='login-image'><img src='/img/login.svg' alt='login-img' /></div>
         </div>
         <div className='content-right'>
-        
+          
+        <div className='logo-responsive' onClick={handleNavigate}><img src='/img/logo.png' alt='logo'/></div>
         <form className='box'>
           <div className='box-login'>
           <h1>Login</h1>
