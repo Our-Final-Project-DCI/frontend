@@ -5,7 +5,12 @@ import Layout from "../../Layout";
 export default function Upload() {
   return (
     <Layout>
-      <div className="Upload-Photo-Route">Upload Routes</div>
+      <div className="Upload-Photo-Route">
+        <div className="wrapper">
+
+          
+        </div>
+      </div>
     </Layout>
   );
 }
