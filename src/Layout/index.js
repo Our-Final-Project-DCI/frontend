@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./index.scss";
+import Logo from "./logo/modern_logo.png";
+import { FaUserCircle } from "react-icons/fa";
 
 export default function Header(props) {
   return (
@@ -8,7 +10,7 @@ export default function Header(props) {
       <div className="Header">
         <div className="Header__logo">
           <Link className="link" to="/">
-            <span className="photo">Photo</span>gram
+            <img src={Logo} alt="logo" className="Header__png" />
           </Link>
         </div>
         <div className="Header__wrapper">
@@ -39,8 +41,10 @@ export default function Header(props) {
               </Link>
             </button>
           </div>
-          <div>
-            <span class="material-symbols-outlined"></span>
+          <div className="Header__item">
+            <Link className="link" to="/account">
+              <FaUserCircle />
+            </Link>
           </div>
         </div>
       </div>
