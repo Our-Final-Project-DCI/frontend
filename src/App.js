@@ -9,12 +9,14 @@ import Category from "./routes/category";
 import Account from "./routes/account";
 import About from "./routes/about";
 import Update from "./routes/update";
+import Logout from "./Layout-Logout";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Overview />} />
         <Route path="/login" element={<Login />} />
+        <Route path="logout" element={<Logout />} />
         <Route path="/upload-photo" element={<Upload />} />
         <Route path="/photos/:id" element={<Photo />} />
         <Route path="/about" element={<About />} />

@@ -2,6 +2,7 @@ import React from "react";
 import "./overview.scss";
 import Layout from "../../Layout";
 import { FaSearch } from "react-icons/fa";
+import Card from "../cards/index.js";
 
 export default function Overview() {
   return (
@@ -28,6 +29,9 @@ export default function Overview() {
               <input type="text" placeholder="Search" className="input"></input>
             </div>
           </div>
+        </div>
+        <div className="img-cards">
+          <Card />
         </div>
       </div>
     </Layout>

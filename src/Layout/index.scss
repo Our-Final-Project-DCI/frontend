@@ -67,3 +67,34 @@
   text-decoration: none;
   color: black;
 }
+
+.search {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding-top: 175px;
+  padding-bottom: 395px;
+  border-bottom: 1.5px solid;
+}
+
+.border {
+  background-color: #fff;
+  border: 2px solid;
+  border-radius: 25px;
+  height: 50px;
+  width: 650px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.input {
+  outline: none;
+  border: none;
+  margin: 0px;
+  padding-top: 10px;
+  width: 600px;
+  height: 20px;
+  border-color: rgb(183, 180, 180);
+}
