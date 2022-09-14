@@ -15,9 +15,11 @@ export default function Logout(props) {
           </Link>
         </div>
 
-        <div className="Logout__search">
+        <div className="Logout">
           <div className="Logout__border">
-            <FaSearch />
+            <button className="button">
+              <FaSearch />
+            </button>
             <input
               type="text"
               placeholder="Search"

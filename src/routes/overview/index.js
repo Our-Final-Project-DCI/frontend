@@ -25,7 +25,9 @@ export default function Overview() {
 
           <div className="search">
             <div className="border">
-              <FaSearch />
+              <button className="button">
+                <FaSearch />
+              </button>
               <input type="text" placeholder="Search" className="input"></input>
             </div>
           </div>
