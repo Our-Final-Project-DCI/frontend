@@ -6,13 +6,30 @@ import LayoutLogout from "../../Layout-Logout";
 import svg from "./images/uploadFile.png";
 
 export default function Upload() {
+  const options = [
+    { value: "", text: "--Choose a Category--" },
+    { value: "Nature", text: "Nature" },
+    { value: "Foods", text: "Foods" },
+    { value: "Cars", text: "Cars" },
+    { value: "Arts", text: "Arts" },
+    { value: "Fashion", text: "Fashion" },
+    { value: "Other", text: "Other" },
+  ];
+
+  const [photoFile, setPhotoFile] = React.useState("");
+  const [selected, setSelected] = React.useState(options[0].value);
   const [title, setTitle] = React.useState("");
   const [location, setLocation] = React.useState("");
   const [description, setDescription] = React.useState("");
-  const [photoFile, setPhotoFile] = React.useState("");
 
   const [isFetching, setIsFetching] = React.useState(false);
   const [error, setError] = React.useState(false);
+
+  const handleChange = (event) => {
+    console.log(event.target.value);
+    setSelected(event.target.value);
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
   };
@@ -37,14 +54,12 @@ export default function Upload() {
                 <input placeholder="Category" type="text" />
               </div> */}
               <div class="custom-select">
-                <select>
-                  <option value="0">Category:</option>
-                  <option value="1">Nature</option>
-                  <option value="2">Foods</option>
-                  <option value="3">Cars</option>
-                  <option value="4">Arts</option>
-                  <option value="5">Fashion</option>
-                  <option value="6">Other</option>
+                <select value={selected} onChange={handleChange}>
+                  {options.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.text}
+                    </option>
+                  ))}
                 </select>
               </div>
 
