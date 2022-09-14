@@ -12,11 +12,11 @@
     //border: 1px solid red;
     height: 100%;
     width: 100%;
-    padding: 70px 20px;
+
     > .upload-photo-form {
       // border: 1px solid red;
-      max-width: 900px;
-      padding: 20px 30px;
+      max-width: 950px;
+      padding-top: 120px;
       display: flex;
       margin: 0 auto;
       gap: 5px;
@@ -35,7 +35,6 @@
 
       > .input-group {
         width: 200px;
-        margin: 0 10px;
         display: flex;
         flex-direction: column;
         gap: 8px;
@@ -94,25 +93,35 @@
           resize: none;
         }
       }
-    }
-    > .upload-btn {
-      text-align: center;
-      margin: 0 auto;
-      margin-top: 40px;
-      > button {
-        min-width: 220px;
-        padding: 10px 8px;
-        border-radius: 6px;
+
+      > .upload-btn {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
         border-color: #eee3;
         color: white;
         background-color: #e15189;
         font-weight: bold;
+        align-self: center;
       }
     }
+    // > .upload-btn {
+    //   text-align: center;
+    //   margin: 0 auto;
+    //   margin-top: 40px;
+    //   > button {
+    //     min-width: 220px;
+    //     padding: 10px 8px;
+    //     border-radius: 6px;
+    //     border-color: #eee3;
+    //     color: white;
+    //     background-color: #e15189;
+    //     font-weight: bold;
+    //   }
+    // }
     > .svg {
       max-width: 380px;
       display: inline-block;
-      margin-top: -70px;
       > img {
         width: 100%;
       }

@@ -5,7 +5,6 @@ import LayoutLogout from "../../Layout-Logout";
 // images
 import svg from "./images/uploadFile.png";
 
-
 export default function Upload() {
   const options = [
     { value: "", text: "--Choose a Category--" },
@@ -51,9 +50,6 @@ export default function Upload() {
                 />
               </div>
 
-              {/* <div>
-                <input placeholder="Category" type="text" />
-              </div> */}
               <div class="custom-select">
                 <select value={selected} onChange={handleChange}>
                   {options.map((option) => (
@@ -94,10 +90,11 @@ export default function Upload() {
                 <button type="submit">Upload</button>
               </div> */}
             </div>
+            <button type="submit" className="upload-btn">
+              Upload
+            </button>
           </form>
-          <div className="upload-btn">
-            <button type="submit">Upload</button>
-          </div>
+
           <div className="svg">
             <img src={svg} alt="" />
           </div>
