@@ -2,56 +2,28 @@ import React from "react";
 import "./index.scss";
 import Layout from "../../Layout";
 
-
-import avatar from "./images/avatar.webp";
+import { useForm } from 'react-hook-form';
 
 export default function Update() {
-  const [update, setUpdate] = React.useState([]);
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const onSubmit = data => console.log(data);
+  console.log(errors);
+ 
+  
   return (
-    <Layout>
-      <div className="User-Update-Route">
-        <div className="wrapper">
-          <div className="Profile">
-            <div className="avatar-box">
-              <div className="avatar">
-                <img src={avatar} alt="" />
-              </div>
-              <a href="/account">Back</a>
-            </div>
-            <div className="input-info">
-              <form>
-                <label>
-                  Gender:
-                  <input type="text" name="Gender" />
-                </label>
-                <label>
-                  Fullname:
-                  <input type="text" name="Fullname" />
-                </label>
-                <label>
-                  Username:
-                  <input type="text" name="Username" />
-                </label>
-                <label>
-                  City:
-                  <input type="text" name="City" />
-                </label>
-                <label>
-                  Land:
-                  <input type="text" name="Land" />
-                </label>
-                <label>
-                  Bio:
-                  <input type="text" name="Bio" />
-                </label>
+    <Layout> 
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <select {...register("Title", { required: true })}>
+        <option value="male">male</option>
+        <option value="female">female</option>
+      </select>
+      <input type="text" placeholder="Fullname" {...register("Fullname", {required: true, maxLength: 80})} />
+      <input type="text" placeholder="username" {...register("username", {required: true, maxLength: 100})} />
+      <input type="text" placeholder="city" {...register("city", {required: true, maxLength: 12})} />
+      <textarea {...register("bio", {required: true})} />
 
-                
-                <input type="submit" value="Submit" />
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+      <input type="submit" />
+    </form>
     </Layout>
   );
 }
