@@ -24,7 +24,10 @@ export default function Overview() {
 
           <div className="Overview__search">
             <div className="Overview__border">
-              <FaSearch />
+              <button className="Overview__button">
+                <FaSearch />
+              </button>
+
               <input
                 type="text"
                 placeholder="Search"
