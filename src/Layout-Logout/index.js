@@ -5,7 +5,7 @@ import Logo from "./logo/modern_logo.png";
 import { FaUserCircle } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 
-export default function LayoutLogout(props) {
+export default function Logout(props) {
   return (
     <div className="Layout-Logout">
       <div className="Header">
@@ -14,21 +14,18 @@ export default function LayoutLogout(props) {
             <img src={Logo} alt="logo" className="Header__png" />
           </Link>
         </div>
-        {/* <div className="Header__search">
-          <div className="border">
-            <FaSearch />
-            <input type="text" placeholder="Search" className="input"></input>
-          </div>
-        </div> */}
 
-        <div class="search-container">
-          <form action="/category">
-            <input type="text" placeholder="Search.." name="search" />
-            <button type="submit">
-              <FaSearch></FaSearch>
-            </button>
-          </form>
+        <div className="Logout__search">
+          <div className="Logout__border">
+            <FaSearch />
+            <input
+              type="text"
+              placeholder="Search"
+              className="Logout__input"
+            ></input>
+          </div>
         </div>
+
         <div className="Header__wrapper">
           <div className="Header__item">
             <Link className="link" to="/about">
