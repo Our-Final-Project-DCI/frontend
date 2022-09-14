@@ -22,16 +22,16 @@
     color: #fff;
   }
 
-  p {
+  > p {
     color: #fff;
     opacity: 0.8;
   }
 
-  .span {
+  > .span {
     color: #d84a89;
   }
 
-  .search {
+  > .search {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -42,7 +42,7 @@
     border-bottom: 1.5px solid;
   }
 
-  .border {
+  > .border {
     background-color: #fff;
     border: 2px solid;
     border-radius: 25px;
@@ -52,7 +52,7 @@
     padding-top: 10px;
   }
 
-  .input {
+  > .input {
     outline: none;
     border: none;
     margin: 0px;
