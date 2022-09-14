@@ -5,6 +5,7 @@ import LayoutLogout from "../../Layout-Logout";
 // images
 import svg from "./images/uploadFile.png";
 
+
 export default function Upload() {
   const options = [
     { value: "", text: "--Choose a Category--" },

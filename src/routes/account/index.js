@@ -50,7 +50,7 @@ export default function Account() {
               <div className="avatar">
                 <img src={avatar} alt="" />
               </div>
-              <a href="/upload-photo">
+              <a href="/update">
                 <BiPencil />
               </a>
             </div>

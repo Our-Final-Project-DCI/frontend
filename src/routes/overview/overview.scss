@@ -6,8 +6,11 @@
 
 .bg_img {
   background-image: url(./img/238870.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   opacity: 1;
   z-index: -3;
+  background-repeat: no-repeat;
 }
 
 .text {
@@ -45,7 +48,8 @@ p {
   background-color: #fff;
   border: 2px solid;
   border-radius: 25px;
-  height: 40px;
+  height: 50px;
+  width: 650px;
   padding-left: 10px;
   padding-top: 10px;
 }
@@ -53,7 +57,8 @@ p {
 .input {
   outline: none;
   border: none;
-  margin: 5px;
+  margin: 0px;
+  padding-top: 10px;
   width: 600px;
   height: 20px;
   border-color: rgb(183, 180, 180);
