@@ -2,27 +2,29 @@ import React from "react";
 import "./index.scss";
 import Layout from "../../Layout";
 
-import { useForm } from 'react-hook-form';
 
 export default function Update() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
-  console.log(errors);
  
-  
+  const submitHander = (e) => {e.preventDefault(); console.log("submit")};
   return (
     <Layout> 
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <select {...register("Title", { required: true })}>
+    <form  className="updateform" onSubmit={submitHander}>
+      <select>
         <option value="male">male</option>
         <option value="female">female</option>
       </select>
-      <input type="text" placeholder="Fullname" {...register("Fullname", {required: true, maxLength: 80})} />
-      <input type="text" placeholder="username" {...register("username", {required: true, maxLength: 100})} />
-      <input type="text" placeholder="city" {...register("city", {required: true, maxLength: 12})} />
-      <textarea {...register("bio", {required: true})} />
+      <input type="text" placeholder="Fullname"  />
+      <input type="text" placeholder="username" />
+      <input type="text" placeholder="city" />
+      <input type="text" placeholder="Land" />
+      <textarea  placeholder="about" />
+      <div>
+      <a>Twiter</a>
+      <a>Facebook</a>
+      <a>Instagram</a>
+      </div>
 
-      <input type="submit" />
+      <button type="submit" >Update</button>
     </form>
     </Layout>
   );
