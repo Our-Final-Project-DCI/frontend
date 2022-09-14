@@ -18,9 +18,21 @@ export default function Upload() {
               <div className="choose-btn">
                 <button>choose file</button>
               </div>
-              <div>
+              {/* <div>
                 <input placeholder="Category" type="text" />
+              </div> */}
+              <div class="custom-select">
+                <select>
+                  <option value="0">Category:</option>
+                  <option value="1">Natur</option>
+                  <option value="2">Foods</option>
+                  <option value="3">Cars</option>
+                  <option value="4">Arts</option>
+                  <option value="5">Fashion</option>
+                  <option value="6">Other</option>
+                </select>
               </div>
+
               <div>
                 <input placeholder="title" type="text" />
               </div>
@@ -28,14 +40,18 @@ export default function Upload() {
                 <input placeholder="location" type="text" />
               </div>
               <div>
-                <textarea placeholder="description" type="text" />
+                <textarea
+                  placeholder="description"
+                  name="textarea"
+                  rows="8"
+                  cols="22"
+                />
               </div>
               <div className="upload-btn">
                 <button type="submit">Upload</button>
               </div>
             </div>
           </form>
-
           <div className="svg">
             <img src={uploadFile} alt="" />
           </div>
