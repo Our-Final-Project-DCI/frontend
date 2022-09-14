@@ -44,31 +44,31 @@ export default function Photo() {
           <img src={f1} alt="" />
         </div>
 
-        <div className="comment-section">
+        <section className="comment-section">
           <form action="">
             <div className="user-comment">
-              <div className="user">
+              <div className="avatar">
                 <a href="/account">
-                  <img src="" alt="" className="hover_opacity" />
+                  <img src={avatar} alt="" className="hover_opacity" />
                 </a>
               </div>
               <input type="text" placeholder="Type comment hier..." />
             </div>
           </form>
+
           <div className="user-comments">
             <div className="user">
-              <img src="" alt="" className="hover_opacity" />
+              <img src={avatar} alt="" className="hover_opacity" />
             </div>
-            <div className="comment">
+            <div className="comments">
               <h4>User 1</h4>
               <p>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo
                 beataee!
               </p>
             </div>
-            <input type="text" placeholder="Type comment hier..." />
           </div>
-        </div>
+        </section>
       </div>
     </div>
   );
