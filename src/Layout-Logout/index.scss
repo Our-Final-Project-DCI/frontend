@@ -1,0 +1,28 @@
+.Logout__search {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.Logout__border {
+  background-color: #fff;
+  border: 2px solid black;
+  border-radius: 25px;
+  height: 40px;
+  width: 450px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.Logout__input {
+  outline: none;
+  border: none;
+  margin: 0px;
+
+  width: 400px;
+  height: 20px;
+  border-color: rgb(183, 180, 180);
+}

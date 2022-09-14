@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.scss";
-import LayoutLogout from "../../LayoutLogout";
+import LayoutLogout from "../../Layout-Logout";
 
 // images
 import uploadFile from "./images/uploadFile.png";
