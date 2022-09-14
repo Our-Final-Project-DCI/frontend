@@ -6,7 +6,7 @@ import { FaSearch } from "react-icons/fa";
 export default function Overview() {
   return (
     <Layout>
-      <div className="Main">
+      <div className="Overview">
         <div className="bg_img">
           <div className="text">
             <h1>
