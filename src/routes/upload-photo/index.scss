@@ -4,25 +4,24 @@
 
 .Upload-Photo-Route {
   padding-top: 70px;
-  // padding-top: 100px;
-  padding-bottom: 80px;
+  padding-bottom: 10px;
   padding-left: 40px;
   padding-right: 40px;
-
   margin: 0 auto;
   .wrapper {
-    border: 1px solid red;
+    //border: 1px solid red;
     height: 100%;
     width: 100%;
-    //margin-top: 70px;
+    padding: 70px 20px;
     > .upload-photo-form {
-      border: 1px solid red;
-      max-width: 800px;
-      padding-top: 70px;
+      // border: 1px solid red;
+      max-width: 900px;
+      padding: 20px 30px;
       display: flex;
       margin: 0 auto;
-      gap: 30px;
+      gap: 5px;
       flex-wrap: wrap;
+
       > .photo {
         height: 290px;
         border: 2px dashed #333;
@@ -83,24 +82,26 @@
           border-radius: 8px;
           resize: none;
         }
-
-        > .upload-btn {
-          margin-top: 20px;
-
-          > button {
-            padding: 12px 19px;
-            border-radius: 23px;
-            border-color: #eee3;
-            color: white;
-            background-color: #e15189;
-            font-weight: bold;
-          }
-        }
+      }
+    }
+    > .upload-btn {
+      text-align: center;
+      margin: 0 auto;
+      margin-top: 40px;
+      > button {
+        min-width: 220px;
+        padding: 10px 8px;
+        border-radius: 6px;
+        border-color: #eee3;
+        color: white;
+        background-color: #e15189;
+        font-weight: bold;
       }
     }
     > .svg {
-      margin: auto 0;
-      max-width: 450px;
+      max-width: 380px;
+      display: inline-block;
+      margin-top: -70px;
       > img {
         width: 100%;
       }

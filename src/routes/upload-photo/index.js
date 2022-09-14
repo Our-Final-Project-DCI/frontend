@@ -47,11 +47,14 @@ export default function Upload() {
                   cols="22"
                 />
               </div>
-              <div className="upload-btn">
+              {/* <div className="upload-btn">
                 <button type="submit">Upload</button>
-              </div>
+              </div> */}
             </div>
           </form>
+          <div className="upload-btn">
+            <button type="submit">Upload</button>
+          </div>
           <div className="svg">
             <img src={uploadFile} alt="" />
           </div>
