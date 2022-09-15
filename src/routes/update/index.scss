@@ -4,22 +4,95 @@
 
 .Update-User-Profile {
   padding-top: 70px;
-}
+  padding-left: 40px;
+  margin-bottom: 60px;
+  max-width: 1400px;
 
-.updateform {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-
-  > select {
+  > .user {
     width: 100%;
-    height: 50px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 0 10px;
-    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    > .avatar {
+      border-radius: 50%;
+      border: 3px double black;
+      > a {
+        color: #0a88d3;
+        text-decoration: none;
+        cursor: pointer;
+        outline: none;
+        > img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+  > .wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+
+    > .updateform {
+      max-width: 600px;
+      margin: 0 auto;
+
+      > .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        > .avatar-box {
+          // border: 1px double black;
+          display: flex;
+          align-items: center;
+
+          > a {
+            align-self: flex-start;
+          }
+
+          > .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px double rgb(54, 50, 115);
+            > img {
+              width: 100%;
+              border-radius: 50%;
+              display: block;
+              overflow: hidden;
+              background-color: #eee;
+            }
+          }
+        }
+
+        > .item {
+          display: flex;
+          gap: 20px;
+          > .social {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            > a {
+              display: inline-block;
+              padding: 3px 8px;
+              border: 2px dotted black;
+              text-decoration: none;
+            }
+          }
+          > input {
+            flex: 1;
+            border-radius: 6px;
+            outline: none;
+            border-color: #333;
+          }
+          > span {
+            width: 100px;
+            padding: 10px 8px;
+          }
+        }
+      }
+    }
   }
 }
