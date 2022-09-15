@@ -18,7 +18,7 @@ export default function Update() {
       <input type="text" placeholder="city"  name='city'/>
       <input type="text" placeholder="Land" name='country'/>
       <textarea  placeholder="about" />
-      <div>
+      <div className="social">
       <a href="">Twiter</a>
       <a href="">Facebook</a>
       <a href="">Instagram</a>
