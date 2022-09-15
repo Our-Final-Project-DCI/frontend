@@ -13,15 +13,15 @@ export default function Update() {
         <option value="male">male</option>
         <option value="female">female</option>
       </select>
-      <input type="text" placeholder="Fullname"  />
-      <input type="text" placeholder="username" />
-      <input type="text" placeholder="city" />
-      <input type="text" placeholder="Land" />
+      <input type="text" placeholder="Fullname" name='name' />
+      <input type="text" placeholder="username"  name='username'/>
+      <input type="text" placeholder="city"  name='city'/>
+      <input type="text" placeholder="Land" name='country'/>
       <textarea  placeholder="about" />
       <div>
-      <a>Twiter</a>
-      <a>Facebook</a>
-      <a>Instagram</a>
+      <a href="">Twiter</a>
+      <a href="">Facebook</a>
+      <a href="">Instagram</a>
       </div>
 
       <button type="submit" >Update</button>
