@@ -38,8 +38,7 @@ export default function Login() {
       <div className="Login">
         <div className="content-left">
           <div className="logo" onClick={handleNavigate}>
-            {" "}
-            <img src="/img/logo.png" alt="logo" />{" "}
+            <img src="/img/logo.png" alt="logo" />
           </div>
           <div className="login-image">
             <img src="/img/signup.svg" alt="login-img" />
@@ -68,7 +67,7 @@ export default function Login() {
                 <div className="input-group">
                   <div className="label">fullname:</div>
                   <input
-                    type="fullname"
+                    type="text"
                     value={fullname}
                     onChange={(e) => setFullName(e.target.value)}
                   />
@@ -77,7 +76,7 @@ export default function Login() {
                 <div className="input-group">
                   <div className="label">username:</div>
                   <input
-                    type="userName"
+                    type="text"
                     value={username}
                     onChange={(e) => setUserName(e.target.value)}
                   />
