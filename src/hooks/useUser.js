@@ -5,8 +5,6 @@ const Context = React.createContext({
   error: "",
   isFetcting: false,
   signup: async () => 0,
-  login: async () => 0,
-  logout: async () => {},
 });
 
 export function UserProvider(props) {

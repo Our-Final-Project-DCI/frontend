@@ -48,6 +48,7 @@ export default function Login() {
           <div className="logo-responsive" onClick={handleNavigate}>
             <img src="/img/logo.png" alt="logo" />
           </div>
+          
           <form className="box" onSubmit={signupClickHandler}>
             <div className="box-login">
               <h1>Join Us</h1>
