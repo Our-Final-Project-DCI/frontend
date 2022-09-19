@@ -1,17 +1,41 @@
 import React from "react";
 import "./index.scss";
 import LayoutLogout from "../../Layout-Logout";
+import useUser from "../../hooks/useUser";
 
 // Images
-
 import avatar from "./images/avatar.webp";
-
 // Icons
 import { BiPencil } from "react-icons/bi";
 
 export default function Update() {
-  const submitHander = (e) => {
+  const [gender, setGender] = React.useState("");
+  const [fullname, setFullname] = React.useState("");
+  const [city, setCity] = React.useState("");
+  const [land, setLand] = React.useState("");
+  const [description, setDescription] = React.useState("");
+  const [avatar, setAvatar] = React.useState("");
+  //const [showSuccess, setShowSuccess] = React.useState(false);
+  const user = useUser();
+
+  const updateSubmitHander = async (e) => {
     e.preventDefault();
+    const status = await user.update({
+      gender: gender,
+      avatar: avatar,
+    });
+
+    // if (status === 200) {
+    //   setShowSuccess(true);
+
+    //   setTimeout(() => {
+    //     setShowSuccess(false);
+    //   }, 4000);
+    // }
+
+    if (status === 200) {
+      console.log("done");
+    }
   };
 
   return (
@@ -26,10 +50,18 @@ export default function Update() {
           <h3>username</h3>
         </div>
         <div className="wrapper">
-          <form className="updateform" onSubmit={submitHander}>
+          <form className="updateform" onSubmit={updateSubmitHander}>
             <div className="input-group">
               <div className="avatar-box">
                 <div className="avatar">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    placeholder="profile imae"
+                    onChange={(e) => setAvatar(e.target.files[0])}
+                  />
+                </div>
+                <div>
                   <img src={avatar} alt="" />
                 </div>
                 <a href="/update">
@@ -41,33 +73,50 @@ export default function Update() {
               <div className="item">
                 <span>gender</span>
                 <select>
-                  <option value="male">male</option>
-                  <option value="female">female</option>
+                  <option value="male">{gender}</option>
+                  <option value="female">{gender}</option>
                 </select>
               </div>
               <div className="item">
                 <span>fullname</span>
-                <input type="text" placeholder="Fullname" name="name" />
-              </div>
-
-              <div className="item">
-                <span>username</span>
-                <input type="text" placeholder="username" name="username" />
+                <input
+                  type="text"
+                  placeholder="Fullname"
+                  name="name"
+                  value={fullname}
+                  onChange={(e) => setFullname(e.target.value)}
+                />
               </div>
 
               <div className="item">
                 <span>city</span>
-                <input type="text" placeholder="city" name="city" />
+                <input
+                  type="text"
+                  placeholder="city"
+                  name="city"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                />
               </div>
 
               <div className="item">
                 <span>land</span>
-                <input type="text" placeholder="Land" name="country" />
+                <input
+                  type="text"
+                  placeholder="Land"
+                  name="country"
+                  value={land}
+                  onChange={(e) => setLand(e.target.value)}
+                />
               </div>
 
               <div className="item">
                 <span>bio:</span>
-                <textarea placeholder="about" />
+                <textarea
+                  placeholder="about"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
               </div>
               <div className="item">
                 <span>socialmedia</span>
