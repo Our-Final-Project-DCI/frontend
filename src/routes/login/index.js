@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [showRegister, setShowRegister] = React.useState(false);
   const [fullname, setFullName] = React.useState("");
   const [username, setUserName] = React.useState("");
+  const [showRegister, setShowRegister] = React.useState(false);
 
   // useUser
   const user = useUser();
@@ -24,6 +24,17 @@ export default function Login() {
       password: password,
     });
 
+    if (status === 200) {
+      navigate("/account");
+    }
+  };
+
+  const loginClickHanlder = async (e) => {
+    e.preventDefault();
+    const status = await user.login({
+      email: email,
+      password: password,
+    });
     if (status === 200) {
       navigate("/account");
     }
@@ -48,7 +59,7 @@ export default function Login() {
           <div className="logo-responsive" onClick={handleNavigate}>
             <img src="/img/logo.png" alt="logo" />
           </div>
-          
+
           <form className="box" onSubmit={signupClickHandler}>
             <div className="box-login">
               <h1>Join Us</h1>
@@ -123,7 +134,7 @@ export default function Login() {
         <div className="logo-responsive" onClick={handleNavigate}>
           <img src="/img/logo.png" alt="logo" />
         </div>
-        <form className="box">
+        <form className="box" onSubmit={loginClickHanlder}>
           <div className="box-login">
             <h1>Login</h1>
             <div
