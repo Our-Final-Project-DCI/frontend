@@ -6,26 +6,33 @@ import { FaSearch } from "react-icons/fa";
 export default function Overview() {
   return (
     <Layout>
-      <div className="Main">
-        <div className="bg_img">
-          <div className="text">
-            <h1>
-              <span className="span">Photo</span>gram
+      <div className="Overview">
+        <div className="Overview__bgimg">
+          <div className="Overview__text">
+            <h1 className="Overview__h1">
+              <span className="Overview__span">Photo</span>gram
               <br />
               Online Gallery Photos
             </h1>
 
-            <p>
+            <p className="Overview__p">
               Nam libero tempore, cum soluta nobis est <br /> eligendi optio
               cumque nihil impedit quo <br /> minus id quod maximale placet
               facere
             </p>
           </div>
 
-          <div className="search">
-            <div className="border">
-              <FaSearch />
-              <input type="text" placeholder="Search" className="input"></input>
+          <div className="Overview__search">
+            <div className="Overview__border">
+              <button className="Overview__button">
+                <FaSearch />
+              </button>
+
+              <input
+                type="text"
+                placeholder="Search"
+                className="Overview__input"
+              ></input>
             </div>
           </div>
         </div>
