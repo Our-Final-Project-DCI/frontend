@@ -5,6 +5,7 @@ const Context = React.createContext({
   error: "",
   isFetcting: false,
   signup: async () => 0,
+  login: async () => 0,
 });
 
 export function UserProvider(props) {
@@ -33,14 +34,12 @@ export function UserProvider(props) {
     data: user,
     error: error,
     isFetcting: isFetcting,
-
+    // 1. signup
     signup: async (body) => {
       // fehlermeldung im browser entfernen
       setError("");
       // loading ...
       setIsFetching(true);
-
-      //// fetching
 
       // response:
       const response = await fetch("http://localhost:3007/user/signup", {
@@ -72,6 +71,39 @@ export function UserProvider(props) {
       // RETURN:STATUS
 
       return response.status;
+    },
+
+    // 1. login:
+
+    login: async (body) => {
+      setError("");
+      setIsFetching(true);
+
+      const res = await fetch("http://localhost:3007/user/login", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify(body),
+      });
+
+      const result = await res.json();
+
+      if (res.status === 200) {
+        setUser(result);
+      } else if (result.errors) {
+        // validations Errors
+        setError(result.errors[0].msg);
+      } else if (result.error) {
+        // server Error | 500
+        setError(result.error);
+      }
+
+      setIsFetching(false);
+
+      return res.status;
     },
   };
 
