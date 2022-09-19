@@ -1,80 +1,71 @@
-.Main {
+.Overview {
   padding-top: 60px;
   height: 100%;
   width: 100%;
-}
-
-.bg_img {
-  background-image: url(./img/238870.jpg);
-  opacity: 1;
-  z-index: -3;
-  background-repeat: no-repeat;
-}
-
-.text {
-  display: flex;
-  justify-content: space-around;
-  padding-top: 80px;
-  z-index: -1;
-}
-
-h1 {
-  color: #fff;
-}
-
-p {
-  color: #fff;
-  opacity: 0.8;
-}
-
-.span {
-  color: #d84a89;
-}
-
-.search {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  padding-top: 175px;
-  padding-bottom: 395px;
-  border-bottom: 1.5px solid;
-}
-
-.border {
-  background-color: #fff;
-  border: 2px solid;
-  border-radius: 25px;
-  height: 50px;
-  width: 650px;
-  padding-left: 10px;
-  padding-top: 10px;
-}
-
-.input {
-  outline: none;
-  border: none;
-  margin: 0px;
-  padding-top: 10px;
-  width: 600px;
-  height: 20px;
-  border-color: rgb(183, 180, 180);
-}
-
-.button {
-  background-color: #fff;
-  border: none;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.7;
+  &__bgimg {
+    background-image: url(./img/238870.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 1;
+    z-index: -3;
+    background-repeat: no-repeat;
   }
-}
 
-.img-cards {
-  padding-top: 40px;
-  padding-left: 40px;
-  padding-right: 40px;
-  height: 500px;
-  width: 100%;
+  &__h1 {
+    color: #fff;
+  }
+
+  &__p {
+    color: #fff;
+  }
+
+  &__span {
+    color: #e14b89;
+  }
+
+  &__text {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 80px;
+    z-index: -1;
+  }
+
+  &__search {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding-top: 175px;
+    padding-bottom: 395px;
+    border-bottom: 1.5px solid;
+  }
+
+  &__border {
+    background-color: #fff;
+    border: 2px solid;
+    border-radius: 25px;
+    height: 50px;
+    width: 650px;
+    padding-left: 10px;
+    padding-top: 10px;
+  }
+
+  &__input {
+    outline: none;
+    border: none;
+    margin: 0px;
+    padding-top: 10px;
+    width: 600px;
+    height: 20px;
+    border-color: rgb(183, 180, 180);
+  }
+  &__button {
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 }
