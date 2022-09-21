@@ -9,32 +9,46 @@ import avatar from "./images/avatar.webp";
 import { BiPencil } from "react-icons/bi";
 
 export default function Update() {
-  const [gender, setGender] = React.useState("");
+  const [selected, setSelected] = React.useState(options[0].value);
   const [fullname, setFullname] = React.useState("");
   const [city, setCity] = React.useState("");
   const [land, setLand] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [avatar, setAvatar] = React.useState("");
-  //const [showSuccess, setShowSuccess] = React.useState(false);
+  const [showSuccess, setShowSuccess] = React.useState(false);
+
+  const options = [
+    { value: "", text: "--Choose a Gender--" },
+    { value: "Male", text: "Male" },
+    { value: "Female", text: "Female" },
+  ];
+
   const user = useUser();
+
+  const handleChange = (event) => {
+    console.log(event.target.value);
+    setSelected(event.target.value);
+  };
 
   const updateSubmitHander = async (e) => {
     e.preventDefault();
     const status = await user.update({
-      gender: gender,
+      gender: selected,
+      fullname: fullname,
+      avatar: avatar,
+      city: city,
+      land: land,
+      description: description,
       avatar: avatar,
     });
-
-    // if (status === 200) {
-    //   setShowSuccess(true);
-
-    //   setTimeout(() => {
-    //     setShowSuccess(false);
-    //   }, 4000);
-    // }
+    console.log(user);
 
     if (status === 200) {
-      console.log("done");
+      setShowSuccess(true);
+
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 4000);
     }
   };
 
@@ -71,10 +85,12 @@ export default function Update() {
                 <button>Update profileimage</button>
               </div>
               <div className="item">
-                <span>gender</span>
-                <select>
-                  <option value="male">{gender}</option>
-                  <option value="female">{gender}</option>
+                <select value={selected} onChange={handleChange}>
+                  {options.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.text}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className="item">
@@ -129,6 +145,10 @@ export default function Update() {
               </div>
             </div>
             <button type="submit">Update</button>
+            {user.error && <div className="error">{user.error}</div>}
+            {showSuccess && (
+              <div className="success">Update war erfolgreich</div>
+            )}
           </form>
         </div>
       </div>

@@ -6,7 +6,7 @@ const Context = React.createContext({
   isFetcting: false,
   signup: async () => 0,
   login: async () => 0,
-  update: async () => 0,
+  update: async () => {},
 });
 
 export function UserProvider(props) {
@@ -106,7 +106,6 @@ export function UserProvider(props) {
     },
 
     // 3. update:
-
     update: async (body) => {
       setError("");
       setIsFetching(true);
