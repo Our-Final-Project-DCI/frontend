@@ -56,9 +56,7 @@ export default function Update() {
       <div className="Update-User-Profile">
         <div className="user">
           <div className="avatar">
-            <a href="/account">
               <img src={user.data.avatar} alt="" className="hover_opacity" />
-            </a>
           </div>
           <h3>username</h3>
         </div>
