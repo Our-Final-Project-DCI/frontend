@@ -20,11 +20,10 @@
       border-radius: 50%;
       border: 3px double black;
       > img {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-        }
-      
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
     }
   }
 
@@ -82,7 +81,9 @@
             flex: 1;
             border-radius: 6px;
             outline: none;
-            border-color: #333;
+            //border-color: #eee;
+            color: gray;
+            outline: none;
           }
           > span {
             width: 100px;

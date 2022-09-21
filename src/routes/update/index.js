@@ -14,17 +14,15 @@ export default function Update() {
     { value: "Male", text: "Male" },
     { value: "Female", text: "Female" },
   ];
-
-  const [selectedGender, setSelectedGender] = React.useState(options[0].value);
-  const [fullname, setFullname] = React.useState("");
-  const [city, setCity] = React.useState("");
-  const [land, setLand] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  const [avatar, setAvatar] = React.useState("");
-  const [showSuccess, setShowSuccess] = React.useState(false);
-
   const user = useUser();
   console.log(user);
+  const [selectedGender, setSelectedGender] = React.useState(options[0].value);
+  const [fullname, setFullname] = React.useState(user.data.fullname);
+  const [city, setCity] = React.useState(user.data.city);
+  const [land, setLand] = React.useState(user.data.land);
+  const [description, setDescription] = React.useState(user.data.description);
+  const [avatar, setAvatar] = React.useState("");
+  const [showSuccess, setShowSuccess] = React.useState(false);
 
   const handleChange = (event) => {
     console.log(event.target.value);
@@ -56,7 +54,7 @@ export default function Update() {
       <div className="Update-User-Profile">
         <div className="user">
           <div className="avatar">
-              <img src={user.data.avatar} alt="" className="hover_opacity" />
+            <img src={user.data.avatar} alt="" className="hover_opacity" />
           </div>
           <h3>{user.data.username}</h3>
         </div>
