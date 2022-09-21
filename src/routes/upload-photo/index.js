@@ -13,6 +13,7 @@ export default function Upload() {
     { value: "Cars", text: "Cars" },
     { value: "Arts", text: "Arts" },
     { value: "Fashion", text: "Fashion" },
+    { value: "Animals", text: "Animals" },
     { value: "Other", text: "Other" },
   ];
 
@@ -30,14 +31,14 @@ export default function Upload() {
     setSelected(event.target.value);
   };
 
-  const submitHandler = (e) => {
+  const uploadPhotoHandler = (e) => {
     e.preventDefault();
   };
   return (
     <LayoutLogout>
       <div className="Upload-Photo-Route">
         <div className="wrapper">
-          <form className="upload-photo-form" onSubmit={submitHandler}>
+          <form className="upload-photo-form" onSubmit={uploadPhotoHandler}>
             <div className="photo">
               <img src={photoFile} alt="" />
             </div>
