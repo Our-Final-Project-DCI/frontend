@@ -6,6 +6,7 @@ const Context = React.createContext({
   isFetcting: false,
   signup: async () => 0,
   login: async () => 0,
+  update: async () => {},
 });
 
 export function UserProvider(props) {
@@ -65,15 +66,13 @@ export function UserProvider(props) {
       }
 
       //// fetching beenden
-
       setIsFetching(false);
 
       // RETURN:STATUS
-
       return response.status;
     },
 
-    // 1. login:
+    // 2. login:
 
     login: async (body) => {
       setError("");
@@ -87,6 +86,41 @@ export function UserProvider(props) {
         },
 
         body: JSON.stringify(body),
+      });
+
+      const result = await res.json();
+
+      if (res.status === 200) {
+        setUser(result);
+      } else if (result.errors) {
+        // validations Errors
+        setError(result.errors[0].msg);
+      } else if (result.error) {
+        // server Error | 500
+        setError(result.error);
+      }
+
+      setIsFetching(false);
+
+      return res.status;
+    },
+
+    // 3. update:
+    update: async (body) => {
+      setError("");
+      setIsFetching(true);
+      const formData = new FormData();
+      formData.append("gender", body.gender);
+      formData.append("file", body.avatar);
+      formData.append("fullname", body.fullname);
+      formData.append("city", body.city);
+      formData.append("land", body.land);
+      formData.append("description", body.description);
+
+      const res = await fetch("http://localhost:3007/user/update", {
+        method: "PATCH",
+        credentials: "include",
+        body: formData,
       });
 
       const result = await res.json();

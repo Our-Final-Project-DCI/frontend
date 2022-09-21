@@ -1,10 +1,10 @@
 import React from "react";
 import "./index.scss";
 import Layout from "../../Layout";
+import useUser from "../../hooks/useUser";
 
 // Images
 
-import avatar from "./images/avatar.webp";
 import f1 from "./images/f1.jpg";
 
 // Icons
@@ -19,9 +19,9 @@ import "react-multi-carousel/lib/styles.css";
 
 export default function Account() {
   const [photos, setPhotos] = React.useState([]);
-
+  const user = useUser();
   // Carousel- responsive:
-
+  console.log(user);
   const responsive = {
     xlDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -48,7 +48,7 @@ export default function Account() {
           <div className="user-profile">
             <div className="avatar-box">
               <div className="avatar">
-                <img src={avatar} alt="" />
+                <img src={user.data.avatar} alt="" />
               </div>
               <a href="/update">
                 <BiPencil />
@@ -56,7 +56,7 @@ export default function Account() {
             </div>
             <div className="about-box">
               <div className="user">
-                <h2>Username</h2>
+                <h2>{user.data.username}</h2>
                 <div className="user-icons">
                   <a href="/">
                     <BiUserPlus />
@@ -67,11 +67,7 @@ export default function Account() {
                 </div>
               </div>
 
-              <p className="description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                aut ut nam !psum dolor sit amet consectetur adipisicing elit.
-                Ipsa aut ut nam !
-              </p>
+              <p className="description">{user.data.description}</p>
               <div className="socialMedia">
                 <ul>
                   <li>
