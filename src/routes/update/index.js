@@ -24,6 +24,7 @@ export default function Update() {
   const [showSuccess, setShowSuccess] = React.useState(false);
 
   const user = useUser();
+  console.log(user);
 
   const handleChange = (event) => {
     console.log(event.target.value);
@@ -41,7 +42,6 @@ export default function Update() {
       description: description,
       avatar: avatar,
     });
-    console.log(user);
     if (status === 200) {
       setShowSuccess(true);
 
@@ -57,7 +57,7 @@ export default function Update() {
         <div className="user">
           <div className="avatar">
             <a href="/account">
-              <img src={user.avatar} alt="" className="hover_opacity" />
+              <img src={user.data.avatar} alt="" className="hover_opacity" />
             </a>
           </div>
           <h3>username</h3>
@@ -65,23 +65,13 @@ export default function Update() {
         <div className="wrapper">
           <form className="updateform" onSubmit={updateSubmitHander}>
             <div className="input-group">
-              <div className="avatar-box">
-                <div className="avatar">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    placeholder="profile imae"
-                    onChange={(e) => setAvatar(e.target.files[0])}
-                  />
-                </div>
-                <div>
-                  <img src={avatar} alt="" />
-                </div>
-                <a href="/update">
-                  <BiPencil />
-                </a>
-
-                <button>Update profileimage</button>
+              <div className="avatar">
+                <input
+                  type="file"
+                  accept="image/*"
+                  placeholder="profile imae"
+                  onChange={(e) => setAvatar(e.target.files[0])}
+                />
               </div>
               <div className="item">
                 <select value={selectedGender} onChange={handleChange}>
