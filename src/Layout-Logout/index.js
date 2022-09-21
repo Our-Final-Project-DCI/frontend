@@ -1,11 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./index.scss";
+
+import useUser from "../hooks/useUser";
 import Logo from "./logo/modern_logo.png";
 import { FaUserCircle } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 
 export default function Logout(props) {
+  const user = useUser();
+  const handleLogout = async () => {
+    await user.logout();
+  };
+
   return (
     <div className="Layout-Logout">
       <div className="Header">
@@ -43,7 +50,7 @@ export default function Logout(props) {
             </Link>
           </div>
           <div className="Header__item">
-            <Link className="link" to="/login">
+            <Link className="link" to="/login" onClick={handleLogout}>
               Logout
             </Link>
           </div>

@@ -140,6 +140,16 @@ export function UserProvider(props) {
 
       return res.status;
     },
+
+    // 2. login:
+
+    logout: async () => {
+      await fetch("http://localhost:3007/user/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+      setUser(null);
+    },
   };
 
   return (
