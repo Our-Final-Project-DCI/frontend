@@ -66,11 +66,9 @@ export function UserProvider(props) {
       }
 
       //// fetching beenden
-
       setIsFetching(false);
 
       // RETURN:STATUS
-
       return response.status;
     },
 
@@ -115,11 +113,14 @@ export function UserProvider(props) {
       const formData = new FormData();
       formData.append("gender", body.gender);
       formData.append("file", body.avatar);
+      formData.append("fullname", body.fullname);
+      formData.append("city", body.city);
+      formData.append("land", body.land);
+      formData.append("description", body.description);
 
       const res = await fetch("http://localhost:3007/user/update", {
         method: "PATCH",
         credentials: "include",
-
         body: formData,
       });
 
