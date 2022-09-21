@@ -9,7 +9,13 @@ import avatar from "./images/avatar.webp";
 import { BiPencil } from "react-icons/bi";
 
 export default function Update() {
-  const [selected, setSelected] = React.useState(options[0].value);
+  const options = [
+    { value: "", text: "--Choose a Gender--" },
+    { value: "Male", text: "Male" },
+    { value: "Female", text: "Female" },
+  ];
+
+  const [selectedGender, setSelectedGender] = React.useState(options[0].value);
   const [fullname, setFullname] = React.useState("");
   const [city, setCity] = React.useState("");
   const [land, setLand] = React.useState("");
@@ -17,23 +23,17 @@ export default function Update() {
   const [avatar, setAvatar] = React.useState("");
   const [showSuccess, setShowSuccess] = React.useState(false);
 
-  const options = [
-    { value: "", text: "--Choose a Gender--" },
-    { value: "Male", text: "Male" },
-    { value: "Female", text: "Female" },
-  ];
-
   const user = useUser();
 
   const handleChange = (event) => {
     console.log(event.target.value);
-    setSelected(event.target.value);
+    setSelectedGender(event.target.value);
   };
 
   const updateSubmitHander = async (e) => {
     e.preventDefault();
     const status = await user.update({
-      gender: selected,
+      gender: selectedGender,
       fullname: fullname,
       avatar: avatar,
       city: city,
@@ -42,7 +42,6 @@ export default function Update() {
       avatar: avatar,
     });
     console.log(user);
-
     if (status === 200) {
       setShowSuccess(true);
 
@@ -58,7 +57,7 @@ export default function Update() {
         <div className="user">
           <div className="avatar">
             <a href="/account">
-              <img src={avatar} alt="" className="hover_opacity" />
+              <img src={user.avatar} alt="" className="hover_opacity" />
             </a>
           </div>
           <h3>username</h3>
@@ -85,7 +84,7 @@ export default function Update() {
                 <button>Update profileimage</button>
               </div>
               <div className="item">
-                <select value={selected} onChange={handleChange}>
+                <select value={selectedGender} onChange={handleChange}>
                   {options.map((option) => (
                     <option key={option.value} value={option.value}>
                       {option.text}
