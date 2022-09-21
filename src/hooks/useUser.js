@@ -7,6 +7,7 @@ const Context = React.createContext({
   signup: async () => 0,
   login: async () => 0,
   update: async () => {},
+  logout: async () => {},
 });
 
 export function UserProvider(props) {

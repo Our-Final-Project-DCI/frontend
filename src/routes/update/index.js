@@ -58,7 +58,7 @@ export default function Update() {
           <div className="avatar">
               <img src={user.data.avatar} alt="" className="hover_opacity" />
           </div>
-          <h3>username</h3>
+          <h3>{user.data.username}</h3>
         </div>
         <div className="wrapper">
           <form className="updateform" onSubmit={updateSubmitHander}>

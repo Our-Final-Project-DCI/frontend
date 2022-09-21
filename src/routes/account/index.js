@@ -48,7 +48,7 @@ export default function Account() {
           <div className="user-profile">
             <div className="avatar-box">
               <div className="avatar">
-                <img src={user.data.avatar} alt="" />
+                <img src={user.data.avatar} alt="" /> 
               </div>
               <a href="/update">
                 <BiPencil />
