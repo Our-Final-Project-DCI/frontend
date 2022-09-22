@@ -1,9 +1,22 @@
-import React from "react";
+import * as React from "react";
 import "./overview.scss";
 import Layout from "../../Layout";
 import { FaSearch } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Overview() {
+  const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch(`http://localhost:3007/photos`).then(async (res) => {
+      const result = await res.json();
+
+      if (res.status === 200) {
+        setUploadetPhotos(result);
+      }
+    });
+  }, []);
+
   return (
     <Layout>
       <div className="Overview">
@@ -36,6 +49,16 @@ export default function Overview() {
             </div>
           </div>
         </div>
+
+        <section className="photos">
+          {uploadtetPhotos.map((photo) => (
+            <Link
+              className="question"
+              key={photo._id}
+              to={"/photos/" + photo._id}
+            ></Link>
+          ))}
+        </section>
       </div>
     </Layout>
   );
