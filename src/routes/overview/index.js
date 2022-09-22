@@ -1,9 +1,25 @@
-import React from "react";
+import * as React from "react";
 import "./overview.scss";
 import Layout from "../../Layout";
 import { FaSearch } from "react-icons/fa";
 
+// import { FaRegHeart } from "react-icons/fa";
+// import { BiDownload } from "react-icons/bi";
+//import { Link } from "react-router-dom";
 export default function Overview() {
+  const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch(`http://localhost:3007/photos`).then(async (res) => {
+      const result = await res.json();
+
+      if (res.status === 200) {
+        setUploadetPhotos(result);
+      }
+    });
+  }, []);
+  console.log(uploadtetPhotos);
+
   return (
     <Layout>
       <div className="Overview">
@@ -36,6 +52,32 @@ export default function Overview() {
             </div>
           </div>
         </div>
+
+        <section className="photos">
+          {/* <main className="Main">
+            {uploadtetPhotos.map((photo) => (
+              <div className="item" key={photo._id}>
+                <img
+                  src={photo.photoFile.replace(
+                    "uploads",
+                    "http://localhost:3007"
+                  )}
+                  alt=""
+                  width="200"
+                  height="200"
+                />
+                <h4>{photo.user.username}</h4>
+                <p>#{photo.category}</p>{" "}
+                <button className="like">
+                  <FaRegHeart />
+                </button>
+                <button className="download">
+                  <BiDownload />
+                </button>
+              </div>
+            ))}
+          </main> */}
+        </section>
       </div>
     </Layout>
   );

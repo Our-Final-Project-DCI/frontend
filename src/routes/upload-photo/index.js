@@ -1,6 +1,7 @@
 import React from "react";
 import "./index.scss";
 import LayoutLogout from "../../Layout-Logout";
+import { useNavigate } from "react-router-dom";
 
 // images
 import svg from "./images/uploadFile.png";
@@ -14,26 +15,62 @@ export default function Upload() {
     { value: "Arts", text: "Arts" },
     { value: "Fashion", text: "Fashion" },
     { value: "Animals", text: "Animals" },
-    { value: "Other", text: "Other" },
+    { value: "Others", text: "Others" },
   ];
 
   const [photoFile, setPhotoFile] = React.useState("");
-  const [selected, setSelected] = React.useState(options[0].value);
+  const [selectedCategory, setSelectedCategory] = React.useState(
+    options[0].value
+  );
   const [title, setTitle] = React.useState("");
+  //const [category, setCategory] = React.useState("");
+
   const [location, setLocation] = React.useState("");
   const [description, setDescription] = React.useState("");
 
   const [isFetching, setIsFetching] = React.useState(false);
   const [error, setError] = React.useState(false);
 
+  const navigate = useNavigate();
+
   const handleChange = (event) => {
     console.log(event.target.value);
-    setSelected(event.target.value);
+    setSelectedCategory(event.target.value);
   };
 
-  const uploadPhotoHandler = (e) => {
+  const uploadPhotoHandler = async (e) => {
     e.preventDefault();
+
+    setIsFetching(true);
+
+    const formData = new FormData();
+    formData.append("file", photoFile);
+    formData.append("category", selectedCategory);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("location", location);
+
+    const res = await fetch("http://localhost:3007/photos/upload-photo", {
+      method: "POST",
+      credentials: "include",
+      body: formData,
+    });
+
+    const result = await res.json();
+    setIsFetching(false);
+
+    if (res.status === 200) {
+      // weiterleiten
+      navigate("/photos/" + result._id);
+    } else if (result.errors) {
+      // validation error
+      setError(result.errors[0].msg);
+    } else if (result.error) {
+      // server error
+      setError(result.error);
+    }
   };
+
   return (
     <LayoutLogout>
       <div className="Upload-Photo-Route">
@@ -52,7 +89,7 @@ export default function Upload() {
               </div>
 
               <div class="custom-select">
-                <select value={selected} onChange={handleChange}>
+                <select value={selectedCategory} onChange={handleChange}>
                   {options.map((option) => (
                     <option key={option.value} value={option.value}>
                       {option.text}
