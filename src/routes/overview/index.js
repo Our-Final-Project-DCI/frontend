@@ -4,11 +4,13 @@ import Layout from "../../Layout";
 import { FaSearch } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { BiDownload } from "react-icons/bi";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Overview() {
   const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
 
+  const navigate = useNavigate();
   React.useEffect(() => {
     fetch(`http://localhost:3007/photos`).then(async (res) => {
       const result = await res.json();
@@ -19,6 +21,11 @@ export default function Overview() {
     });
   }, []);
   console.log(uploadtetPhotos);
+
+  // console.log(uploadtetPhotos);
+  // const handleClick = async () => {
+  //   navigate("/photos" + ._id);
+  // };
 
   return (
     <Layout>
@@ -55,7 +62,7 @@ export default function Overview() {
 
         <main className="Main">
           {uploadtetPhotos.map((photo) => (
-            <div className="item" key={photo._id}>
+            <Link className="item" key={photo._id} to={"/photos/" + photo._id}>
               <img
                 src={photo.photoFile.replace(
                   "uploads",
@@ -66,14 +73,14 @@ export default function Overview() {
                 height="200"
               />
               <h4>{photo.user.username}</h4>
-              <p>#{photo.category}</p>{" "}
+              <p>#{photo.category}</p>
               <button className="like">
                 <FaRegHeart />
               </button>
               <button className="download">
                 <BiDownload />
               </button>
-            </div>
+            </Link>
           ))}
         </main>
       </div>
