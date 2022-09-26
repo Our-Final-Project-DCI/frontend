@@ -1,50 +1,52 @@
-.Categorie{
+.Categorie {
     padding-top: 70px;
     height: 100vh;
     width: 100%;
     display: flex;
 
-    > .categorie-content-left{
+    >.categorie-content-left {
         width: 40%;
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-    
-        > .description{
-          width: 50%;
-          text-align: center;
-            > p{
+
+        >.description {
+            width: 50%;
+            text-align: center;
+
+            >p {
                 font-size: 50px;
                 font-weight: bold;
                 color: #606060;
             }
         }
-        > .img-content{
 
-            > img{
+        >.img-content {
+
+            >img {
                 max-width: 250px;
                 height: 300px;
             }
         }
     }
 
-    > .categorie-content-right{
+    >.categorie-content-right {
         width: 60%;
         height: 100%;
         display: flex;
         gap: 10px;
 
-        > .item{
+        >.item {
             width: 20%;
             height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            
-            > p{
+
+            >p {
                 transform: rotate(-90deg);
                 font-size: 30px;
                 font-weight: bold;
@@ -52,56 +54,63 @@
             }
         }
 
-        > .item-natur{
-            background-color: #629c44;
+        >.item-natur {
+            background: rgb(98,156,68);
+background: linear-gradient(90deg, rgba(98,156,68,1) 0%, rgba(171,207,152,1) 100%);
         }
 
-        > .item-foods{
-            background-color:#c3bb38 ;
+        >.item-foods {
+            background: rgb(195, 187, 56);
+            background: linear-gradient(90deg, rgba(195, 187, 56, 1) 0%, rgba(88, 84, 20, 1) 100%);
         }
 
-        > .item-cars{
-            background-color:#fec63d ;
+        >.item-cars {
+            background: rgb(254, 198, 61);
+            background: linear-gradient(90deg, rgba(254, 198, 61, 1) 0%, rgba(125, 96, 25, 1) 100%);
         }
 
-        > .item-fashions{
-            background-color: #c64516;
+        >.item-fashions {
+            background: rgb(198,69,22);
+background: linear-gradient(90deg, rgba(198,69,22,1) 0%, rgba(238,148,115,1) 100%);
         }
 
-        > .item-animals{
-            background-color: #7b4812;
+        >.item-animals {
+            background: rgb(123,72,18);
+background: linear-gradient(90deg, rgba(123,72,18,1) 0%, rgba(180,135,88,1) 100%);
         }
 
-        > .item-arts{
-            background-color: #231f20;
+        >.item-arts {
+            background: rgb(35,31,32);
+background: linear-gradient(90deg, rgba(35,31,32,1) 0%, rgba(159,144,148,1) 100%);
         }
 
-        > .item-others{
-            background-color: #e7b5b5;
+        >.item-others {
+            background: rgb(231,181,181);
+background: linear-gradient(90deg, rgba(231,181,181,1) 0%, rgba(116,51,51,1) 100%);
         }
     }
 }
 
-@media screen and (max-width: 768px){
-    .Categorie{
+@media screen and (max-width: 768px) {
+    .Categorie {
         padding-top: 70px;
         height: 100vh;
         width: 100%;
         display: flex;
-    
-        > .categorie-content-left{
+
+        >.categorie-content-left {
             display: none;
         }
-    
-        > .categorie-content-right{
+
+        >.categorie-content-right {
             width: 100%;
             flex-direction: column;
             gap: 10px;
-    
-            > .item{
+
+            >.item {
                 width: 100%;
-            
-                > p{
+
+                >p {
                     transform: rotate(0deg);
                     font-size: 22px;
                     font-weight: bold;
