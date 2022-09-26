@@ -9,6 +9,27 @@ import { BiDownload } from "react-icons/bi";
 export default function Overview() {
   const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
 
+  const [likedPhotos, setLikedPhotos] = React.useState([]);
+
+  // const setPhoto = (photo, key, value) => {
+  //   let photosCopy = [...likedPhotos];
+  //   let currentPhoto = photosCopy.find(
+  //     (thisPhoto) => thisPhoto.id === photo.id
+  //   );
+  //   if (currentPhoto) {
+  //     currentPhoto[key] = value;
+  //   } else {
+  //     let newPhoto = { ...photo };
+  //     newPhoto[key] = value;
+  //     photosCopy.push(newPhoto);
+  //   }
+  //   setLikedPhotos(photosCopy);
+  // };
+
+  const likeHandler = async () => {
+    setLikedPhotos(!likedPhotos);
+  };
+
   React.useEffect(() => {
     fetch(`http://localhost:3007/photos`).then(async (res) => {
       const result = await res.json();
@@ -19,6 +40,17 @@ export default function Overview() {
     });
   }, []);
   console.log(uploadtetPhotos);
+
+  // React.useEffect(() => {
+  //   fetch(`http://localhost:3007/photos`).then(async (res) => {
+  //     const result = await res.json();
+
+  //     if (res.status === 200) {
+  //       setLikedPhotos(result);
+  //     }
+  //   });
+  // }, []);
+  // console.log(likedPhotos);
 
   return (
     <Layout>
@@ -67,7 +99,7 @@ export default function Overview() {
               />
               <h4>{photo.user.username}</h4>
               <p>#{photo.category}</p>{" "}
-              <button className="like">
+              <button className="like" onClick={likeHandler}>
                 <FaRegHeart />
               </button>
               <button className="download">

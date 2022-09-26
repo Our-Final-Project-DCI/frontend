@@ -40,7 +40,6 @@ export default function Upload() {
 
   const uploadPhotoHandler = async (e) => {
     e.preventDefault();
-
     setIsFetching(true);
 
     const formData = new FormData();
