@@ -4,6 +4,7 @@ import Layout from "../../Layout";
 import { FaSearch } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { BiDownload } from "react-icons/bi";
+import { BsArrowsFullscreen } from "react-icons/bs";
 //import { Link } from "react-router-dom";
 
 export default function Overview() {
@@ -43,7 +44,6 @@ export default function Overview() {
               <button className="Overview__button">
                 <FaSearch />
               </button>
-
               <input
                 type="text"
                 placeholder="Search"
@@ -62,14 +62,11 @@ export default function Overview() {
                   "http://localhost:3007"
                 )}
                 alt=""
-                width="200"
-                height="200"
               />
-              <h4>{photo.user.username}</h4>
-              <p>#{photo.category}</p>{" "}
               <button className="like">
                 <FaRegHeart />
               </button>
+              <h4>{photo.user.username}</h4>
               <button className="download">
                 <BiDownload />
               </button>
