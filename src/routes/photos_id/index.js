@@ -2,6 +2,7 @@ import React from "react";
 import "./index.scss";
 import LayoutLogout from "../../Layout-Logout";
 
+import { useParams } from "react-router-dom";
 // Images
 import avatar from "./images/avatar.webp";
 import f1 from "./images/f1.jpg";
@@ -10,9 +11,24 @@ import f1 from "./images/f1.jpg";
 import { BiHeart } from "react-icons/bi";
 
 export default function Photo() {
-  //const params = useParams();
+  const params = useParams();
   const [photo, setPhoto] = React.useState(null);
-  const [comment, setComment] = React.useState("");
+  //const [comment, setComment] = React.useState("");
+
+  React.useEffect(() => {
+    fetch("http://localhost:3007/photos/" + params.id, {
+      method: "GET",
+      credentials: "include",
+    }).then(async (res) => {
+      const result = await res.json();
+
+      if (res.status === 200) {
+        setPhoto(result);
+      }
+    });
+  }, [params.id]);
+  console.log(photo);
+
   return (
     <LayoutLogout>
       <div className="Photos-Id-Route">
@@ -40,7 +56,7 @@ export default function Photo() {
           </div>
 
           <div className="user-photo">
-            <img src={f1} alt="" />
+            <img src={photo} alt="" />
           </div>
 
           <section className="comment-section">
