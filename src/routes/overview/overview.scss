@@ -74,11 +74,12 @@ main {
   columns: 3;
   column-gap: 5px;
   z-index: -3;
-  width: 80%;
+  width: 90%;
   height: 100%;
   margin: 2px auto;
 
   > .item {
+    z-index: -3;
     position: relative;
     background-color: #f5f5f5;
   }
