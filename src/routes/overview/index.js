@@ -5,12 +5,10 @@ import { FaSearch } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { BiDownload } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 export default function Overview() {
   const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
 
-  const navigate = useNavigate();
   React.useEffect(() => {
     fetch(`http://localhost:3007/photos`).then(async (res) => {
       const result = await res.json();
@@ -72,6 +70,18 @@ export default function Overview() {
                 width="200"
                 height="200"
               />
+              {/* {photo.user.avatar && (
+                <div className="avatar" width="20" height="20">
+                  <a href="/account">
+                    <img
+                      src={photo.user.avatar}
+                      alt=""
+                      className="hover_opacity"
+                    />
+                  </a>
+                </div>
+              )} */}
+
               <h4>{photo.user.username}</h4>
               <p>#{photo.category}</p>
               <button className="like">

@@ -120,4 +120,8 @@ main {
     right: 10px;
     border: 1px solid;
   }
+
+  > .avatar {
+    border-radius: 50%;
+  }
 }
