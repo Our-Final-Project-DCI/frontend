@@ -2,15 +2,12 @@ import React from "react";
 import "./index.scss";
 import LayoutLogout from "../../Layout-Logout";
 
-import { useParams } from "react-router-dom";
-// Images
-import avatar from "./images/avatar.webp";
-import f1 from "./images/f1.jpg";
 
 // Icons
 import { BiHeart } from "react-icons/bi";
 
 export default function Photo() {
+
   const params = useParams();
   const [photo, setPhoto] = React.useState(null);
   //const [comment, setComment] = React.useState("");
@@ -28,6 +25,8 @@ export default function Photo() {
     });
   }, [params.id]);
   console.log(photo);
+
+
 
   return (
     <LayoutLogout>
@@ -56,7 +55,9 @@ export default function Photo() {
           </div>
 
           <div className="user-photo">
-            <img src={photo} alt="" />
+            //<img src={photo} alt="" />
+
+            <img src={`http://localhost:3007/"+ ${photo.photoFile}`} alt="" />
           </div>
 
           <section className="comment-section">
@@ -74,6 +75,7 @@ export default function Photo() {
             <div className="user-comments">
               <div className="user">
                 <img src={avatar} alt="" className="hover_opacity" />
+
               </div>
               <div className="comments">
                 <h4>User 1</h4>

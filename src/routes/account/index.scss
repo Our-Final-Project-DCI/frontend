@@ -1,11 +1,9 @@
-
 * {
   box-sizing: border-box;
 }
 
-
 .User-Account-Route {
-  padding-top: 54px;
+  padding-top: 100px;
   padding-bottom: 80px;
   padding-left: 40px;
   padding-right: 40px;
@@ -46,6 +44,7 @@
           border: 5px double rgb(54, 50, 115);
           > img {
             width: 100%;
+            height: 100%;
             border-radius: 50%;
             display: block;
             overflow: hidden;
