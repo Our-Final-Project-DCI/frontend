@@ -63,7 +63,6 @@ export default function Overview() {
                 )}
                 alt=""
               />
-
               <button className="like">
                 <FaRegHeart />
               </button>
