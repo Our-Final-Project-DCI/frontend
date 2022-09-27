@@ -10,8 +10,11 @@ import useUser from "../../hooks/useUser";
 export default function Overview() {
   const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
   const user = useUser();
+  console.log(user);
 
-  const likeClickHandler = async () => {};
+  const likeClickHandler = async (id) => {
+    user.likedPhotos(id);
+  };
 
   React.useEffect(() => {
     fetch(`http://localhost:3007/photos`).then(async (res) => {
@@ -23,17 +26,6 @@ export default function Overview() {
     });
   }, []);
   console.log(uploadtetPhotos);
-
-  // React.useEffect(() => {
-  //   fetch(`http://localhost:3007/photos`).then(async (res) => {
-  //     const result = await res.json();
-
-  //     if (res.status === 200) {
-  //       setLikedPhotos(result);
-  //     }
-  //   });
-  // }, []);
-  // console.log(likedPhotos);
 
   return (
     <Layout>
@@ -82,10 +74,13 @@ export default function Overview() {
               />
               <h4>{photo.user.username}</h4>
               <p>#{photo.category}</p>
-              <button className="like">
+              <button
+                className="like"
+                onClick={() => likeClickHandler(photo._id)}
+              >
                 <FaRegHeart />
               </button>
-              <button className="download" onClick={likeClickHandler}>
+              <button className="download">
                 <BiDownload />
               </button>
             </div>

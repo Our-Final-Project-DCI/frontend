@@ -9,6 +9,8 @@ const Context = React.createContext({
   login: async () => 0,
   update: async () => {},
   logout: async () => {},
+  isLiked: () => {},
+  likedPhotos: async () => {},
 });
 
 export function UserProvider(props) {
@@ -16,7 +18,6 @@ export function UserProvider(props) {
   const [error, setError] = React.useState("");
   const [isFetcting, setIsFetching] = React.useState(false);
   const [ready, setReady] = React.useState(false);
-  const [isLiked, setIsLiked] = React.useState(false);
 
   React.useEffect(() => {
     fetch("http://localhost:3007/user", {
@@ -143,7 +144,7 @@ export function UserProvider(props) {
       return res.status;
     },
 
-    // 2. logout:
+    // 4. logout:
 
     logout: async () => {
       await fetch("http://localhost:3007/user/logout", {
@@ -153,15 +154,47 @@ export function UserProvider(props) {
       setUser(null);
     },
 
-    // 5. likebtn
+    // 5. 1. Benutzer klickt auf „LIKE“
     //btn onclick fun
-    isLiked: async (photoId) => {
-      setIsLiked(true);
+    isLiked: (photoId) => {
+      const photoFound = user.likedPhotos.find((p) => p === photoId);
+      console.log("hi", photoId, user.likedPhotos, photoFound);
+
+      return !!photoFound;
     },
 
     // likedphotos:[id im array pushen]
-    likedPhoto: async (photoId) => {
-      return;
+    likedPhotos: async (photoId) => {
+      let likedPhotos = [...user.likedPhotos];
+      const photoFound = likedPhotos.find((p) => p === photoId);
+      if (photoFound) {
+        likedPhotos = likedPhotos.filter((p) => p !== photoId);
+      } else {
+        likedPhotos.push(photoId);
+      }
+
+      console.log(likedPhotos);
+
+      const res = await fetch("http://localhost:3007/user/update", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ likedPhotos }),
+      });
+
+      const result = await res.json();
+
+      if (res.status === 200) {
+        setUser(result);
+      } else if (result.errors) {
+        // validations Errors
+        setError(result.errors[0].msg);
+      } else if (result.error) {
+        // server Error | 500
+        setError(result.error);
+      }
     },
   };
 

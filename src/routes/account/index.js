@@ -24,6 +24,10 @@ export default function Account() {
 
   const user = useUser();
 
+  const likeClickHandler = async (id) => {
+    user.likedPhotos(id);
+  };
+
   React.useEffect(() => {
     fetch(`http://localhost:3007/photos/account?own=true`, {
       method: "GET",
@@ -136,9 +140,15 @@ export default function Account() {
                 height="200"
               />
               <h4>{photo.user.username}</h4>
-              <p>#{photo.category}</p>{" "}
+              <p>#{photo.category}</p>
               <button className="like">
-                <FaRegHeart />
+                <FaRegHeart
+                  style={{
+                    color: user.isLiked(photo._id) ? "red" : "black",
+                  }}
+                  onClick={() => likeClickHandler(photo._id)}
+                />{" "}
+                {user.isLiked(photo._id)}
               </button>
               <button className="download">
                 <BiDownload />
