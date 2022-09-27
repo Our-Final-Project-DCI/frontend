@@ -5,30 +5,13 @@ import { FaSearch } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { BiDownload } from "react-icons/bi";
 //import { Link } from "react-router-dom";
+import useUser from "../../hooks/useUser";
 
 export default function Overview() {
   const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
+  const user = useUser();
 
-  //const [likedPhotos, setLikedPhotos] = React.useState([]);
-
-  // const setPhoto = (photo, key, value) => {
-  //   let photosCopy = [...likedPhotos];
-  //   let currentPhoto = photosCopy.find(
-  //     (thisPhoto) => thisPhoto.id === photo.id
-  //   );
-  //   if (currentPhoto) {
-  //     currentPhoto[key] = value;
-  //   } else {
-  //     let newPhoto = { ...photo };
-  //     newPhoto[key] = value;
-  //     photosCopy.push(newPhoto);
-  //   }
-  //   setLikedPhotos(photosCopy);
-  // };
-
-  //const likeHandler = async () => {
-  //   setLikedPhotos(!likedPhotos);
-  // };
+  const likeClickHandler = async () => {};
 
   React.useEffect(() => {
     fetch(`http://localhost:3007/photos`).then(async (res) => {
@@ -102,7 +85,7 @@ export default function Overview() {
               <button className="like">
                 <FaRegHeart />
               </button>
-              <button className="download">
+              <button className="download" onClick={likeClickHandler}>
                 <BiDownload />
               </button>
             </div>

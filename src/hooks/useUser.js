@@ -16,6 +16,7 @@ export function UserProvider(props) {
   const [error, setError] = React.useState("");
   const [isFetcting, setIsFetching] = React.useState(false);
   const [ready, setReady] = React.useState(false);
+  const [isLiked, setIsLiked] = React.useState(false);
 
   React.useEffect(() => {
     fetch("http://localhost:3007/user", {
@@ -152,10 +153,10 @@ export function UserProvider(props) {
       setUser(null);
     },
 
-    // likebtn
+    // 5. likebtn
     //btn onclick fun
     isLiked: async (photoId) => {
-      return false;
+      setIsLiked(true);
     },
 
     // likedphotos:[id im array pushen]
