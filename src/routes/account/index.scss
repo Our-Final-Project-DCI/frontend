@@ -143,15 +143,8 @@
 
     padding: 10px;
 
-    > .slider {
-      padding: 20px;
-      // background-color: lightgray;
-      > .item {
-        margin-right: 20px;
-        > img {
-          width: 33%;
-        }
-      }
+    > .item {
+      display: flex;
     }
   }
 }

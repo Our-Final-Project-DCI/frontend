@@ -2,8 +2,7 @@ import React from "react";
 import "./index.scss";
 import Layout from "../../Layout";
 import useUser from "../../hooks/useUser";
-
-// Images
+import { Link } from "react-router-dom";
 
 // import f1 from "./images/f1.jpg";
 
@@ -15,8 +14,8 @@ import { FaRegHeart } from "react-icons/fa";
 import { BiDownload } from "react-icons/bi";
 // Carousel
 
-//import Carousel from "react-multi-carousel";
-//import "react-multi-carousel/lib/styles.css";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 export default function Account() {
   const [myPhotos, setmyPhotos] = React.useState([]);
@@ -52,26 +51,24 @@ export default function Account() {
     });
   }, []);
 
-  // Carousel- responsive:
-  // console.log(user);
-  // const responsive = {
-  //   xlDesktop: {
-  //     breakpoint: { max: 4000, min: 3000 },
-  //     items: 5,
-  //   },
-  //   desktop: {
-  //     breakpoint: { max: 3000, min: 1024 },
-  //     items: 3,
-  //   },
-  //   tablet: {
-  //     breakpoint: { max: 1024, min: 464 },
-  //     items: 2,
-  //   },
-  //   mobile: {
-  //     breakpoint: { max: 464, min: 0 },
-  //     items: 1,
-  //   },
-  // };
+  const responsive = {
+    xlDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
 
   return (
     <Layout>
@@ -119,86 +116,81 @@ export default function Account() {
           <div className="user-collections">
             <ul>
               <li>
-                <a href="/"> MY PHOTOS</a>
+                <Link to="/account?own=true"> MY PHOTOS</Link>
               </li>
               <li>
-                <a href="/"> LIKED PHOTOS </a>
+                <Link to="/account?liked=true">LIKED PHOTOS</Link>
               </li>
             </ul>
           </div>
         </div>
         <div className="user-photos">
-          {myPhotos.map((photo) => (
-            <div className="item" key={photo._id}>
-              <img
-                src={photo.photoFile.replace(
-                  "uploads",
-                  "http://localhost:3007"
-                )}
-                alt=""
-                width="200"
-                height="200"
-              />
-              <h4>{photo.user.username}</h4>
-              <p>#{photo.category}</p>
-              <button className="like">
-                <FaRegHeart
-                  style={{
-                    color: user.isLiked(photo._id) ? "red" : "black",
-                  }}
-                  onClick={() => likeClickHandler(photo._id)}
-                />{" "}
-                {user.isLiked(photo._id)}
-              </button>
-              <button className="download">
-                <BiDownload />
-              </button>
-            </div>
-          ))}
+          <Carousel responsive={responsive} className="slider">
+            {myPhotos.map((photo) => (
+              <div className="item" key={photo._id} style={{ display: "flex" }}>
+                <img
+                  src={photo.photoFile.replace(
+                    "uploads",
+                    "http://localhost:3007"
+                  )}
+                  alt=""
+                  width="90%"
+                />
+                <button className="like">
+                  <FaRegHeart
+                    style={{
+                      color: user.isLiked(photo._id) ? "red" : "black",
+                    }}
+                    onClick={() => likeClickHandler(photo._id)}
+                  />
+                  {user.isLiked(photo._id)}
+                </button>
+              </div>
+            ))}
+          </Carousel>
 
-          {/* <Carousel responsive={responsive} className="slider">
-            <div className="item">
-              <img src={f1} alt="" width="90%" />
-            </div>
-            <div className="item">
-              <img src={f1} alt="" width="90%" />
-            </div>
-            <div className="item">
-              <img src={f1} alt="" width="90%" />
-            </div>
-            <div className="item">
-              <img src={f1} alt="" width="90%" />
-            </div>
-            <div className="item">
-              <img src={f1} alt="" width="90%" />
-            </div>
-          </Carousel> */}
-        </div>
-
-        <div className="user-photos">
-          {likedPhotos.map((photo) => (
-            <div className="item" key={photo._id}>
-              <img
-                src={photo.photoFile.replace(
-                  "uploads",
-                  "http://localhost:3007"
-                )}
-                alt=""
-                width="200"
-                height="200"
-              />
-              <h4>{photo.user.username}</h4>
-              <p>#{photo.category}</p>{" "}
-              <button className="like">
-                <FaRegHeart />
-              </button>
-              <button className="download">
-                <BiDownload />
-              </button>
-            </div>
-          ))}
+          <Carousel responsive={responsive} className="slider">
+            {likedPhotos.map((photo) => (
+              <div className="item" key={photo._id}>
+                <img
+                  src={photo.photoFile.replace(
+                    "uploads",
+                    "http://localhost:3007"
+                  )}
+                  alt=""
+                  width="90%"
+                />
+                <button className="like">
+                  <FaRegHeart
+                    style={{
+                      color: user.isLiked(photo._id) ? "red" : "black",
+                    }}
+                    onClick={() => likeClickHandler(photo._id)}
+                  />
+                  {user.isLiked(photo._id)}
+                </button>
+              </div>
+            ))}
+          </Carousel>
         </div>
       </div>
     </Layout>
   );
+}
+
+{
+  /* <h4>{photo.user.username}</h4>
+                <p>#{photo.category}</p>
+                <button className="like">
+                  <FaRegHeart
+                    style={{
+                      color: user.isLiked(photo._id) ? "red" : "black",
+                    }}
+                    onClick={() => likeClickHandler(photo._id)}
+                  />{" "}
+                  {user.isLiked(photo._id)}
+                </button>
+                <button className="download">
+                  <BiDownload />
+                </button> */
 }
