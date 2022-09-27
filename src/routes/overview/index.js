@@ -63,10 +63,10 @@ export default function Overview() {
                 )}
                 alt=""
               />
+
               <button className="like">
                 <FaRegHeart />
               </button>
-
               <h4>{photo.user.username}</h4>
               <button className="download">
                 <BiDownload />
