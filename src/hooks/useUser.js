@@ -1,5 +1,4 @@
 import * as React from "react";
-import Photo from "../routes/photos_id";
 
 const Context = React.createContext({
   data: null,
@@ -39,13 +38,13 @@ export function UserProvider(props) {
     data: user,
     error: error,
     isFetcting: isFetcting,
+
     // 1. signup
     signup: async (body) => {
       // fehlermeldung im browser entfernen
       setError("");
       // loading ...
       setIsFetching(true);
-
       // response:
       const response = await fetch("http://localhost:3007/user/signup", {
         method: "POST",
@@ -55,10 +54,8 @@ export function UserProvider(props) {
         },
         body: JSON.stringify(body),
       });
-
       // result :
       const result = await response.json();
-
       if (response.status === 200) {
         setUser(result);
       } else if (result.errors) {
@@ -68,16 +65,13 @@ export function UserProvider(props) {
         // server Error | 500
         setError(result.error);
       }
-
       //// fetching beenden
       setIsFetching(false);
-
       // RETURN:STATUS
       return response.status;
     },
 
     // 2. login:
-
     login: async (body) => {
       setError("");
       setIsFetching(true);
@@ -88,24 +82,19 @@ export function UserProvider(props) {
         headers: {
           "Content-Type": "application/json",
         },
-
         body: JSON.stringify(body),
       });
 
       const result = await res.json();
-
       if (res.status === 200) {
         setUser(result);
       } else if (result.errors) {
-        // validations Errors
         setError(result.errors[0].msg);
       } else if (result.error) {
-        // server Error | 500
         setError(result.error);
       }
 
       setIsFetching(false);
-
       return res.status;
     },
 
@@ -113,6 +102,7 @@ export function UserProvider(props) {
     update: async (body) => {
       setError("");
       setIsFetching(true);
+
       const formData = new FormData();
       formData.append("gender", body.gender);
       formData.append("file", body.avatar);
@@ -128,24 +118,19 @@ export function UserProvider(props) {
       });
 
       const result = await res.json();
-
       if (res.status === 200) {
         setUser(result);
       } else if (result.errors) {
-        // validations Errors
         setError(result.errors[0].msg);
       } else if (result.error) {
-        // server Error | 500
         setError(result.error);
       }
 
       setIsFetching(false);
-
       return res.status;
     },
 
     // 4. logout:
-
     logout: async () => {
       await fetch("http://localhost:3007/user/logout", {
         method: "POST",
@@ -154,16 +139,13 @@ export function UserProvider(props) {
       setUser(null);
     },
 
-    // 5. 1. Benutzer klickt auf „LIKE“
-    //btn onclick fun
+    // 5. isLiked: Benutzer klickt auf „LIKE“ / onClick fun-btn
     isLiked: (photoId) => {
       const photoFound = user.likedPhotos.find((p) => p === photoId);
-      console.log("hi", photoId, user.likedPhotos, photoFound);
-
       return !!photoFound;
     },
 
-    // likedphotos:[id im array pushen]
+    // 6. likedphotos:[id-photo im array pushen]
     likedPhotos: async (photoId) => {
       let likedPhotos = [...user.likedPhotos];
       const photoFound = likedPhotos.find((p) => p === photoId);
@@ -172,8 +154,6 @@ export function UserProvider(props) {
       } else {
         likedPhotos.push(photoId);
       }
-
-      console.log(likedPhotos);
 
       const res = await fetch("http://localhost:3007/user/update", {
         method: "PATCH",
@@ -189,10 +169,8 @@ export function UserProvider(props) {
       if (res.status === 200) {
         setUser(result);
       } else if (result.errors) {
-        // validations Errors
         setError(result.errors[0].msg);
       } else if (result.error) {
-        // server Error | 500
         setError(result.error);
       }
     },

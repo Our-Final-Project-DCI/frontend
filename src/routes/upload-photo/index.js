@@ -13,7 +13,7 @@ export default function Upload() {
     { value: "Foods", text: "Foods" },
     { value: "Cars", text: "Cars" },
     { value: "Arts", text: "Arts" },
-    { value: "Fashion", text: "Fashion" },
+    { value: "Fashions", text: "Fashions" },
     { value: "Animals", text: "Animals" },
     { value: "Others", text: "Others" },
   ];
@@ -23,14 +23,10 @@ export default function Upload() {
     options[0].value
   );
   const [title, setTitle] = React.useState("");
-  //const [category, setCategory] = React.useState("");
-
   const [location, setLocation] = React.useState("");
   const [description, setDescription] = React.useState("");
-
   const [isFetching, setIsFetching] = React.useState(false);
   const [error, setError] = React.useState(false);
-
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -56,8 +52,6 @@ export default function Upload() {
     });
 
     const result = await res.json();
-    setIsFetching(false);
-
     if (res.status === 200) {
       // weiterleiten
       navigate("/photos/" + result._id);
@@ -68,6 +62,8 @@ export default function Upload() {
       // server error
       setError(result.error);
     }
+
+    setIsFetching(false);
   };
 
   return (
@@ -86,7 +82,6 @@ export default function Upload() {
                   onChange={(e) => setPhotoFile(e.target.files[0])}
                 />
               </div>
-
               <div class="custom-select">
                 <select value={selectedCategory} onChange={handleChange}>
                   {options.map((option) => (
@@ -123,15 +118,11 @@ export default function Upload() {
                   onChange={(e) => setDescription(e.target.value)}
                 />
               </div>
-              {/* <div className="upload-btn">
-                <button type="submit">Upload</button>
-              </div> */}
             </div>
             <button type="submit" className="upload-btn">
               Upload
             </button>
           </form>
-
           <div className="svg">
             <img src={svg} alt="" />
           </div>

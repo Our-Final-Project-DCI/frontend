@@ -1,11 +1,9 @@
 import React from "react";
 import "./index.scss";
+
 import Layout from "../../Layout";
 import useUser from "../../hooks/useUser";
 import { Link } from "react-router-dom";
-
-// import f1 from "./images/f1.jpg";
-
 // Icons
 import { BiPencil } from "react-icons/bi";
 import { BiShareAlt } from "react-icons/bi";
@@ -13,14 +11,12 @@ import { BiUserPlus } from "react-icons/bi";
 import { FaRegHeart } from "react-icons/fa";
 import { BiDownload } from "react-icons/bi";
 // Carousel
-
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 export default function Account() {
   const [myPhotos, setmyPhotos] = React.useState([]);
   const [likedPhotos, setLikedPhotos] = React.useState([]);
-
   const user = useUser();
 
   const likeClickHandler = async (id) => {
@@ -74,7 +70,7 @@ export default function Account() {
     <Layout>
       <div className="User-Account-Route">
         <div className="wrapper">
-          <div className="user-profile">
+          <section className="user-profile">
             <div className="avatar-box">
               <div className="avatar">
                 <img src={user.data.avatar} alt="" />
@@ -111,9 +107,9 @@ export default function Account() {
                 </ul>
               </div>
             </div>
-          </div>
+          </section>
 
-          <div className="user-collections">
+          <nav className="user-collections">
             <ul>
               <li>
                 <Link to="/account?own=true"> MY PHOTOS</Link>
@@ -122,9 +118,10 @@ export default function Account() {
                 <Link to="/account?liked=true">LIKED PHOTOS</Link>
               </li>
             </ul>
-          </div>
+          </nav>
         </div>
-        <div className="user-photos">
+
+        <section className="user-photos">
           <Carousel responsive={responsive} className="slider">
             {myPhotos.map((photo) => (
               <div className="item" key={photo._id} style={{ display: "flex" }}>
@@ -172,7 +169,7 @@ export default function Account() {
               </div>
             ))}
           </Carousel>
-        </div>
+        </section>
       </div>
     </Layout>
   );
