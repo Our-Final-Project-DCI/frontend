@@ -1,4 +1,5 @@
 import * as React from "react";
+import Photo from "../routes/photos_id";
 
 const Context = React.createContext({
   data: null,
@@ -141,7 +142,7 @@ export function UserProvider(props) {
       return res.status;
     },
 
-    // 2. login:
+    // 2. logout:
 
     logout: async () => {
       await fetch("http://localhost:3007/user/logout", {
@@ -149,6 +150,17 @@ export function UserProvider(props) {
         credentials: "include",
       });
       setUser(null);
+    },
+
+    // likebtn
+    //btn onclick fun
+    isLiked: async (photoId) => {
+      return false;
+    },
+
+    // likedphotos:[id im array pushen]
+    likedPhoto: async (photoId) => {
+      return;
     },
   };
 

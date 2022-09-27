@@ -9,7 +9,7 @@ import { BiDownload } from "react-icons/bi";
 export default function Overview() {
   const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
 
-  const [likedPhotos, setLikedPhotos] = React.useState([]);
+  //const [likedPhotos, setLikedPhotos] = React.useState([]);
 
   // const setPhoto = (photo, key, value) => {
   //   let photosCopy = [...likedPhotos];
@@ -26,9 +26,9 @@ export default function Overview() {
   //   setLikedPhotos(photosCopy);
   // };
 
-  const likeHandler = async () => {
-    setLikedPhotos(!likedPhotos);
-  };
+  //const likeHandler = async () => {
+  //   setLikedPhotos(!likedPhotos);
+  // };
 
   React.useEffect(() => {
     fetch(`http://localhost:3007/photos`).then(async (res) => {
@@ -98,8 +98,8 @@ export default function Overview() {
                 height="200"
               />
               <h4>{photo.user.username}</h4>
-              <p>#{photo.category}</p>{" "}
-              <button className="like" onClick={likeHandler}>
+              <p>#{photo.category}</p>
+              <button className="like">
                 <FaRegHeart />
               </button>
               <button className="download">
