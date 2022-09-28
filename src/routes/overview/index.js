@@ -6,6 +6,9 @@ import { FaRegHeart } from "react-icons/fa";
 import { BiDownload } from "react-icons/bi";
 import { BsArrowsFullscreen } from "react-icons/bs";
 //import { Link } from "react-router-dom";
+
+import { BrowserRouter as Router, Link } from "react-router-dom";
+
 import useUser from "../../hooks/useUser";
 
 export default function Overview() {
@@ -27,6 +30,11 @@ export default function Overview() {
     });
   }, []);
   console.log(uploadtetPhotos);
+
+  // console.log(uploadtetPhotos);
+  // const handleClick = async () => {
+  //   navigate("/photos" + ._id);
+  // };
 
   return (
     <Layout>
@@ -62,7 +70,7 @@ export default function Overview() {
 
         <main className="Main">
           {uploadtetPhotos.map((photo) => (
-            <div className="item" key={photo._id}>
+            <Link className="item" key={photo._id} to={"/photos/" + photo._id}>
               <img
                 src={photo.photoFile.replace(
                   "uploads",
@@ -71,17 +79,33 @@ export default function Overview() {
                 alt=""
               />
 
+              {/* {photo.user.avatar && (
+                <div className="avatar" width="20" height="20">
+                  <a href="/account">
+                    <img
+                      src={photo.user.avatar}
+                      alt=""
+                      className="hover_opacity"
+                    />
+                  </a>
+                </div>
+              )} */}
+
+              <h4>{photo.user.username}</h4>
+              <p>#{photo.category}</p>
+
               <button
                 className="like"
                 onClick={() => likeClickHandler(photo._id)}
               >
+                {" "}
                 <FaRegHeart />
               </button>
-              <h4>{photo.user.username}</h4>
+
               <button className="download">
                 <BiDownload />
               </button>
-            </div>
+            </Link>
           ))}
         </main>
       </div>

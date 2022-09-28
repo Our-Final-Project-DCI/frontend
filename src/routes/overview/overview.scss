@@ -138,4 +138,8 @@ main {
     background-color: black;
     opacity: 0.4;
   }
+
+  > .avatar {
+    border-radius: 50%;
+  }
 }

@@ -1,13 +1,11 @@
 import React from "react";
 import "./index.scss";
 import LayoutLogout from "../../Layout-Logout";
-
-
+import { useParams } from "react-router-dom";
 // Icons
 import { BiHeart } from "react-icons/bi";
 
 export default function Photo() {
-
   const params = useParams();
   const [photo, setPhoto] = React.useState(null);
   //const [comment, setComment] = React.useState("");
@@ -26,18 +24,22 @@ export default function Photo() {
   }, [params.id]);
   console.log(photo);
 
-
-
+  if (!photo) {
+    return <LayoutLogout>loading....</LayoutLogout>;
+  }
   return (
     <LayoutLogout>
       <div className="Photos-Id-Route">
         <div className="user">
-          <div className="avatar">
-            <a href="/account">
-              <img src={avatar} alt="" className="hover_opacity" />
-            </a>
-          </div>
-          <h3>username</h3>
+          {photo.user.avatar && (
+            <div className="avatar">
+              <a href="/account">
+                <img src={photo.user.avatar} alt="" className="hover_opacity" />
+              </a>
+            </div>
+          )}
+
+          <h3>{photo.user.username}</h3>
         </div>
         <div className="wrapper">
           <div className="user-actions">
@@ -55,27 +57,52 @@ export default function Photo() {
           </div>
 
           <div className="user-photo">
-            //<img src={photo} alt="" />
-
-            <img src={`http://localhost:3007/"+ ${photo.photoFile}`} alt="" />
+            {photo.photoFile && (
+              // <img
+              //   src={photo.photoFile.replace(
+              //     "uploads",
+              //     "http://localhost:3007"
+              //   )}
+              //   alt=""
+              //   width="200"
+              //   height="200"
+              // />
+              <img
+                src={photo.photoFile.replace(
+                  "uploads",
+                  "http://localhost:3007"
+                )}
+                alt=""
+              />
+            )}
           </div>
 
           <section className="comment-section">
             <form action="">
               <div className="user-comment">
-                <div className="avatar">
+                {photo.user.avatar && (
+                  <div className="avatar">
+                    <a href="/account">
+                      <img
+                        src={photo.user.avatar}
+                        alt=""
+                        className="hover_opacity"
+                      />
+                    </a>
+                  </div>
+                )}
+                {/* <div className="avatar">
                   <a href="/account">
-                    <img src={avatar} alt="" className="hover_opacity" />
+                    <img src="" alt="" className="hover_opacity" />
                   </a>
-                </div>
+                </div> */}
                 <input type="text" placeholder="Type comment hier..." />
               </div>
             </form>
 
             <div className="user-comments">
               <div className="user">
-                <img src={avatar} alt="" className="hover_opacity" />
-
+                <img src="" alt="" className="hover_opacity" />
               </div>
               <div className="comments">
                 <h4>User 1</h4>
