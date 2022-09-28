@@ -161,20 +161,3 @@ export default function Account() {
     </Layout>
   );
 }
-
-{
-  /* <h4>{photo.user.username}</h4>
-                <p>#{photo.category}</p>
-                <button className="like">
-                  <FaRegHeart
-                    style={{
-                      color: user.isLiked(photo._id) ? "red" : "black",
-                    }}
-                    onClick={() => likeClickHandler(photo._id)}
-                  />{" "}
-                  {user.isLiked(photo._id)}
-                </button>
-                <button className="download">
-                  <BiDownload />
-                </button> */
-}
