@@ -1,27 +1,56 @@
 import React from "react";
 import "./index.scss";
+
 import Layout from "../../Layout";
 import useUser from "../../hooks/useUser";
-
-// Images
-
-import f1 from "./images/f1.jpg";
-
+import { Link } from "react-router-dom";
 // Icons
 import { BiPencil } from "react-icons/bi";
 import { BiShareAlt } from "react-icons/bi";
 import { BiUserPlus } from "react-icons/bi";
-
+import { FaRegHeart } from "react-icons/fa";
+import { BiDownload } from "react-icons/bi";
 // Carousel
-
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 export default function Account() {
-  const [photos, setPhotos] = React.useState([]);
+  const [myPhotos, setmyPhotos] = React.useState([]);
+  const [likedPhotos, setLikedPhotos] = React.useState([]);
+
+  const [photoList, setPhotoList] = React.useState("myPhotos");
+  const photos = photoList === "myPhotos" ? myPhotos : likedPhotos;
+
   const user = useUser();
-  // Carousel- responsive:
-  console.log(user);
+
+  const likeClickHandler = async (id) => {
+    user.likedPhotos(id);
+  };
+
+  React.useEffect(() => {
+    fetch(`http://localhost:3007/photos/account?own=true`, {
+      method: "GET",
+      credentials: "include",
+    }).then(async (res) => {
+      const result = await res.json();
+
+      if (res.status === 200) {
+        setmyPhotos(result);
+      }
+    });
+
+    fetch(`http://localhost:3007/photos/account?liked=true`, {
+      method: "GET",
+      credentials: "include",
+    }).then(async (res) => {
+      const result = await res.json();
+
+      if (res.status === 200) {
+        setLikedPhotos(result);
+      }
+    });
+  }, []);
+
   const responsive = {
     xlDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -45,10 +74,10 @@ export default function Account() {
     <Layout>
       <div className="User-Account-Route">
         <div className="wrapper">
-          <div className="user-profile">
+          <section className="user-profile">
             <div className="avatar-box">
               <div className="avatar">
-                <img src={user.data.avatar} alt="" /> 
+                <img src={user.data.avatar} alt="" />
               </div>
               <a href="/update">
                 <BiPencil />
@@ -82,39 +111,70 @@ export default function Account() {
                 </ul>
               </div>
             </div>
-          </div>
+          </section>
 
-          <div className="user-collections">
+          <nav className="user-collections">
             <ul>
               <li>
-                <a href="/"> MY PHOTOS</a>
+                <div onClick={() => setPhotoList("myPhotos")}> MY PHOTOS</div>
               </li>
               <li>
-                <a href="/"> LIKED PHOTOS </a>
+                <div onClick={() => setPhotoList("likedPhotos")}>
+                  LIKED PHOTOS
+                </div>
               </li>
             </ul>
-          </div>
+          </nav>
         </div>
-        <div className="user-photos">
+
+        <section className="user-photos">
           <Carousel responsive={responsive} className="slider">
-            <div className="item">
-              <img src={f1} alt="" width="90%" />
-            </div>
-            <div className="item">
-              <img src={f1} alt="" width="90%" />
-            </div>
-            <div className="item">
-              <img src={f1} alt="" width="90%" />
-            </div>
-            <div className="item">
-              <img src={f1} alt="" width="90%" />
-            </div>
-            <div className="item">
-              <img src={f1} alt="" width="90%" />
-            </div>
+            {photos.map((photo) => (
+              <Link
+                to={"/photos/" + photo._id}
+                className="item"
+                key={photo._id}
+                style={{ display: "flex" }}
+              >
+                <img
+                  src={photo.photoFile.replace(
+                    "uploads",
+                    "http://localhost:3007"
+                  )}
+                  alt=""
+                  width="90%"
+                />
+                <button className="like">
+                  <FaRegHeart
+                    style={{
+                      color: user.isLiked(photo._id) ? "red" : "black",
+                    }}
+                    onClick={() => likeClickHandler(photo._id)}
+                  />
+                  {user.isLiked(photo._id)}
+                </button>
+              </Link>
+            ))}
           </Carousel>
-        </div>
+        </section>
       </div>
     </Layout>
   );
+}
+
+{
+  /* <h4>{photo.user.username}</h4>
+                <p>#{photo.category}</p>
+                <button className="like">
+                  <FaRegHeart
+                    style={{
+                      color: user.isLiked(photo._id) ? "red" : "black",
+                    }}
+                    onClick={() => likeClickHandler(photo._id)}
+                  />{" "}
+                  {user.isLiked(photo._id)}
+                </button>
+                <button className="download">
+                  <BiDownload />
+                </button> */
 }

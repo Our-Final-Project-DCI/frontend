@@ -6,9 +6,16 @@ import { FaRegHeart } from "react-icons/fa";
 import { BiDownload } from "react-icons/bi";
 import { BsArrowsFullscreen } from "react-icons/bs";
 //import { Link } from "react-router-dom";
+import useUser from "../../hooks/useUser";
 
 export default function Overview() {
   const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
+  const user = useUser();
+  console.log(user);
+
+  const likeClickHandler = async (id) => {
+    user.likedPhotos(id);
+  };
 
   React.useEffect(() => {
     fetch(`http://localhost:3007/photos`).then(async (res) => {
@@ -64,7 +71,16 @@ export default function Overview() {
                 alt=""
               />
 
+              <h4>{photo.user.username}</h4>
+              <p>#{photo.category}</p>
+              <button
+                className="like"
+                onClick={() => likeClickHandler(photo._id)}
+              >
+
+
               <button className="like">
+
                 <FaRegHeart />
               </button>
               <h4>{photo.user.username}</h4>
