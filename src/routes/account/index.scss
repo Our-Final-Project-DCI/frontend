@@ -142,7 +142,9 @@
     margin: 0 auto;
 
     padding: 10px;
-
+    > .slider {
+      border: 1px solid grey;
+    }
     > .item {
       display: flex;
     }
