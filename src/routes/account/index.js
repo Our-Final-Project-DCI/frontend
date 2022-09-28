@@ -17,6 +17,10 @@ import "react-multi-carousel/lib/styles.css";
 export default function Account() {
   const [myPhotos, setmyPhotos] = React.useState([]);
   const [likedPhotos, setLikedPhotos] = React.useState([]);
+
+  const [photoList, setPhotoList] = React.useState("myPhotos");
+  const photos = photoList === "myPhotos" ? myPhotos : likedPhotos;
+
   const user = useUser();
 
   const likeClickHandler = async (id) => {
@@ -112,10 +116,12 @@ export default function Account() {
           <nav className="user-collections">
             <ul>
               <li>
-                <Link to="/account?own=true"> MY PHOTOS</Link>
+                <div onClick={() => setPhotoList("myPhotos")}> MY PHOTOS</div>
               </li>
               <li>
-                <Link to="/account?liked=true">LIKED PHOTOS</Link>
+                <div onClick={() => setPhotoList("likedPhotos")}>
+                  LIKED PHOTOS
+                </div>
               </li>
             </ul>
           </nav>
@@ -123,8 +129,13 @@ export default function Account() {
 
         <section className="user-photos">
           <Carousel responsive={responsive} className="slider">
-            {myPhotos.map((photo) => (
-              <div className="item" key={photo._id} style={{ display: "flex" }}>
+            {photos.map((photo) => (
+              <Link
+                to={"/photos/" + photo._id}
+                className="item"
+                key={photo._id}
+                style={{ display: "flex" }}
+              >
                 <img
                   src={photo.photoFile.replace(
                     "uploads",
@@ -142,31 +153,7 @@ export default function Account() {
                   />
                   {user.isLiked(photo._id)}
                 </button>
-              </div>
-            ))}
-          </Carousel>
-
-          <Carousel responsive={responsive} className="slider">
-            {likedPhotos.map((photo) => (
-              <div className="item" key={photo._id}>
-                <img
-                  src={photo.photoFile.replace(
-                    "uploads",
-                    "http://localhost:3007"
-                  )}
-                  alt=""
-                  width="90%"
-                />
-                <button className="like">
-                  <FaRegHeart
-                    style={{
-                      color: user.isLiked(photo._id) ? "red" : "black",
-                    }}
-                    onClick={() => likeClickHandler(photo._id)}
-                  />
-                  {user.isLiked(photo._id)}
-                </button>
-              </div>
+              </Link>
             ))}
           </Carousel>
         </section>

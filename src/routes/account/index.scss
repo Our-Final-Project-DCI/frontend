@@ -119,11 +119,12 @@
         margin: 0;
         > li {
           padding: 7px 0;
-          > a {
+          > div {
             font-weight: 400;
             text-decoration: none;
             color: #333;
             font-size: 14px;
+            cursor: pointer;
             &:hover {
               padding: 3px 7px;
               background-color: rgb(54, 50, 115);
