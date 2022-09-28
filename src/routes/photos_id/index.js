@@ -2,16 +2,31 @@ import React from "react";
 import "./index.scss";
 import LayoutLogout from "../../Layout-Logout";
 
-// Images
-// fetch get by id
+
 // Icons
 import { BiHeart } from "react-icons/bi";
 
 export default function Photo() {
-  //const params = useParams();
+
+  const params = useParams();
   const [photo, setPhoto] = React.useState(null);
-  console.log(photo);
   //const [comment, setComment] = React.useState("");
+
+  React.useEffect(() => {
+    fetch("http://localhost:3007/photos/" + params.id, {
+      method: "GET",
+      credentials: "include",
+    }).then(async (res) => {
+      const result = await res.json();
+
+      if (res.status === 200) {
+        setPhoto(result);
+      }
+    });
+  }, [params.id]);
+  console.log(photo);
+
+
 
   return (
     <LayoutLogout>
@@ -19,7 +34,7 @@ export default function Photo() {
         <div className="user">
           <div className="avatar">
             <a href="/account">
-              <img src="" alt="" className="hover_opacity" />
+              <img src={avatar} alt="" className="hover_opacity" />
             </a>
           </div>
           <h3>username</h3>
@@ -40,6 +55,8 @@ export default function Photo() {
           </div>
 
           <div className="user-photo">
+            //<img src={photo} alt="" />
+
             <img src={`http://localhost:3007/"+ ${photo.photoFile}`} alt="" />
           </div>
 
@@ -48,7 +65,7 @@ export default function Photo() {
               <div className="user-comment">
                 <div className="avatar">
                   <a href="/account">
-                    <img src="" alt="" className="hover_opacity" />
+                    <img src={avatar} alt="" className="hover_opacity" />
                   </a>
                 </div>
                 <input type="text" placeholder="Type comment hier..." />
@@ -57,7 +74,8 @@ export default function Photo() {
 
             <div className="user-comments">
               <div className="user">
-                <img src="" alt="" className="hover_opacity" />
+                <img src={avatar} alt="" className="hover_opacity" />
+
               </div>
               <div className="comments">
                 <h4>User 1</h4>
