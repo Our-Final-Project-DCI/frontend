@@ -11,7 +11,6 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 
 import useUser from "../../hooks/useUser";
 
-
 export default function Overview() {
   const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
   const [category, setCategory] = React.useState('')
@@ -116,7 +115,10 @@ export default function Overview() {
               <button
                 className="like"
                 onClick={() => likeClickHandler(photo._id)}
-              > <FaRegHeart /></button>
+              >
+                {" "}
+                <FaRegHeart />
+              </button>
 
               <button className="download">
                 <BiDownload />
