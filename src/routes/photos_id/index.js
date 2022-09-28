@@ -48,11 +48,11 @@ export default function Photo() {
               <span className="total">
                 <em>200</em>
               </span>
-              <span className="like-btn">
+              <button className="like-btn">
                 <a href="/">
                   <BiHeart />
                 </a>
-              </span>
+              </button>
             </div>
           </div>
 

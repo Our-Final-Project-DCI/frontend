@@ -4,11 +4,22 @@ import Layout from "../../Layout";
 import { FaSearch } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { BiDownload } from "react-icons/bi";
+import { BsArrowsFullscreen } from "react-icons/bs";
 //import { Link } from "react-router-dom";
+
 import { BrowserRouter as Router, Link } from "react-router-dom";
+
+import useUser from "../../hooks/useUser";
+
 
 export default function Overview() {
   const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
+  const user = useUser();
+  console.log(user);
+
+  const likeClickHandler = async (id) => {
+    user.likedPhotos(id);
+  };
 
   React.useEffect(() => {
     fetch(`http://localhost:3007/photos`).then(async (res) => {
@@ -49,7 +60,6 @@ export default function Overview() {
               <button className="Overview__button">
                 <FaSearch />
               </button>
-
               <input
                 type="text"
                 placeholder="Search"
@@ -68,9 +78,8 @@ export default function Overview() {
                   "http://localhost:3007"
                 )}
                 alt=""
-                width="200"
-                height="200"
               />
+
               {/* {photo.user.avatar && (
                 <div className="avatar" width="20" height="20">
                   <a href="/account">
@@ -85,9 +94,12 @@ export default function Overview() {
 
               <h4>{photo.user.username}</h4>
               <p>#{photo.category}</p>
-              <button className="like">
-                <FaRegHeart />
-              </button>
+
+              <button
+                className="like"
+                onClick={() => likeClickHandler(photo._id)}
+              > <FaRegHeart /></button>
+
               <button className="download">
                 <BiDownload />
               </button>
