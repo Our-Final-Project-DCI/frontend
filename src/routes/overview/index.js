@@ -14,6 +14,8 @@ import useUser from "../../hooks/useUser";
 
 export default function Overview() {
   const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
+  const [category, setCategory] = React.useState('')
+  const [search, setSearch] = React.useState('') 
   const user = useUser();
   console.log(user);
 
@@ -32,10 +34,24 @@ export default function Overview() {
   }, []);
   console.log(uploadtetPhotos);
 
+  React.useEffect(() => {
+    fetch(`http://localhost:3007/photos?search=${search}`)
+    .then(async res => {
+    const result = await res.json()
+    
+    if(res.status === 200) {
+    setUploadetPhotos(result)
+    }
+    })
+    }, [search]) 
+   
   // console.log(uploadtetPhotos);
   // const handleClick = async () => {
   //   navigate("/photos" + ._id);
   // };
+
+  /* category=${category}& */
+
 
   return (
     <Layout>
@@ -64,6 +80,8 @@ export default function Overview() {
                 type="text"
                 placeholder="Search"
                 className="Overview__input"
+                value={search} 
+                onChange={e => setSearch(e.target.value)}
               ></input>
             </div>
           </div>

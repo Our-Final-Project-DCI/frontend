@@ -29,6 +29,7 @@ export default function Upload() {
   const [error, setError] = React.useState(false);
   const navigate = useNavigate();
 
+
   const handleChange = (event) => {
     console.log(event.target.value);
     setSelectedCategory(event.target.value);
