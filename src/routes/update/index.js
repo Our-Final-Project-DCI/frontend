@@ -3,8 +3,6 @@ import "./index.scss";
 import LayoutLogout from "../../Layout-Logout";
 import useUser from "../../hooks/useUser";
 
-// Images
-import avatar from "./images/avatar.webp";
 // Icons
 import { BiPencil } from "react-icons/bi";
 
@@ -17,10 +15,12 @@ export default function Update() {
   const user = useUser();
   console.log(user);
   const [selectedGender, setSelectedGender] = React.useState(options[0].value);
-  const [fullname, setFullname] = React.useState(user.data.fullname);
-  const [city, setCity] = React.useState(user.data.city);
-  const [land, setLand] = React.useState(user.data.land);
-  const [description, setDescription] = React.useState(user.data.description);
+  const [fullname, setFullname] = React.useState(user.data.fullname || "");
+  const [city, setCity] = React.useState(user.data.city || "");
+  const [land, setLand] = React.useState(user.data.land || "");
+  const [description, setDescription] = React.useState(
+    user.data.description || ""
+  );
   const [avatar, setAvatar] = React.useState("");
   const [showSuccess, setShowSuccess] = React.useState(false);
 
@@ -38,7 +38,6 @@ export default function Update() {
       city: city,
       land: land,
       description: description,
-      avatar: avatar,
     });
     if (status === 200) {
       setShowSuccess(true);
