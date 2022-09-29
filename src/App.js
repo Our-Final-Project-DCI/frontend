@@ -9,8 +9,10 @@ import Category from "./routes/category";
 import Account from "./routes/account";
 import About from "./routes/about";
 import Update from "./routes/update";
+import Item from "./routes/category_item";
 
 import { UserProvider } from "./hooks/useUser";
+
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="/update" element={<Update />} />
           <Route path="/category" element={<Category />} />
+          <Route path="/category/:item" element={<Item />} />
         </Routes>
       </BrowserRouter>
     </UserProvider>
