@@ -28,7 +28,7 @@ export default function Overview() {
         setUploadetPhotos(result);
       }
 
-      if(res.status === 404) {
+      if (res.status === 404) {
         setUploadetPhotos([]);
       }
     });
@@ -115,7 +115,6 @@ export default function Overview() {
               )} */}
 
               <h4>{photo.user.username}</h4>
-
 
               <button
                 className="like"
