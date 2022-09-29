@@ -29,7 +29,6 @@ export default function Upload() {
   const [error, setError] = React.useState(false);
   const navigate = useNavigate();
 
-
   const handleChange = (event) => {
     console.log(event.target.value);
     setSelectedCategory(event.target.value);
@@ -128,6 +127,7 @@ export default function Upload() {
             <img src={svg} alt="" />
           </div>
         </div>
+        {error && <div>{error}</div>}
       </div>
     </LayoutLogout>
   );
