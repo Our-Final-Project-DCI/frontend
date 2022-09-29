@@ -1,11 +1,11 @@
 import * as React from "react";
+import "./index.scss";
 import { useParams } from "react-router-dom";
 
 
 function Item() {
     let {item} = useParams();
     const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
-    
 
     React.useEffect(() => {
         fetch(`http://localhost:3007/photos`).then(async (res) => {
@@ -22,9 +22,13 @@ function Item() {
       }, [item]);
       console.log("ITEM", uploadtetPhotos);
 
+      const a = uploadtetPhotos.filter(photo => photo.category === item)
+      console.log(a);
+
   return (
-    <div>
-        {uploadtetPhotos.map((photo) => (
+    <div className="Item">
+        <h4>{item}</h4>
+        {a.map((photo) => (
             <div className="item" key={photo._id}>
               <img
                 src={photo.photoFile.replace(
@@ -33,8 +37,6 @@ function Item() {
                 )}
                 alt=""
               />
-
-
 
             </div>
           ))}
