@@ -15,7 +15,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 export default function Account() {
-  const [myPhotos, setmyPhotos] = React.useState([]);
+  const [myPhotos, setMyPhotos] = React.useState([]);
   const [likedPhotos, setLikedPhotos] = React.useState([]);
 
   const [photoList, setPhotoList] = React.useState("myPhotos");
@@ -35,7 +35,7 @@ export default function Account() {
       const result = await res.json();
 
       if (res.status === 200) {
-        setmyPhotos(result);
+        setMyPhotos(result);
       }
     });
 
@@ -54,7 +54,7 @@ export default function Account() {
   const responsive = {
     xlDesktop: {
       breakpoint: { max: 4000, min: 3000 },
-      items: 5,
+      items: 3,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -134,7 +134,7 @@ export default function Account() {
                 to={"/photos/" + photo._id}
                 className="item"
                 key={photo._id}
-                style={{ display: "flex" }}
+                // style={{ display: "flex" }}
               >
                 <img
                   src={photo.photoFile.replace(

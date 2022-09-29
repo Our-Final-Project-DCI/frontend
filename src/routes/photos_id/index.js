@@ -49,9 +49,7 @@ export default function Photo() {
                 <em>200</em>
               </span>
               <button className="like-btn">
-                <a href="/">
-                  <BiHeart />
-                </a>
+                <BiHeart />
               </button>
             </div>
           </div>
