@@ -11,8 +11,8 @@ import useUser from "../../hooks/useUser";
 
 export default function Overview() {
   const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
-  const [category, setCategory] = React.useState('')
-  const [search, setSearch] = React.useState('') 
+  const [category, setCategory] = React.useState("");
+  const [search, setSearch] = React.useState("");
   const user = useUser();
   console.log(user);
 
@@ -31,28 +31,6 @@ export default function Overview() {
   }, []);
   console.log(uploadtetPhotos);
 
-<<<<<<< HEAD
-=======
-  React.useEffect(() => {
-    fetch(`http://localhost:3007/photos?search=${search}`)
-    .then(async res => {
-    const result = await res.json()
-    
-    if(res.status === 200) {
-    setUploadetPhotos(result)
-    }
-    })
-    }, [search]) 
-   
-  // console.log(uploadtetPhotos);
-  // const handleClick = async () => {
-  //   navigate("/photos" + ._id);
-  // };
-
-  /* category=${category}& */
-
-
->>>>>>> b707380a56120682c79fe1c88f3271f95a8c9d8f
   return (
     <Layout>
       <div className="Overview">
@@ -80,8 +58,8 @@ export default function Overview() {
                 type="text"
                 placeholder="Search"
                 className="Overview__input"
-                value={search} 
-                onChange={e => setSearch(e.target.value)}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               ></input>
             </div>
           </div>
@@ -122,10 +100,6 @@ export default function Overview() {
                 className="like"
                 onClick={() => likeClickHandler(photo._id)}
               >
-<<<<<<< HEAD
-=======
-                {" "}
->>>>>>> b707380a56120682c79fe1c88f3271f95a8c9d8f
                 <FaRegHeart />
               </button>
 
