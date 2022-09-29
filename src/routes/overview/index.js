@@ -31,6 +31,23 @@ export default function Overview() {
   }, []);
   console.log(uploadtetPhotos);
 
+  React.useEffect(() => {
+    fetch(`http://localhost:3007/photos?search=${search}`).then(async (res) => {
+      const result = await res.json();
+
+      if (res.status === 200) {
+        setUploadetPhotos(result);
+      }
+    });
+  }, [search]);
+
+  // console.log(uploadtetPhotos);
+  // const handleClick = async () => {
+  //   navigate("/photos" + ._id);
+  // };
+
+  /* category=${category}& */
+
   return (
     <Layout>
       <div className="Overview">
