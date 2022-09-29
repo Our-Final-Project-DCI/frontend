@@ -28,9 +28,6 @@ export default function Overview() {
         setUploadetPhotos(result);
       }
 
-      if (res.status === 404) {
-        setUploadetPhotos([]);
-      }
     });
   }, []);
   console.log(uploadtetPhotos);
@@ -94,6 +91,7 @@ export default function Overview() {
                   "uploads",
                   "http://localhost:3007"
                 )}
+                onError={() => setUploadetPhotos(uploadtetPhotos.filter(row => row !== photo))}
                 alt=""
               />
 

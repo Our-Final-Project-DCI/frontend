@@ -37,6 +37,7 @@ function Item() {
                   "uploads",
                   "http://localhost:3007"
                 )}
+                onError={() => setUploadetPhotos(uploadtetPhotos.filter(row => row !== photo))}
                 alt=""
               />
               <h4>{photo.user.username}</h4>
