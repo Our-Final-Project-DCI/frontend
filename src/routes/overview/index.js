@@ -27,6 +27,10 @@ export default function Overview() {
       if (res.status === 200) {
         setUploadetPhotos(result);
       }
+
+      if(res.status === 404) {
+        setUploadetPhotos([]);
+      }
     });
   }, []);
   console.log(uploadtetPhotos);
@@ -111,7 +115,7 @@ export default function Overview() {
               )} */}
 
               <h4>{photo.user.username}</h4>
-              <p>#{photo.category}</p>
+
 
               <button
                 className="like"
