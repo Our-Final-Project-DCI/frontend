@@ -4,9 +4,7 @@ import Layout from "../../Layout";
 import { FaSearch } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { BiDownload } from "react-icons/bi";
-import { BsArrowsFullscreen } from "react-icons/bs";
-//import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import useUser from "../../hooks/useUser";
 
 export default function Overview() {
@@ -14,6 +12,9 @@ export default function Overview() {
   const [category, setCategory] = React.useState("");
   const [search, setSearch] = React.useState("");
   const user = useUser();
+
+  const navigate = useNavigate();
+
   console.log(user);
 
   const likeClickHandler = async (id) => {
@@ -27,7 +28,6 @@ export default function Overview() {
       if (res.status === 200) {
         setUploadetPhotos(result);
       }
-
     });
   }, []);
   console.log(uploadtetPhotos);
@@ -41,13 +41,6 @@ export default function Overview() {
       }
     });
   }, [search]);
-
-  // console.log(uploadtetPhotos);
-  // const handleClick = async () => {
-  //   navigate("/photos" + ._id);
-  // };
-
-  /* category=${category}& */
 
   return (
     <Layout>
@@ -87,11 +80,16 @@ export default function Overview() {
           {uploadtetPhotos.map((photo) => (
             <div className="item" key={photo._id}>
               <img
+                onClick={() => navigate("/photos" + "/" + photo._id)}
                 src={photo.photoFile.replace(
                   "uploads",
                   "http://localhost:3007"
                 )}
-                onError={() => setUploadetPhotos(uploadtetPhotos.filter(row => row !== photo))}
+                onError={() =>
+                  setUploadetPhotos(
+                    uploadtetPhotos.filter((row) => row !== photo)
+                  )
+                }
                 alt=""
               />
 
@@ -106,10 +104,6 @@ export default function Overview() {
                      to={"/photos/" + photo._id}
                   </a>
                 </div>
-
-
-
-                
               )} */}
 
               <h4>{photo.user.username}</h4>

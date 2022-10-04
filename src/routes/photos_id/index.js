@@ -8,7 +8,7 @@ import { BiHeart } from "react-icons/bi";
 export default function Photo() {
   const params = useParams();
   const [photo, setPhoto] = React.useState(null);
-  //const [comment, setComment] = React.useState("");
+  const [comment, setComment] = React.useState("");
 
   React.useEffect(() => {
     fetch("http://localhost:3007/photos/" + params.id, {
@@ -23,6 +23,38 @@ export default function Photo() {
     });
   }, [params.id]);
   console.log(photo);
+
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch("http://localhost:3007/comments", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        description: comment,
+        photo: photo._id,
+      }),
+    });
+
+    if (res.status === 200) {
+      setComment("");
+
+      // refetch Photo
+      fetch("http://localhost:3007/photos/" + params.id, {
+        method: "GET",
+        credentials: "include",
+      }).then(async (res) => {
+        const result = await res.json();
+
+        if (res.status === 200) {
+          setPhoto(result);
+        }
+      });
+    }
+  };
 
   if (!photo) {
     return <LayoutLogout>loading....</LayoutLogout>;
@@ -76,7 +108,7 @@ export default function Photo() {
           </div>
 
           <section className="comment-section">
-            <form action="">
+            <form onSubmit={handleCommentSubmit}>
               <div className="user-comment">
                 {photo.user.avatar && (
                   <div className="avatar">
@@ -89,17 +121,18 @@ export default function Photo() {
                     </a>
                   </div>
                 )}
-                {/* <div className="avatar">
-                  <a href="/account">
-                    <img src="" alt="" className="hover_opacity" />
-                  </a>
-                </div> */}
-                <input type="text" placeholder="Type comment hier..." />
+                <input
+                  type="text"
+                  placeholder="Type comment hier..."
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                />
               </div>
+              <button>submit</button>
             </form>
 
             <div className="user-comments">
-              <div className="user">
+              {/* <div className="user">
                 <img src="" alt="" className="hover_opacity" />
               </div>
               <div className="comments">
@@ -108,7 +141,28 @@ export default function Photo() {
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo
                   beataee!
                 </p>
-              </div>
+              </div> */}
+
+              {photo.comments.map((comment) => (
+                <div key={comment._id} className="user">
+                  {comment.user.avatar && (
+                    <div>
+                      <img
+                        className="profileImage"
+                        src={comment.user.avatar}
+                        width="24"
+                        height="24"
+                        alt="Profilbild"
+                      />
+                    </div>
+                  )}
+                  <div className="annotation">
+                    <em>&nbsp;{comment.user.username} hat geantwortet:</em>
+                  </div>
+
+                  <p>{comment.description}</p>
+                </div>
+              ))}
             </div>
           </section>
         </div>
