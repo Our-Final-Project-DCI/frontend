@@ -144,15 +144,26 @@ export default function Account() {
                   alt=""
                   width="90%"
                 />
-                <button className="like">
-                  <FaRegHeart
-                    style={{
-                      color: user.isLiked(photo._id) ? "red" : "black",
-                    }}
-                    onClick={() => likeClickHandler(photo._id)}
-                  />
-                  {user.isLiked(photo._id)}
+
+                {/* <FaRegHeart
+                  className="like"
+                  style={{
+                    color: user.isLiked(photo._id) ? "red" : "black",
+                  }}
+                  onClick={() => likeClickHandler(photo._id)}
+                /> */}
+
+                <button
+                  className="like"
+                  onClick={(e) => {
+                    likeClickHandler(photo._id);
+                    e.preventDefault();
+                  }}
+                >
+                  <FaRegHeart />
                 </button>
+
+                {user.isLiked(photo._id)}
               </Link>
             ))}
           </Carousel>
