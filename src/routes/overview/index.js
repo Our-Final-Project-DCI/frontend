@@ -115,9 +115,13 @@ export default function Overview() {
                 <FaRegHeart />
               </button>
 
-              <button className="download">
+              <a
+                download
+                className="download"
+                href={photo.photoFile.replace("uploads", "")}
+              >
                 <BiDownload />
-              </button>
+              </a>
             </div>
           ))}
         </main>
