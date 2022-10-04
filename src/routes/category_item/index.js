@@ -3,11 +3,13 @@ import "./index.scss";
 import { useParams } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
 import { BiDownload } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 
 function Item() {
     let {item} = useParams();
     const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
+    const navigate = useNavigate();
 
     React.useEffect(() => {
         fetch(`http://localhost:3007/photos`).then(async (res) => {
@@ -33,6 +35,7 @@ function Item() {
           {a.map((photo) => (
             <div className="item" key={photo._id}>
               <img
+                 onClick={() => navigate("/photos" + "/" + photo._id)}
                 src={photo.photoFile.replace(
                   "uploads",
                   "http://localhost:3007"
