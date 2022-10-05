@@ -5,61 +5,61 @@ import { FaRegHeart } from "react-icons/fa";
 import { BiDownload } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
-
 function Item() {
-    let {item} = useParams();
-    const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
-    const navigate = useNavigate();
+  let { item } = useParams();
+  const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
+  const navigate = useNavigate();
 
-    React.useEffect(() => {
-        fetch(`http://localhost:3007/photos`).then(async (res) => {
-          const result = await res.json();
-    
-          if (res.status === 200) {
-            setUploadetPhotos(result);
-          }
-    
-          if(res.status === 404) {
-            setUploadetPhotos([]);
-          }
-        });
-      }, [item]);
-      console.log("ITEM", uploadtetPhotos);
+  React.useEffect(() => {
+    fetch(`http://localhost:3007/photos`).then(async (res) => {
+      const result = await res.json();
 
-      const a = uploadtetPhotos.filter(photo => photo.category === item)
-      console.log(a);
+      if (res.status === 200) {
+        setUploadetPhotos(result);
+      }
+
+      if (res.status === 404) {
+        setUploadetPhotos([]);
+      }
+    });
+  }, [item]);
+  console.log("ITEM", uploadtetPhotos);
+
+  const a = uploadtetPhotos.filter((photo) => photo.category === item);
+  console.log(a);
 
   return (
     <div className="Item">
-     <main className="Main">
-          {a.map((photo) => (
-            <div className="item" key={photo._id}>
-              <img
-                 onClick={() => navigate("/photos" + "/" + photo._id)}
-                src={photo.photoFile.replace(
-                  "uploads",
-                  "http://localhost:3007"
-                )}
-                onError={() => setUploadetPhotos(uploadtetPhotos.filter(row => row !== photo))}
-                alt=""
-              />
-              <h4>{photo.user.username}</h4>
+      <main className="CategoryItem">
+        {a.map((photo) => (
+          <div className="item" key={photo._id}>
+            <img
+              onClick={() => navigate("/photos" + "/" + photo._id)}
+              src={photo.photoFile.replace("uploads", "http://localhost:3007")}
+              onError={() =>
+                setUploadetPhotos(
+                  uploadtetPhotos.filter((row) => row !== photo)
+                )
+              }
+              alt=""
+            />
+            <h4>{photo.user.username}</h4>
 
-              <button
-                className="like"
-               /*  onClick={() => likeClickHandler(photo._id)} */
-              >
-                <FaRegHeart />
-              </button>
+            <button
+              className="like"
+              /*  onClick={() => likeClickHandler(photo._id)} */
+            >
+              <FaRegHeart />
+            </button>
 
-              <button className="download">
-                <BiDownload />
-              </button>
-            </div>
-          ))}
-        </main>
+            <button className="download">
+              <BiDownload />
+            </button>
+          </div>
+        ))}
+      </main>
     </div>
-  )
+  );
 }
 
-export default Item
+export default Item;
