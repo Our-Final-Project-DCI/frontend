@@ -74,7 +74,7 @@ main {
   columns: 3;
   column-gap: 5px;
   z-index: -3;
-  width: 90%;
+  width: 100%;
   height: 100%;
   margin: 2px auto;
   z-index: -1;
@@ -85,18 +85,18 @@ main {
   }
 
   > .item img {
-    width: 100%;
     margin: 0;
     padding: 5px;
     border-radius: 10px;
   }
 
-  > .item h4 {
+  > .item a {
     position: absolute;
-    bottom: 0;
+    bottom: 15px;
     left: 5px;
     color: #fff;
     padding-left: 10px;
+    display: none;
   }
 
   > .item .download {
@@ -110,14 +110,33 @@ main {
     }
   }
 
-  > .item h4::first-letter {
+  > .item a::first-letter {
     text-transform: uppercase;
   }
 
-  > .item .zoom {
+  > .item .download {
+    color: black;
+    background-color: white;
+    height: 25px;
+    width: 35px;
+    border-radius: 4px;
+    text-align: center;
+    display: none;
+  }
+
+  > .item .hover {
+    height: 100%;
+    width: 100%;
     position: absolute;
-    left: 240px;
-    top: 240px;
+    top: 0;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+      .like,
+      .download,
+      a {
+        display: block;
+      }
+    }
   }
 
   > .item .like {
@@ -127,16 +146,9 @@ main {
     color: rgb(0, 0, 0);
     height: 25px;
     width: 35px;
-    opacity: 2;
+    border-radius: 4px;
     cursor: pointer;
-  }
-  > .item .display {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    background-color: black;
-    opacity: 0.4;
+    display: none;
   }
 
   > .avatar {

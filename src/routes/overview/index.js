@@ -22,18 +22,18 @@ export default function Overview() {
   };
 
   async function toDataURL(url) {
-    const blob = await fetch(url).then(res => res.blob());
+    const blob = await fetch(url).then((res) => res.blob());
     return URL.createObjectURL(blob);
-}
+  }
 
- async function download(url) {
-   const a = document.createElement("a");
-   a.href = await toDataURL(url);
-   a.download = url.replace("http://localhost:3007/", "");
-   document.body.appendChild(a);
-   a.click();
-   document.body.removeChild(a);
-}
+  async function download(url) {
+    const a = document.createElement("a");
+    a.href = await toDataURL(url);
+    a.download = url.replace("http://localhost:3007/", "");
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
 
   React.useEffect(() => {
     fetch(`http://localhost:3007/photos`).then(async (res) => {
@@ -119,25 +119,29 @@ export default function Overview() {
                   </a>
                 </div>
               )} */}
+              <div className="hover">
+                <a>{photo.user.username}</a>
 
-              <h4>{photo.user.username}</h4>
+                <button
+                  className="like"
+                  onClick={() => likeClickHandler(photo._id)}
+                >
+                  <FaRegHeart />
+                </button>
 
-              <button
-                className="like"
-                onClick={() => likeClickHandler(photo._id)}
-              >
-                <FaRegHeart />
-              </button>
-
-              <div
-                onClick={(e) => download(photo.photoFile.replace(
-                  "uploads",
-                  "http://localhost:3007"
-                ))}
-                className="download"
-                
-              >
-                <BiDownload />
+                <div
+                  onClick={(e) =>
+                    download(
+                      photo.photoFile.replace(
+                        "uploads",
+                        "http://localhost:3007"
+                      )
+                    )
+                  }
+                  className="download"
+                >
+                  <BiDownload />
+                </div>
               </div>
             </div>
           ))}
