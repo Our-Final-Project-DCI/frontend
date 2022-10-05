@@ -2,6 +2,7 @@ import React from "react";
 import "./index.scss";
 import LayoutLogout from "../../Layout-Logout";
 import { useParams } from "react-router-dom";
+
 // Icons
 import { BiHeart } from "react-icons/bi";
 
