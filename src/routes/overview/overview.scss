@@ -127,12 +127,13 @@ main {
   }
 
   > .item .hover {
-    height: 100%;
+    border-radius: 10px;
+    height: 99%;
     width: 100%;
     position: absolute;
     top: 0;
     &:hover {
-      background-color: rgba(0, 0, 0, 0.2);
+      background-color: rgba(0, 0, 0, 0.3);
       .like,
       .download,
       a {
