@@ -21,6 +21,20 @@ export default function Overview() {
     user.likedPhotos(id);
   };
 
+  async function toDataURL(url) {
+    const blob = await fetch(url).then(res => res.blob());
+    return URL.createObjectURL(blob);
+}
+
+ async function download(url) {
+   const a = document.createElement("a");
+   a.href = await toDataURL(url);
+   a.download = url.replace("http://localhost:3007/", "");
+   document.body.appendChild(a);
+   a.click();
+   document.body.removeChild(a);
+}
+
   React.useEffect(() => {
     fetch(`http://localhost:3007/photos`).then(async (res) => {
       const result = await res.json();
@@ -115,13 +129,16 @@ export default function Overview() {
                 <FaRegHeart />
               </button>
 
-              <a
-                download
+              <div
+                onClick={(e) => download(photo.photoFile.replace(
+                  "uploads",
+                  "http://localhost:3007"
+                ))}
                 className="download"
-                href={photo.photoFile.replace("uploads", "")}
+                
               >
                 <BiDownload />
-              </a>
+              </div>
             </div>
           ))}
         </main>
