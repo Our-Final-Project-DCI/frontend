@@ -73,6 +73,7 @@ export default function Photo() {
 
           <h3>{photo.user.username}</h3>
         </div>
+
         <div className="wrapper">
           <div className="user-actions">
             <button className="download-btn">download</button>
@@ -88,15 +89,6 @@ export default function Photo() {
 
           <div className="user-photo">
             {photo.photoFile && (
-              // <img
-              //   src={photo.photoFile.replace(
-              //     "uploads",
-              //     "http://localhost:3007"
-              //   )}
-              //   alt=""
-              //   width="200"
-              //   height="200"
-              // />
               <img
                 src={photo.photoFile.replace(
                   "uploads",
@@ -107,63 +99,42 @@ export default function Photo() {
             )}
           </div>
 
-          <section className="comment-section">
-            <form onSubmit={handleCommentSubmit}>
-              <div className="user-comment">
-                {photo.user.avatar && (
-                  <div className="avatar">
-                    <a href="/account">
-                      <img
-                        src={photo.user.avatar}
-                        alt=""
-                        className="hover_opacity"
-                      />
-                    </a>
-                  </div>
-                )}
-                <input
-                  type="text"
-                  placeholder="Type comment hier..."
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                />
-              </div>
-              <button>submit</button>
+          <section className="comments-section">
+            <form onSubmit={handleCommentSubmit} className="user-comment-form">
+              {photo.user.avatar && (
+                <div className="avatar">
+                  <a href="/account">
+                    <img
+                      src={photo.user.avatar}
+                      alt="profileImage"
+                      className="hover_opacity"
+                    />
+                  </a>
+                </div>
+              )}
+              <input
+                type="text"
+                placeholder="Type your comment hier..."
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+              />
+
+              <button className="comment-btn">submit</button>
             </form>
 
-            <div className="user-comments">
-              {/* <div className="user">
-                <img src="" alt="" className="hover_opacity" />
-              </div>
-              <div className="comments">
-                <h4>User 1</h4>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo
-                  beataee!
-                </p>
-              </div> */}
-
-              {photo.comments.map((comment) => (
-                <div key={comment._id} className="user">
-                  {comment.user.avatar && (
-                    <div>
-                      <img
-                        className="profileImage"
-                        src={comment.user.avatar}
-                        width="24"
-                        height="24"
-                        alt="Profilbild"
-                      />
-                    </div>
-                  )}
-                  <div className="annotation">
-                    <em>&nbsp;{comment.user.username} hat geantwortet:</em>
+            {photo.comments.map((comment) => (
+              <div key={comment._id} className="users-comments">
+                {comment.user.avatar && (
+                  <div className="user-avatar">
+                    <img src={comment.user.avatar} alt="Profilbild" />
                   </div>
-
+                )}
+                <div className="comments">
+                  <h5>{comment.user.username}</h5>
                   <p>{comment.description}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </section>
         </div>
       </div>
