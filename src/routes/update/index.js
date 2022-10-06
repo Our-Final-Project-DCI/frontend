@@ -3,17 +3,14 @@ import "./index.scss";
 import LayoutLogout from "../../Layout-Logout";
 import useUser from "../../hooks/useUser";
 
-// Icons
-import { BiPencil } from "react-icons/bi";
-
 export default function Update() {
   const options = [
     { value: "", text: "--Choose a Gender--" },
     { value: "Male", text: "Male" },
     { value: "Female", text: "Female" },
   ];
+  // console.log(user);
   const user = useUser();
-  console.log(user);
   const [selectedGender, setSelectedGender] = React.useState(options[0].value);
   const [fullname, setFullname] = React.useState(user.data.fullname || "");
   const [city, setCity] = React.useState(user.data.city || "");
@@ -51,16 +48,18 @@ export default function Update() {
   return (
     <LayoutLogout>
       <div className="Update-User-Profile">
-        <div className="user">
-          <div className="avatar">
-            <img src={user.data.avatar} alt="" className="hover_opacity" />
-          </div>
-          <h3>{user.data.username}</h3>
-        </div>
         <div className="wrapper">
-          <form className="updateform" onSubmit={updateSubmitHander}>
+          <div className="user">
+            <div className="avatar">
+              <img src={user.data.avatar} alt="" className="hover_opacity" />
+            </div>
+            <h3>{user.data.username}</h3>
+          </div>
+
+          <form className="update-form" onSubmit={updateSubmitHander}>
             <div className="input-group">
-              <div className="avatar">
+              <div className="item ">
+                <label>Profile Image:</label>
                 <input
                   type="file"
                   accept="image/*"
@@ -69,6 +68,8 @@ export default function Update() {
                 />
               </div>
               <div className="item">
+                <label>Gender:</label>
+
                 <select value={selectedGender} onChange={handleChange}>
                   {options.map((option) => (
                     <option key={option.value} value={option.value}>
@@ -78,7 +79,7 @@ export default function Update() {
                 </select>
               </div>
               <div className="item">
-                <span>fullname</span>
+                <label>Full name:</label>
                 <input
                   type="text"
                   placeholder="Fullname"
@@ -89,7 +90,7 @@ export default function Update() {
               </div>
 
               <div className="item">
-                <span>city</span>
+                <label>City:</label>
                 <input
                   type="text"
                   placeholder="city"
@@ -100,7 +101,7 @@ export default function Update() {
               </div>
 
               <div className="item">
-                <span>land</span>
+                <label>Land:</label>
                 <input
                   type="text"
                   placeholder="Land"
@@ -111,27 +112,30 @@ export default function Update() {
               </div>
 
               <div className="item">
-                <span>bio:</span>
+                <label>Bio:</label>
                 <textarea
                   placeholder="about"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
+                  rows="5"
                 />
               </div>
-              <div className="item">
+              {/* <div className="item">
                 <span>socialmedia</span>
 
-                <div className="social">
-                  <a href="">Twitter</a>
-                  <a href="">Facebook</a>
-                  <a href="">Instagram</a>
-                </div>
-              </div>
+                 <div className="social">
+                 <a href="">Twitter</a>
+                 <a href="">Facebook</a>
+                  <a href="">Instagram</a> 
+                </div> 
+              </div> */}
             </div>
-            <button type="submit">Update</button>
+            <button className="update-btn" type="submit">
+              Update
+            </button>
             {user.error && <div className="error">{user.error}</div>}
             {showSuccess && (
-              <div className="success">Update war erfolgreich</div>
+              <div className="success">Done , update was success ...</div>
             )}
           </form>
         </div>
