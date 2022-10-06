@@ -94,7 +94,6 @@ export default function Overview() {
           {uploadtetPhotos.map((photo) => (
             <div className="item" key={photo._id}>
               <img
-                onClick={() => navigate("/photos" + "/" + photo._id)}
                 src={photo.photoFile.replace(
                   "uploads",
                   "http://localhost:3007"
@@ -119,7 +118,10 @@ export default function Overview() {
                   </a>
                 </div>
               )} */}
-              <div className="hover">
+              <div
+                className="hover"
+                onClick={() => navigate("/photos" + "/" + photo._id)}
+              >
                 <a>{photo.user.username}</a>
 
                 <button
