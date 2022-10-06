@@ -27,6 +27,20 @@ export default function Account() {
     user.likedPhotos(id);
   };
 
+  async function toDataURL(url) {
+    const blob = await fetch(url).then((res) => res.blob());
+    return URL.createObjectURL(blob);
+  }
+
+  async function download(url) {
+    const a = document.createElement("a");
+    a.href = await toDataURL(url);
+    a.download = url.replace("http://localhost:3007/", "");
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
   React.useEffect(() => {
     fetch(`http://localhost:3007/photos/account?own=true`, {
       method: "GET",
@@ -54,7 +68,7 @@ export default function Account() {
   const responsive = {
     xlDesktop: {
       breakpoint: { max: 4000, min: 3000 },
-      items: 3,
+      items: 5,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -116,25 +130,24 @@ export default function Account() {
           <nav className="user-collections">
             <ul>
               <li>
-                <div onClick={() => setPhotoList("myPhotos")}> MY PHOTOS</div>
+                <h2 onClick={() => setPhotoList("myPhotos")}> MY PHOTOS</h2>
               </li>
               <li>
-                <div onClick={() => setPhotoList("likedPhotos")}>
+                <h2 onClick={() => setPhotoList("likedPhotos")}>
                   LIKED PHOTOS
-                </div>
+                </h2>
               </li>
             </ul>
           </nav>
         </div>
 
         <section className="user-photos">
-          <Carousel responsive={responsive} className="slider">
+          <Carousel responsive={responsive} className="Main">
             {photos.map((photo) => (
               <Link
                 to={"/photos/" + photo._id}
                 className="item"
                 key={photo._id}
-                // style={{ display: "flex" }}
               >
                 <img
                   src={photo.photoFile.replace(
@@ -145,25 +158,32 @@ export default function Account() {
                   width="90%"
                 />
 
-                {/* <FaRegHeart
-                  className="like"
-                  style={{
-                    color: user.isLiked(photo._id) ? "red" : "black",
-                  }}
-                  onClick={() => likeClickHandler(photo._id)}
-                /> */}
+                <div className="user-actions">
+                  <button
+                    className="like"
+                    onClick={(e) => {
+                      likeClickHandler(photo._id);
+                      e.preventDefault();
+                    }}
+                  >
+                    <FaRegHeart />
+                    {user.isLiked(photo._id)}
+                  </button>
 
-                <button
-                  className="like"
-                  onClick={(e) => {
-                    likeClickHandler(photo._id);
-                    e.preventDefault();
-                  }}
-                >
-                  <FaRegHeart />
-                </button>
-
-                {user.isLiked(photo._id)}
+                  <div
+                    onClick={(e) =>
+                      download(
+                        photo.photoFile.replace(
+                          "uploads",
+                          "http://localhost:3007"
+                        )
+                      )
+                    }
+                    className="download"
+                  >
+                    <BiDownload />
+                  </div>
+                </div>
               </Link>
             ))}
           </Carousel>
