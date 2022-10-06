@@ -1,6 +1,5 @@
 import React from "react";
 import "./index.scss";
-
 import Layout from "../../Layout";
 import useUser from "../../hooks/useUser";
 import { Link } from "react-router-dom";
@@ -17,11 +16,29 @@ import "react-multi-carousel/lib/styles.css";
 export default function Account() {
   const [myPhotos, setMyPhotos] = React.useState([]);
   const [likedPhotos, setLikedPhotos] = React.useState([]);
-
   const [photoList, setPhotoList] = React.useState("myPhotos");
   const photos = photoList === "myPhotos" ? myPhotos : likedPhotos;
 
   const user = useUser();
+
+  const responsive = {
+    xlDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
 
   const likeClickHandler = async (id) => {
     user.likedPhotos(id);
@@ -64,25 +81,6 @@ export default function Account() {
       }
     });
   }, []);
-
-  const responsive = {
-    xlDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
 
   return (
     <Layout>
@@ -130,64 +128,64 @@ export default function Account() {
           <nav className="user-collections">
             <ul>
               <li>
-                <h2 onClick={() => setPhotoList("myPhotos")}> MY PHOTOS</h2>
+                <h2 onClick={() => setPhotoList("myPhotos")}> My photos</h2>
               </li>
               <li>
                 <h2 onClick={() => setPhotoList("likedPhotos")}>
-                  LIKED PHOTOS
+                  Liked photos
                 </h2>
               </li>
             </ul>
           </nav>
-        </div>
 
-        <section className="user-photos">
-          <Carousel responsive={responsive} className="Main">
-            {photos.map((photo) => (
-              <Link
-                to={"/photos/" + photo._id}
-                className="item"
-                key={photo._id}
-              >
-                <img
-                  src={photo.photoFile.replace(
-                    "uploads",
-                    "http://localhost:3007"
-                  )}
-                  alt=""
-                  width="90%"
-                />
+          <section className="user-photos">
+            <Carousel responsive={responsive} className="Main">
+              {photos.map((photo) => (
+                <Link
+                  to={"/photos/" + photo._id}
+                  className="item"
+                  key={photo._id}
+                >
+                  <img
+                    src={photo.photoFile.replace(
+                      "uploads",
+                      "http://localhost:3007"
+                    )}
+                    alt="myPhoto"
+                    width="90%"
+                  />
 
-                <div className="user-actions">
-                  <button
-                    className="like"
-                    onClick={(e) => {
-                      likeClickHandler(photo._id);
-                      e.preventDefault();
-                    }}
-                  >
-                    <FaRegHeart />
-                    {user.isLiked(photo._id)}
-                  </button>
+                  <div className="user-actions">
+                    <button
+                      className="like"
+                      onClick={(e) => {
+                        likeClickHandler(photo._id);
+                        e.preventDefault();
+                      }}
+                    >
+                      <FaRegHeart />
+                      {user.isLiked(photo._id)}
+                    </button>
 
-                  <div
-                    onClick={(e) =>
-                      download(
-                        photo.photoFile.replace(
-                          "uploads",
-                          "http://localhost:3007"
+                    <div
+                      onClick={(e) =>
+                        download(
+                          photo.photoFile.replace(
+                            "uploads",
+                            "http://localhost:3007"
+                          )
                         )
-                      )
-                    }
-                    className="download"
-                  >
-                    <BiDownload />
+                      }
+                      className="download"
+                    >
+                      <BiDownload />
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
-          </Carousel>
-        </section>
+                </Link>
+              ))}
+            </Carousel>
+          </section>
+        </div>
       </div>
     </Layout>
   );

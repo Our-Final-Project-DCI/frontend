@@ -1,39 +1,26 @@
-* {
-  box-sizing: border-box;
-}
-
 .User-Account-Route {
-  padding-top: 70px;
-  padding-bottom: 80px;
-  padding-left: 40px;
-  padding-right: 40px;
-  height: 100%;
-  width: 100%;
-  margin: 0 auto;
+  * {
+    box-sizing: border-box;
+  }
+  padding: 70px 0;
   > .wrapper {
+    padding: 50px 20px 0;
     > .user-profile {
-      padding-bottom: 42px;
-      padding-top: 70px;
-      padding-left: 10px;
-      padding-right: 10px;
       width: 100%;
       height: 100%;
-
-      flex-wrap: wrap;
-      gap: 48px;
-
+      padding: 10px 20px;
       display: flex;
       justify-content: center;
-
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-bottom: 30px;
       > .avatar-box {
-        // border: 1px double black;
         display: flex;
         align-items: center;
-
         > a {
           align-self: flex-start;
+          color: rgb(192, 59, 136);
         }
-
         > .avatar {
           width: 120px;
           height: 120px;
@@ -43,9 +30,6 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            display: block;
-            overflow: hidden;
-            background-color: #eee;
           }
         }
       }
@@ -61,7 +45,10 @@
 
           > h2 {
             margin-top: 0;
-            font-family: sans-serif;
+            margin-bottom: 7px;
+            color: #333;
+            font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+              sans-serif;
           }
 
           > .user-icons {
@@ -105,11 +92,10 @@
     }
 
     > .user-collections {
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       > ul {
         display: flex;
         list-style: none;
-        //border-bottom: 2px solid rgb(54, 50, 115);
         justify-content: space-evenly;
         gap: 20px;
         padding-left: 0;
@@ -118,14 +104,11 @@
           > h2 {
             font-weight: 400;
             color: #333;
-            font-size: 14px;
+            font-size: 16px;
             padding: 7px 14px;
             margin: 0;
             cursor: pointer;
             &:hover {
-              // background-color: rgb(54, 50, 115);
-              // color: #e14b89;
-              // border-radius: 6px;
               font-style: italic;
               border-bottom: 2px dashed #e14b89;
             }
@@ -133,53 +116,52 @@
         }
       }
     }
-  }
-  > .user-photos {
-    max-width: 1200px;
-    margin: 0 auto;
-    > .Main {
-      > ul {
-        gap: 24px;
-        background: azure;
-        padding: 10px 20px;
-        border: 2px dashed #e14b89;
-        //border-radius: 24px;
-        > li {
-          border: 1px solid rgba(173, 214, 214, 0.2);
-          flex: 1 1 auto;
-          position: relative;
-          width: 336px;
-          height: auto;
-          background: rgba(173, 214, 214, 0.2);
-          align-self: center;
-          border-top-left-radius: 24px;
-          border-top-right-radius: 24px;
-          box-shadow: 8px 8px 15px grey;
-          border: none;
-          > .item {
-            > img {
-              width: 100%;
-              border-top-left-radius: 24px;
-              border-top-right-radius: 24px;
-            }
-            > .user-actions {
-              padding: 5px 7px;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
 
-              > .like {
-                background: #e1f8f0;
-
-                border: none;
-                font-size: 18px;
-                color: #333;
-                cursor: pointer;
+    > .user-photos {
+      max-width: 1200px;
+      margin: 0 auto;
+      > .Main {
+        > ul {
+          gap: 20px;
+          background: azure;
+          padding: 10px 20px;
+          border: 2px dashed #e14b89;
+          > li {
+            border: 1px solid rgba(173, 214, 214, 0.2);
+            flex: 1 1 auto;
+            position: relative;
+            width: 336px;
+            height: auto;
+            background: rgba(173, 214, 214, 0.2);
+            align-self: center;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            box-shadow: 8px 8px 15px grey;
+            border: none;
+            > .item {
+              > img {
+                width: 100%;
+                border-top-left-radius: 24px;
+                border-top-right-radius: 24px;
               }
+              > .user-actions {
+                padding: 5px 7px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
 
-              > .download {
-                > svg {
+                > .like {
+                  background: #e1f8f0;
+                  border: none;
+                  font-size: 18px;
                   color: #333;
+                  cursor: pointer;
+                }
+
+                > .download {
+                  > svg {
+                    color: #333;
+                  }
                 }
               }
             }
