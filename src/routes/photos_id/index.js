@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import useUser from "../../hooks/useUser";
 
 // Icons
-import { FaRegHeart } from "react-icons/fa";
+// import { FaRegHeart } from "react-icons/fa";
 
 export default function Photo() {
   const params = useParams();
@@ -111,16 +111,16 @@ export default function Photo() {
             </div>
             <div className="likes">
               <button
-                style={{
-                  backgroundColor: isLike ? "#ea0000" : "",
-                  color: isLike ? "white" : "",
-                }}
-                className="btn"
                 onClick={(e) => {
                   likeClickHandler(photo._id);
                   e.stopPropagation();
                   e.preventDefault();
                 }}
+                style={{
+                  backgroundColor: isLike ? "#ea0000" : "",
+                  color: isLike ? "white" : "",
+                }}
+                className="btn"
               >
                 Like
               </button>
