@@ -2,14 +2,34 @@ import React from "react";
 import "./index.scss";
 import LayoutLogout from "../../Layout-Logout";
 import { useParams } from "react-router-dom";
+import useUser from "../../hooks/useUser";
 
 // Icons
-import { BiHeart } from "react-icons/bi";
+import { FaRegHeart } from "react-icons/fa";
+import { BiDownload } from "react-icons/bi";
 
 export default function Photo() {
   const params = useParams();
+  const user = useUser();
+
   const [photo, setPhoto] = React.useState(null);
   const [comment, setComment] = React.useState("");
+  async function toDataURL(url) {
+    const blob = await fetch(url).then((res) => res.blob());
+    return URL.createObjectURL(blob);
+  }
+
+  async function download(url) {
+    const a = document.createElement("a");
+    a.href = await toDataURL(url);
+    a.download = url.replace("http://localhost:3007/", "");
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+  const likeClickHandler = async (id) => {
+    user.likedPhotos(id);
+  };
 
   React.useEffect(() => {
     fetch("http://localhost:3007/photos/" + params.id, {
@@ -77,13 +97,26 @@ export default function Photo() {
 
         <div className="wrapper">
           <div className="user-actions">
-            <button className="download-btn">download</button>
+            {/* <button className="download-btn">download</button> */}
+            <div
+              onClick={(e) =>
+                download(
+                  photo.photoFile.replace("uploads", "http://localhost:3007")
+                )
+              }
+              className="download download-btn"
+            >
+              download
+            </div>
             <div className="likes">
-              <span className="total">
+              {/* <span className="total">
                 <em>200</em>
-              </span>
-              <button className="like-btn">
-                <BiHeart />
+              </span> */}
+              <button
+                className="like"
+                onClick={() => likeClickHandler(photo._id)}
+              >
+                <FaRegHeart />
               </button>
             </div>
           </div>
@@ -120,7 +153,7 @@ export default function Photo() {
                 onChange={(e) => setComment(e.target.value)}
               />
 
-              <button className="comment-btn">submit</button>
+              <button className="comment-btn">Submit</button>
             </form>
 
             {photo.comments.map((comment) => (

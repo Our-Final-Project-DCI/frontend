@@ -9,7 +9,6 @@ import useUser from "../../hooks/useUser";
 
 export default function Overview() {
   const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
-  const [category, setCategory] = React.useState("");
   const [search, setSearch] = React.useState("");
   const user = useUser();
 

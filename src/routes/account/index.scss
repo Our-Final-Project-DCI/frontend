@@ -39,16 +39,11 @@
         > .user {
           display: flex;
           width: 100%;
-
           justify-content: space-between;
           align-items: baseline;
 
           > h2 {
-            margin-top: 0;
-            margin-bottom: 7px;
             color: #333;
-            font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
-              sans-serif;
           }
 
           > .user-icons {

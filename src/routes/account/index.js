@@ -98,18 +98,18 @@ export default function Account() {
             <div className="about-box">
               <div className="user">
                 <h2>{user.data.username}</h2>
-                <div className="user-icons">
+                {/* <div className="user-icons">
                   <a href="/">
                     <BiUserPlus />
                   </a>
                   <a href="/">
                     <BiShareAlt />
                   </a>
-                </div>
+                </div> */}
               </div>
 
               <p className="description">{user.data.description}</p>
-              <div className="socialMedia">
+              {/* <div className="socialMedia">
                 <ul>
                   <li>
                     <a href="/">Instagram</a>
@@ -121,7 +121,7 @@ export default function Account() {
                     <a href="/">Twitter</a>
                   </li>
                 </ul>
-              </div>
+              </div> */}
             </div>
           </section>
 
