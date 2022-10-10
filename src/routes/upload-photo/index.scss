@@ -4,22 +4,20 @@
 
 .Upload-Photo-Route {
   padding-top: 70px;
-  padding-bottom: 10px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-bottom: 40px;
+
   margin: 0 auto;
   .wrapper {
-    //border: 1px solid red;
     height: 100%;
     width: 100%;
-
+    padding-left: 40px;
+    padding-right: 40px;
     > .upload-photo-form {
-      // border: 1px solid red;
       max-width: 950px;
-      padding-top: 120px;
+      padding-top: 80px;
       display: flex;
       margin: 0 auto;
-      gap: 5px;
+      gap: 15px;
       flex-wrap: wrap;
 
       > .photo {
@@ -37,22 +35,9 @@
         width: 200px;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        justify-content: space-between;
         align-items: center;
-        // > .choose-btn {
-        //   margin-bottom: 5px;
-        //   > button {
-        //     min-width: 200px;
-        //     padding: 5px 3px;
-        //     border-radius: 4px;
-        //     border: 2px solid #333;
-        //     outline: black;
-        //     color: #e15189;
-        //     background-color: #e1f8f0;
-        //     font-weight: bold;
-        //   }
-        // }
-
+        gap: 7px;
         > .custom-select {
           width: 100%;
           > select {
@@ -65,10 +50,11 @@
 
         > div > input[type="text"] {
           width: 100%;
-          padding: 8px 10px;
+          padding: 5px 10px;
           box-sizing: border-box;
           border: 1px solid #333;
           border-radius: 4px;
+          outline: none;
           background-color: #f8f8f8;
         }
 
@@ -82,43 +68,19 @@
           background-color: #e1f8f0;
           font-weight: bold;
         }
-
-        > div > textarea {
-          width: 100%;
-          height: 125px;
-          padding: 8px 10px;
-          box-sizing: border-box;
-          border: 1px solid #333;
-          border-radius: 8px;
-          resize: none;
+        > .upload-btn {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          border-color: #eee3;
+          color: white;
+          background-color: #e15189;
+          font-weight: bold;
+          align-self: center;
         }
       }
-
-      > .upload-btn {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        border-color: #eee3;
-        color: white;
-        background-color: #e15189;
-        font-weight: bold;
-        align-self: center;
-      }
     }
-    // > .upload-btn {
-    //   text-align: center;
-    //   margin: 0 auto;
-    //   margin-top: 40px;
-    //   > button {
-    //     min-width: 220px;
-    //     padding: 10px 8px;
-    //     border-radius: 6px;
-    //     border-color: #eee3;
-    //     color: white;
-    //     background-color: #e15189;
-    //     font-weight: bold;
-    //   }
-    // }
+
     > .svg {
       max-width: 380px;
       display: inline-block;

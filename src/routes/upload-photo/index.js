@@ -53,13 +53,10 @@ export default function Upload() {
 
     const result = await res.json();
     if (res.status === 200) {
-      // weiterleiten
       navigate("/photos/" + result._id);
     } else if (result.errors) {
-      // validation error
       setError(result.errors[0].msg);
     } else if (result.error) {
-      // server error
       setError(result.error);
     }
 
@@ -108,26 +105,16 @@ export default function Upload() {
                   onChange={(e) => setLocation(e.target.value)}
                 />
               </div>
-              <div>
-                <textarea
-                  placeholder="description"
-                  name="textarea"
-                  rows="8"
-                  cols="22"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-              </div>
+              <button type="submit" className="upload-btn">
+                Upload
+              </button>
             </div>
-            <button type="submit" className="upload-btn">
-              Upload
-            </button>
           </form>
           <div className="svg">
             <img src={svg} alt="" />
           </div>
         </div>
-        {error && <div>{error}</div>}
+        {error && <div className="error">{error}</div>}
       </div>
     </LayoutLogout>
   );

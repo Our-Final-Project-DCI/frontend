@@ -2,14 +2,35 @@ import React from "react";
 import "./index.scss";
 import LayoutLogout from "../../Layout-Logout";
 import { useParams } from "react-router-dom";
+import useUser from "../../hooks/useUser";
 
 // Icons
-import { BiHeart } from "react-icons/bi";
+// import { FaRegHeart } from "react-icons/fa";
 
 export default function Photo() {
   const params = useParams();
+  const user = useUser();
+
   const [photo, setPhoto] = React.useState(null);
   const [comment, setComment] = React.useState("");
+  const [isLike, setIsLike] = React.useState(false);
+  const likeClickHandler = async (id) => {
+    await user.likedPhotos(id);
+    setIsLike((current) => !current);
+  };
+  async function toDataURL(url) {
+    const blob = await fetch(url).then((res) => res.blob());
+    return URL.createObjectURL(blob);
+  }
+
+  async function download(url) {
+    const a = document.createElement("a");
+    a.href = await toDataURL(url);
+    a.download = url.replace("http://localhost:3007/", "");
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
 
   React.useEffect(() => {
     fetch("http://localhost:3007/photos/" + params.id, {
@@ -77,13 +98,31 @@ export default function Photo() {
 
         <div className="wrapper">
           <div className="user-actions">
-            <button className="download-btn">download</button>
+            {/* <button className="download-btn">download</button> */}
+            <div
+              onClick={(e) =>
+                download(
+                  photo.photoFile.replace("uploads", "http://localhost:3007")
+                )
+              }
+              className="btn download"
+            >
+              download
+            </div>
             <div className="likes">
-              <span className="total">
-                <em>200</em>
-              </span>
-              <button className="like-btn">
-                <BiHeart />
+              <button
+                onClick={(e) => {
+                  likeClickHandler(photo._id);
+                  e.stopPropagation();
+                  e.preventDefault();
+                }}
+                style={{
+                  backgroundColor: isLike ? "#ea0000" : "",
+                  color: isLike ? "white" : "",
+                }}
+                className="btn"
+              >
+                Like
               </button>
             </div>
           </div>
@@ -120,7 +159,7 @@ export default function Photo() {
                 onChange={(e) => setComment(e.target.value)}
               />
 
-              <button className="comment-btn">submit</button>
+              {/* <button className="comment-btn"></button> */}
             </form>
 
             {photo.comments.map((comment) => (
