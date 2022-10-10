@@ -16,12 +16,14 @@ export default function Account() {
   const [likedPhotos, setLikedPhotos] = React.useState([]);
   const [photoList, setPhotoList] = React.useState("myPhotos");
   const photos = photoList === "myPhotos" ? myPhotos : likedPhotos;
+  const [changedPhoto, setChangedPhoto] = React.useState("");
+  const user = useUser();
 
   const likeClickHandler = async (id) => {
     await user.likedPhotos(id);
+    setChangedPhoto(id);
   };
 
-  const user = useUser();
 
   const responsive = {
     xlDesktop: {
@@ -40,7 +42,8 @@ export default function Account() {
       breakpoint: { max: 464, min: 0 },
       items: 1,
     },
-  };
+
+
 
   async function toDataURL(url) {
     const blob = await fetch(url).then((res) => res.blob());
@@ -78,7 +81,7 @@ export default function Account() {
         setLikedPhotos(result);
       }
     });
-  }, []);
+  }, [changedPhoto]);
 
   return (
     <Layout>

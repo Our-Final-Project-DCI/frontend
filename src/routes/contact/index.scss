@@ -1,0 +1,112 @@
+.Contact{
+    background-image: linear-gradient(rgb(0,0,0, 0.6), rgb(0,0,0,0.5)), url('../../../public/img/contact1.jpg');
+    background-size: cover;
+    background-position: center ;
+    background-attachment: fixed;
+    margin-top: 70px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > .contact-component{
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        > h2{
+            color: #F4BFBF;
+            font-size: 40px;
+        }
+        > p{ 
+            color: #F4BFBF;
+            font-weight: 300;
+            line-height: 25px;
+            padding: 40px;
+            letter-spacing: 2px;
+        }
+        > label{
+            color:#F4BFBF;
+            align-self: flex-start;
+            margin-bottom: 5px;
+        }
+        > textarea{
+           width: 100%;
+           background: transparent;
+           border: 3px solid #F4BFBF;
+           outline: none;
+           color: white;
+           padding: 10px;
+           font-size: 25px;
+        }
+
+        > button{
+            background-color: #F4BFBF;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 50px;
+            margin-bottom: 98px;
+
+            &:hover {
+                background: black;
+                color: #F4BFBF;
+              }
+        }
+        > .input-contact{
+            width: 100%;
+            display: flex;
+            padding-top: 30px;
+            gap: 40px;
+            justify-content: space-around;
+            > .input-group{
+                width: 100%;
+                > .label{
+                    margin-bottom: 30px;
+                    font-size: 18px;
+                    text-align: center;
+                    color: #F4BFBF;
+                }
+                > input{
+                    background: transparent;
+                    border: none;
+                    outline: none;
+                    border-bottom: 3px solid #F4BFBF;
+                    color: white;
+                    width: 100%;
+                    margin-bottom: 60px;
+                    padding: 10px;
+                    font-size: 25px;
+                    
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 1024px){
+    .Contact{
+        > .contact-component{
+            width: 90%;
+            > h2{
+                font-size: 30px;
+            }
+            > p{ 
+                line-height: 20px;
+                padding: 20px;
+                letter-spacing: 1.5px;
+            }
+            > textarea{
+               font-size: 20px;
+            }
+            > .input-contact{
+                flex-direction: column;
+            }
+        }
+    }
+    
+}
