@@ -120,15 +120,6 @@ export default function Update() {
                   rows="5"
                 />
               </div>
-              {/* <div className="item">
-                <span>socialmedia</span>
-
-                 <div className="social">
-                 <a href="">Twitter</a>
-                 <a href="">Facebook</a>
-                  <a href="">Instagram</a> 
-                </div> 
-              </div> */}
             </div>
             <button className="update-btn" type="submit">
               Update
