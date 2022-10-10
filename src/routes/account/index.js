@@ -21,10 +21,12 @@ export default function Account() {
   const [photoList, setPhotoList] = React.useState("myPhotos");
   const photos = photoList === "myPhotos" ? myPhotos : likedPhotos;
 
+  const [changedPhoto, setChangedPhoto] = React.useState("");
   const user = useUser();
 
   const likeClickHandler = async (id) => {
-    user.likedPhotos(id);
+    await user.likedPhotos(id);
+    setChangedPhoto(id);
   };
 
   async function toDataURL(url) {
@@ -63,7 +65,7 @@ export default function Account() {
         setLikedPhotos(result);
       }
     });
-  }, []);
+  }, [changedPhoto]);
 
   const responsive = {
     xlDesktop: {
