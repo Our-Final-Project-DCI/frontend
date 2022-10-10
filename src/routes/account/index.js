@@ -24,7 +24,6 @@ export default function Account() {
     setChangedPhoto(id);
   };
 
-
   const responsive = {
     xlDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -42,8 +41,7 @@ export default function Account() {
       breakpoint: { max: 464, min: 0 },
       items: 1,
     },
-
-
+  };
 
   async function toDataURL(url) {
     const blob = await fetch(url).then((res) => res.blob());
