@@ -11,13 +11,12 @@ export default function Overview() {
   const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
   const [search, setSearch] = React.useState("");
   const user = useUser();
-
+  const [isLike, setIsLike] = React.useState(false);
   const navigate = useNavigate();
 
-  console.log(user);
-
   const likeClickHandler = async (id) => {
-    user.likedPhotos(id);
+    await user.likedPhotos(id);
+    setIsLike((current) => !current);
   };
 
   async function toDataURL(url) {
@@ -105,18 +104,6 @@ export default function Overview() {
                 alt=""
               />
 
-              {/* {photo.user.avatar && (
-                <div className="avatar" width="20" height="20">
-                  <a href="/account">
-                    <img
-                      src={photo.user.avatar}
-                      alt=""
-                      className="hover_opacity"
-                    />
-                     to={"/photos/" + photo._id}
-                  </a>
-                </div>
-              )} */}
               <div
                 className="hover"
                 onClick={() => navigate("/photos" + "/" + photo._id)}
@@ -124,21 +111,31 @@ export default function Overview() {
                 <a>{photo.user.username}</a>
 
                 <button
+                  style={{
+                    backgroundColor: isLike ? "salmon" : "",
+                    color: isLike ? "white" : "",
+                  }}
                   className="like"
-                  onClick={() => likeClickHandler(photo._id)}
+                  onClick={(e) => {
+                    likeClickHandler(photo._id);
+                    e.stopPropagation();
+                    e.preventDefault();
+                  }}
                 >
                   <FaRegHeart />
                 </button>
 
                 <div
-                  onClick={(e) =>
+                  onClick={(e) => {
                     download(
                       photo.photoFile.replace(
                         "uploads",
                         "http://localhost:3007"
                       )
-                    )
-                  }
+                    );
+                    e.stopPropagation();
+                    e.preventDefault();
+                  }}
                   className="download"
                 >
                   <BiDownload />

@@ -5,8 +5,6 @@ import useUser from "../../hooks/useUser";
 import { Link } from "react-router-dom";
 // Icons
 import { BiPencil } from "react-icons/bi";
-import { BiShareAlt } from "react-icons/bi";
-import { BiUserPlus } from "react-icons/bi";
 import { FaRegHeart } from "react-icons/fa";
 import { BiDownload } from "react-icons/bi";
 // Carousel
@@ -18,6 +16,10 @@ export default function Account() {
   const [likedPhotos, setLikedPhotos] = React.useState([]);
   const [photoList, setPhotoList] = React.useState("myPhotos");
   const photos = photoList === "myPhotos" ? myPhotos : likedPhotos;
+
+  const likeClickHandler = async (id) => {
+    await user.likedPhotos(id);
+  };
 
   const user = useUser();
 
@@ -38,10 +40,6 @@ export default function Account() {
       breakpoint: { max: 464, min: 0 },
       items: 1,
     },
-  };
-
-  const likeClickHandler = async (id) => {
-    user.likedPhotos(id);
   };
 
   async function toDataURL(url) {
@@ -98,30 +96,9 @@ export default function Account() {
             <div className="about-box">
               <div className="user">
                 <h2>{user.data.username}</h2>
-                {/* <div className="user-icons">
-                  <a href="/">
-                    <BiUserPlus />
-                  </a>
-                  <a href="/">
-                    <BiShareAlt />
-                  </a>
-                </div> */}
               </div>
 
               <p className="description">{user.data.description}</p>
-              {/* <div className="socialMedia">
-                <ul>
-                  <li>
-                    <a href="/">Instagram</a>
-                  </li>
-                  <li>
-                    <a href="/">Facebook</a>
-                  </li>
-                  <li>
-                    <a href="/">Twitter</a>
-                  </li>
-                </ul>
-              </div> */}
             </div>
           </section>
 
