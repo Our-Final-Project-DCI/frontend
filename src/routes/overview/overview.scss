@@ -160,3 +160,28 @@ main {
     border-radius: 50%;
   }
 }
+
+@media (max-width: 990px) {
+  .Overview__search {
+    display: none;
+  }
+  main {
+    columns: 2;
+  }
+}
+
+@media (max-width: 660px) {
+  main {
+    columns: 1;
+  }
+
+  .Overview__bgimg {
+    height: 300px;
+  }
+  .Overview__text {
+    padding-top: 10px;
+  }
+  .Overview__p {
+    display: none;
+  }
+}

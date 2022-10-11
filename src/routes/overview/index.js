@@ -11,6 +11,7 @@ export default function Overview() {
   const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
   const [category, setCategory] = React.useState("");
   const [search, setSearch] = React.useState("");
+  const [isActive, setIsActive] = React.useState(false);
   const user = useUser();
 
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ export default function Overview() {
 
   const likeClickHandler = async (id) => {
     user.likedPhotos(id);
+    setIsActive((current) => !current);
   };
 
   async function toDataURL(url) {
@@ -105,19 +107,6 @@ export default function Overview() {
                 }
                 alt=""
               />
-
-              {/* {photo.user.avatar && (
-                <div className="avatar" width="20" height="20">
-                  <a href="/account">
-                    <img
-                      src={photo.user.avatar}
-                      alt=""
-                      className="hover_opacity"
-                    />
-                     to={"/photos/" + photo._id}
-                  </a>
-                </div>
-              )} */}
               <div
                 className="hover"
                 onClick={() => navigate("/photos" + "/" + photo._id)}
@@ -126,6 +115,10 @@ export default function Overview() {
 
                 <button
                   className="like"
+                  style={{
+                    backgroundColor: isActive ? "salmon" : "",
+                    color: isActive ? "white" : "",
+                  }}
                   onClick={() => likeClickHandler(photo._id)}
                 >
                   <FaRegHeart />

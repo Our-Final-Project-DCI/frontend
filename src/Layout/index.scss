@@ -68,3 +68,68 @@
   text-decoration: none;
   color: black;
 }
+
+.Mobile {
+  display: none;
+}
+
+@media (max-width: 990px) {
+  .Navigation .Header {
+    display: none;
+  }
+  .Mobile {
+    display: flex;
+  }
+
+  .Hamburger,
+  .Close {
+    cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  .Nav {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    height: 200px;
+    width: 98%;
+    top: 80px;
+    right: 5px;
+    left: 5px;
+    border-radius: 5px;
+
+    &__item {
+      padding-left: 10px;
+      font-size: 20px;
+      font-weight: 700;
+      padding-bottom: 3px;
+    }
+  }
+}
+
+@media (max-width: 660px) {
+  .Header__logo {
+    padding-left: 10px;
+  }
+  .Header__wrapper {
+    padding-right: 10px;
+  }
+  .Logout__border {
+    width: 200px;
+  }
+  .Logout__input {
+    width: 150px;
+  }
+}
+
+@media (max-width: 390px) {
+  .Logout__border {
+    width: 150px;
+  }
+  .Logout__input {
+    width: 100px;
+  }
+}
