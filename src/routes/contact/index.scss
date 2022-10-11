@@ -86,3 +86,27 @@
         }
     }
 }
+
+
+@media screen and (max-width: 1024px){
+    .Contact{
+        > .contact-component{
+            width: 90%;
+            > h2{
+                font-size: 30px;
+            }
+            > p{ 
+                line-height: 20px;
+                padding: 20px;
+                letter-spacing: 1.5px;
+            }
+            > textarea{
+               font-size: 20px;
+            }
+            > .input-contact{
+                flex-direction: column;
+            }
+        }
+    }
+    
+}

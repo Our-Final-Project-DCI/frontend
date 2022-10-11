@@ -4,18 +4,22 @@
 
 .Photos-Id-Route {
   padding-top: 70px;
-  //padding-left: 40px;
   max-width: 1400px;
   margin: 0 auto;
+
+
   > .user {
     width: 100%;
     display: flex;
     align-items: center;
     gap: 20px;
+    padding-left: 20px;
     margin-bottom: 20px;
     > .avatar {
+      flex-shrink: 0;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-
       border: 3px double black;
       > a {
         color: #0a88d3;
@@ -23,8 +27,9 @@
         cursor: pointer;
         outline: none;
         > img {
-          width: 40px;
-          height: 40px;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
           border-radius: 50%;
         }
       }
@@ -43,20 +48,10 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      > .download-btn {
-        padding: 7px 15px !important;
-        text-shadow: none;
-        font-size: 14px;
-        font-weight: 400;
+      gap: 10px;
+      > .download {
         background-color: green;
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-      }
-      > .likes {
-        display: flex;
-        align-items: center;
-        gap: 15px;
+        color: white;
       }
     }
 
@@ -108,15 +103,15 @@
           flex: 1;
         }
 
-        > .comment-btn {
-          border-radius: 6px;
-          border-color: #e15189;
-          color: rgb(255, 230, 230);
-          padding: 7px 10px;
-          background-color: #e15189;
-          font-weight: 500;
-          align-self: center;
-        }
+        // > .comment-btn {
+        //   border-radius: 6px;
+        //   border-color: #e15189;
+        //   color: rgb(255, 230, 230);
+        //   padding: 7px 10px;
+        //   background-color: #e15189;
+        //   font-weight: 500;
+        //   align-self: center;
+        // }
       }
 
       > .users-comments {
@@ -129,7 +124,6 @@
           border: 1px solid #333;
           width: 25px;
           height: 25px;
-          padding: 2px;
           flex-shrink: 0;
           > img {
             width: 100%;
@@ -165,4 +159,15 @@
 .hover_opacity {
   opacity: 1;
   transition: opacity 0.2s;
+}
+
+.btn {
+  padding: 7px 15px !important;
+  text-shadow: none;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid rgb(36, 43, 42);
+  border-radius: 8px;
+  cursor: pointer;
+  background: #fff;
 }
