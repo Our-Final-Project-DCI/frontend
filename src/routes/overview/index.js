@@ -10,19 +10,13 @@ import useUser from "../../hooks/useUser";
 export default function Overview() {
   const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
   const [search, setSearch] = React.useState("");
-  const [isActive, setIsActive] = React.useState(false);
   const user = useUser();
   const [isLike, setIsLike] = React.useState(false);
   const navigate = useNavigate();
 
   const likeClickHandler = async (id) => {
-<<<<<<< HEAD
-    user.likedPhotos(id);
-    setIsActive((current) => !current);
-=======
     await user.likedPhotos(id);
     setIsLike((current) => !current);
->>>>>>> 2c5aa643db951ecbff410ab040a4f8ab73bd89e7
   };
 
   async function toDataURL(url) {
@@ -109,10 +103,6 @@ export default function Overview() {
                 }
                 alt=""
               />
-<<<<<<< HEAD
-=======
-
->>>>>>> 2c5aa643db951ecbff410ab040a4f8ab73bd89e7
               <div
                 className="hover"
                 onClick={() => navigate("/photos" + "/" + photo._id)}
@@ -125,19 +115,11 @@ export default function Overview() {
                     color: isLike ? "white" : "",
                   }}
                   className="like"
-<<<<<<< HEAD
-                  style={{
-                    backgroundColor: isActive ? "salmon" : "",
-                    color: isActive ? "white" : "",
-                  }}
-                  onClick={() => likeClickHandler(photo._id)}
-=======
                   onClick={(e) => {
                     likeClickHandler(photo._id);
                     e.stopPropagation();
                     e.preventDefault();
                   }}
->>>>>>> 2c5aa643db951ecbff410ab040a4f8ab73bd89e7
                 >
                   <FaRegHeart />
                 </button>
