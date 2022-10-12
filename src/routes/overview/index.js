@@ -1,22 +1,17 @@
 import * as React from "react";
 import "./overview.scss";
 import Layout from "../../Layout";
+import Photo from "./photo";
 import { FaSearch } from "react-icons/fa";
-import { FaRegHeart } from "react-icons/fa";
-import { BiDownload } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
 import useUser from "../../hooks/useUser";
 
 export default function Overview() {
   const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
   const [search, setSearch] = React.useState("");
   const user = useUser();
-  const [isLike, setIsLike] = React.useState(false);
-  const navigate = useNavigate();
 
   const likeClickHandler = async (id) => {
     await user.likedPhotos(id);
-    setIsLike((current) => !current);
   };
 
   async function toDataURL(url) {
@@ -90,57 +85,14 @@ export default function Overview() {
 
         <main className="Main">
           {uploadtetPhotos.map((photo) => (
-            <div className="item" key={photo._id}>
-              <img
-                src={photo.photoFile.replace(
-                  "uploads",
-                  "http://localhost:3007"
-                )}
-                onError={() =>
-                  setUploadetPhotos(
-                    uploadtetPhotos.filter((row) => row !== photo)
-                  )
-                }
-                alt=""
-              />
-              <div
-                className="hover"
-                onClick={() => navigate("/photos" + "/" + photo._id)}
-              >
-                <a>{photo.user.username}</a>
-
-                <button
-                  style={{
-                    backgroundColor: isLike ? "salmon" : "",
-                    color: isLike ? "white" : "",
-                  }}
-                  className="like"
-                  onClick={(e) => {
-                    likeClickHandler(photo._id);
-                    e.stopPropagation();
-                    e.preventDefault();
-                  }}
-                >
-                  <FaRegHeart />
-                </button>
-
-                <div
-                  onClick={(e) => {
-                    download(
-                      photo.photoFile.replace(
-                        "uploads",
-                        "http://localhost:3007"
-                      )
-                    );
-                    e.stopPropagation();
-                    e.preventDefault();
-                  }}
-                  className="download"
-                >
-                  <BiDownload />
-                </div>
-              </div>
-            </div>
+            <Photo
+              key={photo._id}
+              photo={photo}
+              likeClickHandler={likeClickHandler}
+              download={download}
+              setUploadetPhotos={setUploadetPhotos}
+              uploadtetPhotos={uploadtetPhotos}
+            ></Photo>
           ))}
         </main>
       </div>

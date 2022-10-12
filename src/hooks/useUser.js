@@ -8,7 +8,7 @@ const Context = React.createContext({
   login: async () => 0,
   update: async () => {},
   logout: async () => {},
-  isLiked: () => {},
+  isLiked: async () => {},
   likedPhotos: async () => {},
 });
 
