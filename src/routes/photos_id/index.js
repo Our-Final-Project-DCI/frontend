@@ -92,13 +92,11 @@ export default function Photo() {
               </a>
             </div>
           )}
-
           <h3>{photo.user.username}</h3>
         </div>
 
         <div className="wrapper">
           <div className="user-actions">
-            {/* <button className="download-btn">download</button> */}
             <div
               onClick={(e) =>
                 download(
@@ -154,23 +152,25 @@ export default function Photo() {
               )}
               <input
                 type="text"
-                placeholder="Type your comment hier..."
+                placeholder="Type your comment here..."
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
               />
-
-              {/* <button className="comment-btn"></button> */}
             </form>
 
             {photo.comments.map((comment) => (
               <div key={comment._id} className="users-comments">
                 {comment.user.avatar && (
                   <div className="user-avatar">
-                    <img src={comment.user.avatar} alt="Profilbild" />
+                    <img src={comment.user.avatar} alt="ProfileImage" />
                   </div>
                 )}
                 <div className="comments">
-                  <h5>{comment.user.username}</h5>
+                  <div className="head">
+                    <h5>{comment.user.username}</h5>{" "}
+                    {comment.user.city && <small>{comment.user.city}</small>}
+                  </div>
+
                   <p>{comment.description}</p>
                 </div>
               </div>

@@ -41,11 +41,9 @@ export function UserProvider(props) {
 
     // 1. signup
     signup: async (body) => {
-      // fehlermeldung im browser entfernen
       setError("");
-      // loading ...
       setIsFetching(true);
-      // response:
+
       const response = await fetch("http://localhost:3007/user/signup", {
         method: "POST",
         credentials: "include",
@@ -54,20 +52,19 @@ export function UserProvider(props) {
         },
         body: JSON.stringify(body),
       });
-      // result :
+
       const result = await response.json();
+
       if (response.status === 200) {
         setUser(result);
       } else if (result.errors) {
-        // validations Errors
         setError(result.errors[0].msg);
       } else if (result.error) {
-        // server Error | 500
         setError(result.error);
       }
-      //// fetching beenden
+
       setIsFetching(false);
-      // RETURN:STATUS
+
       return response.status;
     },
 
@@ -139,7 +136,7 @@ export function UserProvider(props) {
       setUser(null);
     },
 
-    // 5. isLiked: Benutzer klickt auf „LIKE“ / onClick fun-btn
+    // 5. isLiked:
     isLiked: (photoId) => {
       const photoFound = user.likedPhotos.find((p) => p === photoId);
       return !!photoFound;

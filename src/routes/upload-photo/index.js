@@ -1,9 +1,8 @@
-import React from "react";
 import "./index.scss";
+import React from "react";
 import LayoutLogout from "../../Layout-Logout";
 import { useNavigate } from "react-router-dom";
 
-// images
 import svg from "./images/uploadFile.png";
 
 export default function Upload() {
@@ -17,6 +16,8 @@ export default function Upload() {
     { value: "Animals", text: "Animals" },
     { value: "Others", text: "Others" },
   ];
+  const [isFetching, setIsFetching] = React.useState(false);
+  const [error, setError] = React.useState(false);
 
   const [photoFile, setPhotoFile] = React.useState("");
   const [selectedCategory, setSelectedCategory] = React.useState(
@@ -24,9 +25,7 @@ export default function Upload() {
   );
   const [title, setTitle] = React.useState("");
   const [location, setLocation] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  const [isFetching, setIsFetching] = React.useState(false);
-  const [error, setError] = React.useState(false);
+
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -42,7 +41,6 @@ export default function Upload() {
     formData.append("file", photoFile);
     formData.append("category", selectedCategory);
     formData.append("title", title);
-    formData.append("description", description);
     formData.append("location", location);
 
     const res = await fetch("http://localhost:3007/photos/upload-photo", {
@@ -106,7 +104,7 @@ export default function Upload() {
                 />
               </div>
               <button type="submit" className="upload-btn">
-                Upload
+                {isFetching ? "Fetching..." : "Upload"}
               </button>
             </div>
           </form>

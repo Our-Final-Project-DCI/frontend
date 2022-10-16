@@ -9,8 +9,8 @@ export default function Update() {
     { value: "Male", text: "Male" },
     { value: "Female", text: "Female" },
   ];
-  // console.log(user);
   const user = useUser();
+  const [isFetching, setIsFetching] = React.useState(false);
   const [selectedGender, setSelectedGender] = React.useState(options[0].value);
   const [fullname, setFullname] = React.useState(user.data.fullname || "");
   const [city, setCity] = React.useState(user.data.city || "");
@@ -28,6 +28,8 @@ export default function Update() {
 
   const updateSubmitHander = async (e) => {
     e.preventDefault();
+    setIsFetching(true);
+
     const status = await user.update({
       gender: selectedGender,
       fullname: fullname,
@@ -43,6 +45,7 @@ export default function Update() {
         setShowSuccess(false);
       }, 4000);
     }
+    setIsFetching(false);
   };
 
   return (
@@ -122,7 +125,7 @@ export default function Update() {
               </div>
             </div>
             <button className="update-btn" type="submit">
-              Update
+              {isFetching ? "Fetching..." : "Update"}
             </button>
             {user.error && <div className="error">{user.error}</div>}
             {showSuccess && (
