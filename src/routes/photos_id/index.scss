@@ -7,7 +7,6 @@
   max-width: 1400px;
   margin: 0 auto;
 
-
   > .user {
     width: 100%;
     display: flex;
@@ -49,9 +48,17 @@
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 10px;
+
       > .download {
         background-color: green;
         color: white;
+      }
+      > .likes .like {
+        border-radius: 4px;
+        height: 25px;
+        width: 35px;
+        border: 1px solid black;
+        cursor: pointer;
       }
     }
 

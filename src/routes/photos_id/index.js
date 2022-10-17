@@ -1,5 +1,6 @@
 import React from "react";
 import "./index.scss";
+import { FaRegHeart } from "react-icons/fa";
 import LayoutLogout from "../../Layout-Logout";
 import { useParams } from "react-router-dom";
 import useUser from "../../hooks/useUser";
@@ -111,18 +112,20 @@ export default function Photo() {
             </div>
             <div className="likes">
               <button
+                style={{
+                  backgroundColor: isLike ? "salmon" : "",
+                  color: isLike ? "" : "black",
+                }}
+                className="like"
                 onClick={(e) => {
                   likeClickHandler(photo._id);
+                  setIsLike((value) => !value);
                   e.stopPropagation();
                   e.preventDefault();
                 }}
-                style={{
-                  backgroundColor: isLike ? "#ea0000" : "",
-                  color: isLike ? "white" : "",
-                }}
-                className="btn"
               >
-                Like
+                <FaRegHeart />
+                {user.data && user.isLiked(photo._id)}
               </button>
             </div>
           </div>
