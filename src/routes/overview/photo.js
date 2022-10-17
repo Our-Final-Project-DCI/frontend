@@ -30,18 +30,18 @@ const Photo = (props) => {
         <button
           style={{
             backgroundColor: isLike ? "salmon" : "",
-            color: isLike ? "" : "white",
+            color: isLike ? "" : "black",
           }}
           className="like"
           onClick={(e) => {
             props.likeClickHandler(photo._id);
-            setIsLike(true);
+            setIsLike((value) => !value);
             e.stopPropagation();
             e.preventDefault();
           }}
         >
           <FaRegHeart />
-          {user.isLiked(photo._id)}
+          {user.data && user.isLiked(photo._id)}
         </button>
 
         <div
