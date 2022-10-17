@@ -1,7 +1,6 @@
 import * as React from "react";
 import "./index.scss";
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import Photo from "../overview/photo";
 import Layout from "../../Layout";
 import useUser from "../../hooks/useUser";
@@ -9,7 +8,6 @@ import useUser from "../../hooks/useUser";
 export default function Item() {
   let { item } = useParams();
   const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
-  const navigate = useNavigate();
   const user = useUser();
 
   React.useEffect(() => {
