@@ -1,14 +1,16 @@
 import * as React from "react";
 import "./index.scss";
 import { useParams } from "react-router-dom";
-import { FaRegHeart } from "react-icons/fa";
-import { BiDownload } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import Photo from "../overview/photo";
+import Layout from "../../Layout";
+import useUser from "../../hooks/useUser";
 
-function Item() {
+export default function Item() {
   let { item } = useParams();
   const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
   const navigate = useNavigate();
+  const user = useUser();
 
   React.useEffect(() => {
     fetch(`http://localhost:3007/photos`).then(async (res) => {
@@ -25,41 +27,45 @@ function Item() {
   }, [item]);
   console.log("ITEM", uploadtetPhotos);
 
-  const a = uploadtetPhotos.filter((photo) => photo.category === item);
-  console.log(a);
+  const categoryPhotos = uploadtetPhotos.filter(
+    (photo) => photo.category === item
+  );
+  console.log(categoryPhotos);
+
+  const likeClickHandler = async (id) => {
+    await user.likedPhotos(id);
+  };
+
+  async function toDataURL(url) {
+    const blob = await fetch(url).then((res) => res.blob());
+    return URL.createObjectURL(blob);
+  }
+
+  async function download(url) {
+    const a = document.createElement("a");
+    a.href = await toDataURL(url);
+    a.download = url.replace("http://localhost:3007/", "");
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
 
   return (
-    <div className="Item">
-      <main className="CategoryItem">
-        {a.map((photo) => (
-          <div className="item" key={photo._id}>
-            <img
-              onClick={() => navigate("/photos" + "/" + photo._id)}
-              src={photo.photoFile.replace("uploads", "http://localhost:3007")}
-              onError={() =>
-                setUploadetPhotos(
-                  uploadtetPhotos.filter((row) => row !== photo)
-                )
-              }
-              alt=""
-            />
-            <h4>{photo.user.username}</h4>
-
-            <button
-              className="like"
-              /*  onClick={() => likeClickHandler(photo._id)} */
-            >
-              <FaRegHeart />
-            </button>
-
-            <button className="download">
-              <BiDownload />
-            </button>
-          </div>
-        ))}
-      </main>
-    </div>
+    <Layout>
+      <div className="Item">
+        <main className="main">
+          {categoryPhotos.map((photo) => (
+            <Photo
+              key={photo._id}
+              photo={photo}
+              likeClickHandler={likeClickHandler}
+              download={download}
+              setUploadetPhotos={setUploadetPhotos}
+              categoryPhotos={categoryPhotos}
+            ></Photo>
+          ))}
+        </main>
+      </div>
+    </Layout>
   );
 }
-
-export default Item;
