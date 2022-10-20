@@ -4,11 +4,11 @@ import Layout from "../../Layout";
 import Photo from "./photo";
 import { FaSearch } from "react-icons/fa";
 import useUser from "../../hooks/useUser";
+import useSearch from "../../hooks/useSearch";
 
 export default function Overview() {
-  const [uploadtetPhotos, setUploadetPhotos] = React.useState([]);
-  const [search, setSearch] = React.useState("");
   const user = useUser();
+  const search = useSearch();
 
   const likeClickHandler = async (id) => {
     await user.likedPhotos(id);
@@ -27,27 +27,6 @@ export default function Overview() {
     a.click();
     document.body.removeChild(a);
   }
-
-  React.useEffect(() => {
-    fetch(`http://localhost:3007/photos`).then(async (res) => {
-      const result = await res.json();
-
-      if (res.status === 200) {
-        setUploadetPhotos(result);
-      }
-    });
-  }, []);
-  console.log(uploadtetPhotos);
-
-  React.useEffect(() => {
-    fetch(`http://localhost:3007/photos?search=${search}`).then(async (res) => {
-      const result = await res.json();
-
-      if (res.status === 200) {
-        setUploadetPhotos(result);
-      }
-    });
-  }, [search]);
 
   return (
     <Layout>
@@ -76,22 +55,22 @@ export default function Overview() {
                 type="text"
                 placeholder="Search"
                 className="Overview__input"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                value={search.search}
+                onChange={(e) => search.setSearch(e.target.value)}
               ></input>
             </div>
           </div>
         </div>
 
         <main className="Main">
-          {uploadtetPhotos.map((photo) => (
+          {search.result.map((photo) => (
             <Photo
               key={photo._id}
               photo={photo}
               likeClickHandler={likeClickHandler}
               download={download}
-              setUploadetPhotos={setUploadetPhotos}
-              uploadtetPhotos={uploadtetPhotos}
+              setUploadetPhotos={search.setResult}
+              uploadtetPhotos={search.result}
             ></Photo>
           ))}
         </main>

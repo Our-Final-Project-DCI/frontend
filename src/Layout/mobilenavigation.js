@@ -8,10 +8,11 @@ import { useState } from "react";
 import NavLinks from "./navLinks";
 import { CgClose } from "react-icons/cg";
 import { FaSearch } from "react-icons/fa";
+import useSearch from "../hooks/useSearch";
 
 const Mobile = () => {
   const [open, setOpen] = useState(false);
-  const [search, setSearch] = React.useState("");
+  const search = useSearch();
 
   const hamburgerIcon = (
     <CgMenu
@@ -46,8 +47,8 @@ const Mobile = () => {
               type="text"
               placeholder="Search"
               className="Logout__input"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              value={search.search}
+              onChange={(e) => search.setSearch(e.target.value)}
             ></input>
           </div>
         </div>

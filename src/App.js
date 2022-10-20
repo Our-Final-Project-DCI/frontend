@@ -12,11 +12,13 @@ import Update from "./routes/update";
 import Item from "./routes/category_item";
 
 import { UserProvider } from "./hooks/useUser";
+import { SearchProvider } from "./hooks/useSearch"
 
 
 function App() {
   return (
     <UserProvider>
+      <SearchProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Overview />} />
@@ -31,6 +33,7 @@ function App() {
           <Route path="/category/:item" element={<Item />} />
         </Routes>
       </BrowserRouter>
+      </SearchProvider>
     </UserProvider>
   );
 }
